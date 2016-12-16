@@ -6,3 +6,7 @@ import string
 
 print dir(string)
 print ''
+
+print "Hello World!"
+
+
