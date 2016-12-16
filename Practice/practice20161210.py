@@ -301,3 +301,147 @@ s = 'abcdefg'
 # 
 # la=['kobe','jordan','lily','lilei','hanmeimei','xiaoming','laowang','tudou','xihongshi','jidan','zhangsan','lisi','wangwu']
 # count_first_letter_in_namelist(la)
+
+'''6、字符替换
+1）读入一个字符串
+2）去掉字符串的前后空格
+3）如果字符串包含数字则1替换成a，2替换成b，3替换成c，以此类推
+4）将字符串使用空格进行切分，存到一个列表，然后使用*号连接，并输出
+5）把这些功能封装到一个函数里面，把执行结果作为返回值
+'''
+# def my_replace():
+#     s = raw_input("input a str: ").strip(" ")
+#     lista = []
+#     for i in s:
+#         if i.isdigit() and i !='0':
+#             lista.append(chr(ord(i)+48))
+#         else:
+#             lista.append(i)
+#     listb = ''.join(lista).split(" ")
+#     for i in range(len(listb)):
+#         if listb[i].isdigit() and listb[i] != '0':
+#             listb[i] = chr(ord(i)+48)
+#     return '*'.join(listb)
+# 
+# print my_replace()
+
+'''7、找出字符串中出现次数最多的字符，并输出其出现的位置'''
+# def find_the_most_chr(s):
+#     d = dict.fromkeys(s,0)
+#     for i in d.keys():
+#         d[i] = s.count(i)
+#     for key,value in d.items():
+#         if value == max(d.values()):
+#             print "the most chr:",key,
+#             lista=[]
+#             for j in range(len(s)):
+#                 if s[j] == key:
+#                     lista.append(j)
+#             print ", index:",lista
+# 
+# s = 'aabbcdebf11223'
+# find_the_most_chr(s)
+
+'''8、找出一段句子中最长的单词及其索引位置，以字典返回'''
+# def find_the_longest_words(s):
+#     s1=''
+#     for i in s:
+#         if i == "'":
+#             s1 += i
+#             continue
+#         if not i.isalpha():
+#             s1 += ' '
+#         else:
+#             s1 += i
+#     print s1
+#     lista = s1.split()
+#     print lista
+#     d = dict.fromkeys(lista)
+#     for i in d.keys():
+#         d[i] = len(i)
+#     longest = max(d.values())
+#     for i in d.keys():
+#         if d[i] != longest:
+#             del d[i]
+#     for i in d.keys():
+#         index_list = []
+#         index = 0
+#         for j in range(s1.count(i)):
+#             index = s1.find(i,index)
+#             index_list.append(index)
+#             index += longest
+#         d[i] = index_list
+#     return d
+# 
+# s = "There are moments necessarily necessarily  in life when you miss someone so much that you just want to pick them from your dreams and hug them for real!"
+# print find_the_longest_words(s)
+
+'''10、实现字符串的upper、lower以及swapcase方法'''
+# def my_upper(s):
+#     try:
+#         if not isinstance(s, basestring):
+#             raise Exception("expected a string")
+#         lista = []
+#         for i in range(len(s)):
+#             if ord(s[i]) >=97 and ord(s[i]) <=122:
+#                 lista.append(chr(ord(s[i])-32))
+#             else:
+#                 lista.append(s[i])
+#         return ''.join(lista)
+#     except Exception,e:
+#         return "TypeError: " + str(e)
+#  
+# def my_lower(s):
+#     try:
+#         if not isinstance(s, basestring):
+#             raise Exception("expected a string")
+#         lista = list(s)
+#         for i in range(len(lista)):
+#             if lista[i] in string.uppercase:
+#                 lista[i] = chr(ord(lista[i])+32)
+#         return ''.join(lista)
+#     except Exception,e:
+#         return "TypeError: " + str(e)
+#  
+# def my_swapcase(s):
+#     try:
+#         if not isinstance(s, basestring):
+#             raise Exception("expected a string")
+#         lista = list(s)
+#         for i in range(len(lista)):
+#             if lista[i] in string.uppercase:
+#                 lista[i] = chr(ord(lista[i])+32)
+#             elif lista[i] in string.lowercase:
+#                 lista[i] = chr(ord(lista[i])-32)
+#         return ''.join(lista)
+#     except Exception,e:
+#         return "TypeError: " + str(e)
+#  
+# s = 'Hello World 123 !'
+# print my_lower(123)
+# print my_upper({})
+# print my_swapcase(s)
+
+'''11、实现字符串的find方法'''
+# def my_find(s, sub, start=None, end=None):
+#     try: 
+#         if not isinstance(s, basestring) or not isinstance(sub, basestring):
+#             raise Exception("expected a string")
+#         length = len(sub)
+#         # 特殊情况处理：sub为空时
+#         if length == 0 and start <= len(s):
+#             if start is None:
+#                 return 0
+#             else:
+#                 return start
+#         s1 = s[start:end]
+#         for i in xrange(len(s1)):
+#             if sub == s1[i:i+length]:
+#                 if start == None:
+#                     return i
+#                 else:
+#                     return i + start
+#         return -1
+#     except Exception,e:
+#         return "TypeError: " + str(e)
+# print my_find('12 3','',1)
