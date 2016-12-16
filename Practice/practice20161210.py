@@ -445,3 +445,91 @@ s = 'abcdefg'
 #     except Exception,e:
 #         return "TypeError: " + str(e)
 # print my_find('12 3','',1)
+
+'''12、实现字符串的isalpha方法'''
+# def my_isalpha(s):
+#     try:
+#         if not isinstance(s,basestring):
+#             raise Exception("expected a string")
+#         for i in s:
+#             if (ord(i)>=65 and ord(i)<=90) or (ord(i)>=97 and ord(i)<=122):
+#                 continue
+#             else:
+#                 return False
+#         return True
+#     except Exception,e:
+#         return "TypeError: "+str(e)
+#  
+# print my_isalpha('abczASCZ')
+
+'''13、实现字符串的isdigit方法'''
+# def my_isdigit(s):
+#     try:
+#         if not isinstance(s,basestring):
+#             raise Exception("expected a string")
+#         for i in s:
+#             if i not in string.digits:
+#                 return False
+#         return True
+#     except Exception,e:
+#         return "TypeError: "+str(e)
+#  
+# print my_isdigit('0123456789_')
+
+'''14、实现字符串的isalnum方法'''
+# def my_isalnum(s):
+#     try:
+#         if not isinstance(s,basestring):
+#             raise Exception("expected a string")
+#         for i in s:
+#             if i not in string.digits+string.letters:
+#                 return False
+#         return True
+#     except Exception,e:
+#         return "TypeError: "+str(e)
+#  
+# print my_isalnum("wefeho32489HFEW")
+
+'''15、实现字符串的join方法'''
+# from collections import Iterable
+# def my_join(s,sep=''):
+#     try:
+#         if not isinstance(s,Iterable):
+#             raise Exception("can only join an iterable")
+#         elif isinstance(s,(list,tuple)):
+#             for i in range(len(s)):
+#                 if not isinstance(s[i],basestring):
+#                     raise Exception("sequence item "+str(i)+": expected string")
+#         result = ''
+#         for j in s:
+#             result += j
+#             result += sep
+#         if len(sep) > 0:
+#             return result[:-len(sep)]
+#         else:
+#             return result
+#     except Exception,e:
+#         return "TypeError: "+str(e)    
+# 
+# print my_join(123)
+# print my_join(('a',2,3),'   ')
+# print my_join("abcd",'**')
+# print my_join(['a','b','c'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
