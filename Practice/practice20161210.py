@@ -516,16 +516,88 @@ s = 'abcdefg'
 # print my_join("abcd",'**')
 # print my_join(['a','b','c'])
 
+'''16、实现字符串的replace方法'''
+# def my_replace(s,old_str,new_str,count=None):
+#     length = len(old_str)
+#     result=[]
+#     num = 0
+#     while old_str in s:
+#         if num == count:
+#             break
+#         index = s.find(old_str)
+#         result.append(s[:index])
+#         s = s[index+length:]
+#         num += 1
+#     result.append(s)
+#     return new_str.join(result)
 
+'''17、实现字符串的split方法'''
+# def my_split(str,split_str='',count=None):
+#     list_s = []
+#     s = ''
+#     num = 0
+#     if split_str == '':
+#         for i in str:
+#             if num == count:
+#                 break
+#             if i != ' ':
+#                 s+=i
+#             else:
+#                 if s != '':
+#                     list_s.append(s)
+#                     s = ''
+#                     num += 1
+#         list_s.append(s)
+#         return list_s
+#     else:
+#         length = len(split_str)
+#         while split_str in str:
+#             if num == count:
+#                 break
+#             index = str.find(split_str)
+#             list_s.append(str[:index])
+#             str = str[index+length:]
+#             num += 1
+#         list_s.append(str)
+#         return list_s
+# 
+# a='aabbccbbdd'
+# b='a bb   cc bdd'
+# c='a bb   cc b d     d'
+# print my_split(a,'bb',3)
+# print my_split(b)
+# print my_split(c,'  ')
 
+'''18、实现字符串的strip方法'''
+# import string
+# def my_strip(s,strip_str=None):
+#     length=len(s)
+#     if strip_str == None:
+#         for index in range(len(s)):
+#             if s[index] not in string.whitespace:
+#                 start = index
+#                 break
+#         for index in range(len(s)):
+#             if s[length-1-index] not in string.whitespace:
+#                 end = length-index
+#                 break
+#         if start > end:
+#             return ''
+#         else:
+#             return s[start:end]
+#     else:
+#         strip_length = len(strip_str)
+#         if strip_length == 0:
+#             return s
+#         while s[:strip_length] == strip_str:
+#             s = s[strip_length:]
+#         while s[-strip_length:] == strip_str:
+#             s = s[:-strip_length]
+#         return s
 
-
-
-
-
-
-
-
+'''19、报数问题：有n个人围成一圈，顺序排号。从第一个人开始报数（从1到3报数）
+，凡报到3的人退出圈子，问最后留下的是原来第几号的那位
+'''
 
 
 

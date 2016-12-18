@@ -43,23 +43,34 @@
 '''实现strip函数'''
 # import string
 # def my_strip(s,strip_str=None):
+#     length=len(s)
 #     if strip_str == None:
-#         length=len(s)
-#         for i in range(len(s)):
-#             if s[i] not in string.whitespace:
-#                 start = i
+#         for index in range(len(s)):
+#             if s[index] not in string.whitespace:
+#                 start = index
 #                 break
-#         for j in range(len(s)):
-#             if s[length-1-j] not in string.whitespace:
-#                 end = length-j
+#         for index in range(len(s)):
+#             if s[length-1-index] not in string.whitespace:
+#                 end = length-index
 #                 break
 #         if start > end:
 #             return ''
 #         else:
 #             return s[start:end]
-#         
+#     else:
+#         strip_length = len(strip_str)
+#         if strip_length == 0:
+#             return s
+#         while s[:strip_length] == strip_str:
+#             s = s[strip_length:]
+#         while s[-strip_length:] == strip_str:
+#             s = s[:-strip_length]
+#         return s
+# 
 # s1 = "\t\r\n      a  bc \t\n"
+# s2 = "abcabcabcabcabcabcabc"
 # print my_strip(s1)
+# print my_strip(s2,'abc')
 
 # def string_strip(source_str,strip_str=None):
 #     space_letter_list=[" ","\n","\r","\t"]
