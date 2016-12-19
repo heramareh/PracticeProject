@@ -595,13 +595,59 @@ s = 'abcdefg'
 #             s = s[:-strip_length]
 #         return s
 
-'''19、报数问题：有n个人围成一圈，顺序排号。从第一个人开始报数（从1到3报数）
-，凡报到3的人退出圈子，问最后留下的是原来第几号的那位
+'''19、报数问题：
+有n个人围成一圈，顺序排号。
+从第一个人开始报数（从1到3报数），凡报到3的人退出圈子，
+问最后留下的是原来第几号的那位
 '''
+# def number_off(n):
+#     number_list = range(1,n+1)
+#     while True:
+#         if len(number_list) == 2:
+#             return number_list[1]
+#         else:
+#             number_list = number_list[3:]+number_list[:2]
+#  
+# print number_off(6)
 
-
-
-
-
-
-
+'''20、由单个字母组成的list，
+从键盘读入两个整数m、n（n>m），
+打印出list[m,n]之间
+的字母能组成的所有n-m+1位不同的字符串
+'''
+# import copy
+# result_list = []
+# def s(ll,length):
+#     '''递归遍历所有组合'''
+#     global result_list
+#     if length == 1:
+#         for i in ll:
+#             result_list.append(i)
+#             print ''.join(result_list)
+#             result_list.remove(i)
+#     else:
+#         for i in ll:
+#             result_list.append(i)
+#             la = copy.deepcopy(ll)
+#             la.remove(i)
+#             s(la,length-1)
+#             result_list.remove(i)
+# 
+# def combination(letter_list):
+#     try:
+#         m = int(raw_input("请出入一个正整数m："))
+#         n = int(raw_input("请出另入一个正整数n(n大于m)："))
+#         if m <= 0 or n <= 0:
+#             print "输入有误，请输入正整数"
+#         elif n > len(letter_list):
+#             print "输入有误，n不能大于列表长度"
+#         elif n <= m:
+#             print "输入有误，n必须大于m"
+#         else:
+#             new_list = letter_list[m-1:n]
+#             length = n-m+1
+#             s(new_list,length)
+#     except Exception,e:
+#         print "输入有误，请输入正整数"
+# 
+# combination(['a','b','c','d','e'])
