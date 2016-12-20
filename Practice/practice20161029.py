@@ -238,19 +238,19 @@ f表示女性）和年龄，然后显示一条消息指出这个人是否可以�
 #         print u'输入有误'
 
 '''19输入一个正整数，输出其阶乘结果'''
-try:
-    num = int(raw_input('请出入一个正整数：'.decode('utf-8').encode('gbk')))
-    if num <= 0:
-        print u'输入有误！'
-    elif num == 1:
-        print u'1 的阶乘是：1'
-    else:
-        result = 1
-        for i in range(1,num+1):
-            result = i*result
-        print num,u'的阶乘是:',result
-except Exception, e:
-    print u'输入有误！'
+# try:
+#     num = int(raw_input('请出入一个正整数：'.decode('utf-8').encode('gbk')))
+#     if num <= 0:
+#         print u'输入有误！'
+#     elif num == 1:
+#         print u'1 的阶乘是：1'
+#     else:
+#         result = 1
+#         for i in range(1,num+1):
+#             result = i*result
+#         print num,u'的阶乘是:',result
+# except Exception, e:
+#     print u'输入有误！'
 
 '''20  计算存款利息
 4种方法可选：
