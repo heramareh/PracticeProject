@@ -34,19 +34,29 @@
 '''6. 怎么得到9 / 2的小数结果'''
 # 9.0/2
 # float(9)/2
+# eval('9./2')
 
 '''7. python计算中7 * 7 *7 * 7，可以有多少种写法'''
 # 7*7*7*7
 # 7**4
-# import math
-# math.pow(7,4)
+# pow(7,4)
+# exp=’7*’*4
+# exp=exp[:-1]
+# eval(exp)
 
 '''8. 写程序将温度从华氏温度转换为摄氏温度。转换公式为C = 5 / 9*(F - 32)'''
-# try:
-#     F = float(raw_input('输入一个华氏温度：'.decode('utf-8').encode('gbk')))
-#     print u'华氏温度 %.2f 转换为摄氏温度为：%.2f' %(F,(5/9.0*(F-32)))
-# except Exception, e:
-#     print u'输入有误！'
+def getC():
+    while(True):    
+        try:
+            F=int(raw_input("please input:"))
+            C=5.0/9*(F-32)
+            print C
+            break
+        except Exception,e:
+            print "please input number."
+    return C
+
+# getC()
 
 '''9. 一家商场在降价促销。如果购买金额50-100元（包含50元和100元）之间，会给10%的折扣，如果
 购买金额大于100元会给20%折扣。编写一程序，询问购买价格，再显示出折扣（10%或20%）和
@@ -238,6 +248,7 @@ f表示女性）和年龄，然后显示一条消息指出这个人是否可以�
 #         print u'输入有误'
 
 '''19输入一个正整数，输出其阶乘结果'''
+# method1:
 # try:
 #     num = int(raw_input('请出入一个正整数：'.decode('utf-8').encode('gbk')))
 #     if num <= 0:
@@ -251,6 +262,14 @@ f表示女性）和年龄，然后显示一条消息指出这个人是否可以�
 #         print num,u'的阶乘是:',result
 # except Exception, e:
 #     print u'输入有误！'
+# method2:
+# def s(x,y):
+# return x*y
+# 
+# num = raw_input('input a number:')
+# print reduce(s,range(1,num+1))
+# method3
+# print reduce(lambda x, y: x*y,xrange(1,num+1))
 
 '''20  计算存款利息
 4种方法可选：
@@ -263,7 +282,7 @@ f表示女性）和年龄，然后显示一条消息指出这个人是否可以�
 '''
 # print '活期：本息 =', 1000 + 1000 * r1*1
 # print '一年期定息：本息 =', 1000 + 1000 * r2*1
-# print '两年半期定息：本息 =', 1000 + 1000 * r3*1
+# print '两年半期定息：本息 =', 1000 + 1000 * r3*2
 # print '两年期定息：本息 =', 1000 + 1000 * r4*2
 
 '''21输入3个数字，以逗号隔开，输出其中最大的数'''
