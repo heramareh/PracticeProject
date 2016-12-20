@@ -202,3 +202,94 @@
 # fp = open('d:\\wa2.txt','w')
 # fp.writelines(aList)
 # fp.close()
+
+'''练习题1：同时读写文件'''
+# def read_and_write_file_by_w_add(filename,data):
+#     try:
+#         fp = open(filename,'w+')
+#         for i in data:
+#             fp.write(i)
+#         fp.seek(0.0)
+#         result = fp.read()
+#         fp.close()
+#         return result
+#     except Exception,e:
+#         return "file path not exist"
+# 
+# def read_and_write_file_by_r_add(filename,data):
+#     try:
+#         fp = open(filename,'r+')
+#         for line in fp:
+#             print line,
+#         print "*"*20
+#         fp.seek(0,2)
+#         fp.writelines(data)
+#         fp.seek(0,0)
+#         print "update after:"
+#         print "*"*20
+#         print fp.read()
+#         fp.close()
+#     except Exception,e:
+#         print "file not exist"
+# 
+# import linecache
+# def read_and_write_file_by_a_add(filename,data):
+#     try:
+#         with open(filename,'a+') as fp:
+#             old_data = fp.readlines()
+#             print "-"*10,"old_data","-"*10,"\n",''.join(old_data),"-"*30,"\n"
+#             index = fp.tell()
+#             fp.writelines(data)
+#             fp.seek(index,0)
+#             new_data = fp.read()
+#             print "-"*10,"new_data","-"*10,"\n",new_data,"-"*30,"\n"
+#         all_data = linecache.getlines(filename)
+#         linecache.clearcache()
+#         print "-"*10,"all_data","-"*10,"\n",''.join(all_data),"-"*30,"\n"
+#     except Exception,e:
+#         print "file path not exist"
+# 
+# filename = "d:\\export.log"
+# data = ["Hello World!\n","Hello Python!\n","Hello Gloryroad!\n","Hello everyone\n","大家好!\n","test123!\n"]
+# print read_and_write_file_by_w_add(filename,data)
+# read_and_write_file_by_r_add(filename,data)
+# read_and_write_file_by_a_add(filename,data)
+
+'''练习题2：创建一个空文件'''
+# import os
+# def new_empty_file(path, filename):
+#     try:
+#         if path.endswith(os.sep):
+#             filepath = path+filename
+#             print "if\n",filepath
+#         else:
+#             filepath = path + os.sep + filename
+#             print "else\n",filepath
+#         with open(filepath,'w') as fp:
+#             pass
+#         print "down"
+#     except Exception,e:
+#         print "file path not exist"
+# 
+# new_empty_file("d:\\test\\", "test.log")
+
+'''练习题3：读取文件的前两行'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
