@@ -206,12 +206,12 @@ with get_sample() as sample:
 '''练习题1：同时读写文件'''
 def read_and_write_file_by_w_add(filename,data):
     try:
-        fp = open(filename,'w+')
-        for i in data:
+        fp = open(filename,'w+') #以w+方式打开文件
+        for i in data: #遍历列表，将每个元素写入文件
             fp.write(i)
-        fp.seek(0.0)
-        result = fp.read()
-        fp.close()
+        fp.seek(0.0) #把游标重置到文件开头
+        result = fp.read() #读取文件所有内容为一个字符串
+        fp.close() #关闭文件
         return result
     except Exception,e:
         return "file path not exist"
@@ -222,8 +222,8 @@ def read_and_write_file_by_r_add(filename,data):
         for line in fp:
             print line,
         print "*"*20
-        fp.seek(0,2)
-        fp.writelines(data)
+        fp.seek(0,2) #将游标指向文件结尾
+        fp.writelines(data) #将列表内容一次性写入文件
         fp.seek(0,0)
         print "update after:"
         print "*"*20
@@ -236,15 +236,15 @@ import linecache
 def read_and_write_file_by_a_add(filename,data):
     try:
         with open(filename,'a+') as fp:
-            old_data = fp.readlines()
+            old_data = fp.readlines() #将文件内容按行读取存入列表中
             print "-"*10,"old_data","-"*10,"\n",''.join(old_data),"-"*30,"\n"
-            index = fp.tell()
-            fp.writelines(data)
-            fp.seek(index,0)
+            index = fp.tell() #查看游标位置
+            fp.writelines(data) #在文件末尾追加内容
+            fp.seek(index,0) #将游标指向追加内容前的位置
             new_data = fp.read()
             print "-"*10,"new_data","-"*10,"\n",new_data,"-"*30,"\n"
-        all_data = linecache.getlines(filename)
-        linecache.clearcache()
+        all_data = linecache.getlines(filename) #按行读取文件内容
+        linecache.clearcache() #清除缓存
         print "-"*10,"all_data","-"*10,"\n",''.join(all_data),"-"*30,"\n"
     except Exception,e:
         print "file path not exist"
@@ -259,13 +259,11 @@ def read_and_write_file_by_a_add(filename,data):
 import os
 def new_empty_file(path, filename):
     try:
-        if path.endswith(os.sep):
+        if path.endswith(os.sep): #判断目录是否以反斜扛结尾，若不是在目录和文件名之间加上反斜扛
             filepath = path+filename
-            print "if\n",filepath
         else:
             filepath = path + os.sep + filename
-            print "else\n",filepath
-        with open(filepath,'w') as fp:
+        with open(filepath,'w') as fp: #创建一个文件，若文件存在则清空文件内容
             pass
         print "down"
     except Exception,e:
