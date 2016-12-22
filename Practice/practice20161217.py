@@ -139,19 +139,19 @@ def read_line(filename,line):
 # fp.close()
 
 '''自定义with方法'''
-class Sample:
-    def __enter__(self):
-        print "In __enter__()"
-        return "Foo"
- 
-    def __exit__(self, type,value, trace):
-        print "In __exit__()"
- 
-def get_sample():
-    return Sample()
- 
-with get_sample() as sample:
-    print "sample:",sample
+# class Sample:
+#     def __enter__(self):
+#         print "In __enter__()"
+#         return "Foo"
+#  
+#     def __exit__(self, type,value, trace):
+#         print "In __exit__()"
+#  
+# def get_sample():
+#     return Sample()
+#  
+# with get_sample() as sample:
+#     print "sample:",sample
 
 '''获取文件对象的各种信息：'''
 # fp = open( "c:\\tuan.txt",'wb+')  
@@ -272,22 +272,85 @@ def new_empty_file(path, filename):
 # new_empty_file("d:\\test\\", "test.log")
 
 '''练习题3：读取文件的前两行'''
+def get_file_content(filename,lines):
+    try:
+        fp = open(filename,'r')
+        if lines >len(fp.readlines()):
+            fp.close()
+            raise Exception("lines exceed file's line")
+        else:
+            fp.seek(0,0)
+            for i in xrange(lines):
+                print fp.readline(),
+            fp.close()
+    except Exception,e:
+        print str(e)
 
+# get_file_content("d:\\wa2.txt",6)
 
+'''练习题4：读取文件的奇数行'''
+def get_file_content_odd_line(filename):
+    try:
+        with open(filename,'r') as fp:
+            n = 1
+            for line in fp:
+                if n%2 == 0:
+                    print line
+                n += 1
+    except Exception,e:
+        print str(e)
 
+# get_file_content_odd_line("d:\\wa2.txt")
 
+'''练习题5：在文件中写入一个列表的内容'''
+def write_list_content_in_file(filename,data_list):
+    try:
+        with open(filename,'w') as fp:
+            fp.writelines(data_list)
+        return 1
+    except Exception,e:
+        return e
 
+# data = ["Hello World!\n","Hello Python!\n","Hello Gloryroad!\n","Hello everyone\n","大家好!\n","test123!\n"]
+# print write_list_content_in_file("d:\\wa3.txt",data)
 
+'''练习题6：在文件中的0、2、4位置写入当前的文件位置偏移量'''
+# fp = open("d:\\wa3.txt",'r+')
+# fp.seek(0,0)
+# fp.write('0')
+# fp.seek(1,1)
+# fp.write('2')
+# fp.seek(1,1)
+# fp.write('4')
+# fp.seek(0,0)
+# print fp.read()
+# fp.close()
 
+'''练习题7：with写法读取文件内容'''
+# with open("d:\\wa2.txt",'r') as fp:
+#     print fp.read()
 
+'''练习题8：统计一个文件中单词个数
+文件内容：
+glory road ,wu lao shi
+file,haha
+women, man, love
+'''
+def count_word_in_file(filename):
+    with open(filename,'r') as fp:
+        return "count_word: "+str(len(fp.read().replace(","," ").split()))
 
+# print count_word_in_file("d:\\wa.txt")
 
+'''练习题9：将一个文件的所有单词倒序写入文件中'''
+def write_reverse_order_words_to_newfile(source_file,new_file):
+    source_fp = open(source_file,'r')
+    words_list = source_fp.read().replace(',',' ').split()[::-1]
+    source_fp.close()
+    new_fp = open(new_file,'w')
+    for i in words_list:
+        new_fp.write(i+" ")
+    new_fp.close()
 
-
-
-
-
-
-
-
+# write_reverse_order_words_to_newfile("d:\\wa.txt","d:\\wa111.txt")
 
