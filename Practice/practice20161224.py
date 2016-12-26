@@ -3,6 +3,7 @@ import string
 import os
 import sys
 import shutil
+import time
 
 '''一个文件有很多英文单词，
 找到出现次数最多的字母，
@@ -172,7 +173,7 @@ def write_content_in_all_files(path,content):
     except Exception,e:
         return -1
 
-print write_content_in_all_files("d:\\test", "gloryroad")
+# print write_content_in_all_files("d:\\test", "gloryroad")
 
 '''5.如果某个目录下文件名包含txt后缀名，则把文件后面追加写一行“被我找到了！”'''
 def find_file_by_suffix(path,suffix):
@@ -190,6 +191,90 @@ def find_file_by_suffix(path,suffix):
 
 # print find_file_by_suffix("d:\\test","txt")
 
-sys.stdout.write("abc123\n")
-sys.stderr.write("abc123\n")
+# sys.stdout.write("abc123\n")
+# sys.stderr.write("abc123\n")
 
+'''6. 命题练习:
+1） 一个目录下只有文件（自己构造），拷贝几个文件（手工完成）
+2 ）用listdir函数获取所有文件，如果文件的创建时间是今天，那么就在文件里面写上文件的路径、
+文件名和文件扩展名
+3） 如果不是今天创建（获取文件的创建时间，并转化为时间格式，判断是否今天），请删除
+4 ）计算一下这个程序的执行耗时
+'''
+def write_fileInformation_in_today_file(path):
+    try:
+        start_time = time.time()
+        all_files = os.listdir(path)
+        for file in all_files:
+            filepath = os.path.join(path,file)
+            if time.strftime("%Y%m%d", time.localtime(os.path.getctime(filepath))) == time.strftime("%Y%m%d", time.localtime()):
+                with open(filepath,'a') as fp:
+                    fp.write("path: "+path+os.linesep)
+                    filename_suffix = os.path.splitext(file)
+                    fp.write("filename: "+filename_suffix[0]+os.linesep)
+                    fp.write("suffix: "+filename_suffix[1]+os.linesep)
+            else:
+                os.remove(filepath)
+        end_time = time.time()
+        return "usetime: "+str(end_time-start_time)
+    except Exception,e:
+        return str(e)
+
+# print write_fileInformation_in_today_file("d:\\test")
+
+'''7.删除某个目录下的全部文件'''
+def delete_all_files(path):
+    try:
+        for root,dirs,files in os.walk(path):
+            for file in files:
+                os.remove(os.path.join(root,file))
+        sys.stdout.write("done!")
+    except Exception,e:
+        sys.stderr.write(str(e))
+
+# delete_all_files("d:\\test")
+
+'''8.统计某个目录下文件数和目录个数'''
+def count_dir_and_file(path):
+    try:
+        count_dir = 0
+        count_file = 0
+        for root,dirs,files in os.walk(path):
+            for dir in dirs:
+                count_dir += 1
+            for file in files:
+                count_file += 1
+        return "count_dir: "+str(count_dir)+"\ncount_file: "+str(count_file)
+    except Exception,e:
+        return str(e)
+
+# print count_dir_and_file("d:\\test")
+
+'''9.删除某个目录下的全部文件(仅限一级目录)'''
+def delete_file(path):
+    try:
+        all_file = os.listdir(path)
+        for each in all_file:
+            filepath = os.path.join(path,each)
+            if os.path.isfile(filepath):
+                os.remove(filepath)
+        return "done"
+    except Exception,e:
+        return str(e)
+
+# print delete_file("d:\\test")
+
+'''10.使用程序建立一个多级的目录，在每个目录下，新建一个和目录名字一样的txt文件'''
+def make_dir_and_file(path,dirname,levelno):
+    try:
+        for i in xrange(levelno):
+            dirpath = os.path.join(path,dirname+str(i+1))
+            os.mkdir(dirpath)
+            with open(os.path.join(dirpath,dirname+str(i+1)+".txt"),'w') as fp:
+                pass
+            path = dirpath
+        return "done!"
+    except Exception,e:
+        return str(e)
+
+# print make_dir_and_file("d:\\test","glorayroad",5)
