@@ -2,6 +2,7 @@
 import string
 import os
 import sys
+import shutil
 
 '''一个文件有很多英文单词，
 找到出现次数最多的字母，
@@ -189,4 +190,6 @@ def find_file_by_suffix(path,suffix):
 
 # print find_file_by_suffix("d:\\test","txt")
 
+sys.stdout.write("abc123\n")
+sys.stderr.write("abc123\n")
 
