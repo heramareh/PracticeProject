@@ -278,3 +278,63 @@ def make_dir_and_file(path,dirname,levelno):
         return str(e)
 
 # print make_dir_and_file("d:\\test","glorayroad",5)
+
+'''11. 查找某个目录下是否存在某个文件名'''
+def isExists_file(path,filename):
+    try:
+        for root,dirs,files in os.walk(path):
+            for file in files:
+                if file == filename:
+                    return True
+        return False
+    except Exception,e:
+        return str(e)
+
+# print isExists_file("d:\\test","b.txt")
+
+'''12. 用系统命令拷贝文件'''
+# os.system("xcopy /y d:\\wa.txt d:\\test\\") # /y: 取消提示以确认要覆盖现有目标文件。
+
+'''13.输入源文件所在路径和目标目录路径，然后实现文件拷贝功能'''
+def my_copy(source_file_path,target_dir_path):
+    if not os.path.isfile(source_file_path) or not os.path.isdir(target_dir_path):
+        return -1
+    shutil.copy(source_file_path,target_dir_path)
+    return 1
+
+# print my_copy("d:\\wa.txt","d:\\test")
+
+'''14.遍历某个目录下的所有图片，并在图片名称后面增加_xx'''
+def modify_pictures_name(path):
+    if not os.path.exists(path):
+        return -1
+    img_suffix_list = ['.jpg','.png','.bmp']
+    n = 1
+    for root,dirs,files in os.walk(path):
+        for file in files:
+            file_name_suffix = os.path.splitext(file)
+            if file_name_suffix[1] in img_suffix_list:
+                os.rename(os.path.join(root,file),os.path.join(root,file_name_suffix[0]+'_'+str(n).zfill(2)+file_name_suffix[1]))
+                n += 1
+    return 1
+
+# print modify_pictures_name("d:\\test")
+
+'''15、遍历指定目录下的所有文件，找出其中占用空间最大的前3个文件'''
+def find_topThree_large_size_file(path):
+    if not os.path.exists(path):
+        return -1
+    file_size_dict = {}
+    result_dict = {}
+    for root,dirs,files in os.walk(path):
+        for file in files:
+            filepath = os.path.join(root,file)
+            file_size_dict[filepath] = os.path.getsize(filepath)
+    size_sort_list = sorted(list(set(file_size_dict.values())))
+    for key in file_size_dict.keys():
+        if file_size_dict[key] in size_sort_list[-3:]:
+            result_dict[key] = file_size_dict[key]
+    return result_dict
+
+# print find_topThree_large_size_file("d:\\test")
+
