@@ -338,3 +338,70 @@ def find_topThree_large_size_file(path):
 
 # print find_topThree_large_size_file("d:\\test")
 
+'''16、过滤py源码中的#注释，另存为文件result.py，并执行result.py，断言是否执行成功'''
+def remove_annotation(source_file):
+    try:
+        result_file = os.path.join(os.path.dirname(source_file),"result.py")
+        source_fp = open(source_file,'r')
+        result_fp = open(result_file,'w')
+        for eachLine in source_fp:
+            if eachLine.strip().startswith("#"):
+                continue
+            result_fp.write(eachLine)
+        source_fp.close()
+        result_fp.close()
+        return result_file
+    except Exception,e:
+        return -1
+
+# assert os.system("python " + remove_annotation("d:\\test\\a.py")) == 0
+
+'''17、文件访问，提示输入数字 N 和文件 F, 然后显示文件 F 的前 N 行.'''
+def get_content_lineno(file,lineno):
+    fp = open(file,'r')
+    content = fp.readlines()
+    if lineno > len(content):
+        print "输入数字超过文件最大行数"
+        sys.exit()
+    fp.seek(0,0)
+    for i in xrange(lineno):
+        print fp.readline(),
+
+# if __name__ == '__main__':
+#     try:
+#         N = int(raw_input("请输入一个正整数："))
+#         if N <= 0:
+#             print "数字必须大于零"
+#             sys.exit()
+#         F = raw_input("请输入一个文件的绝对路径：")
+#         if not os.path.isfile(F):
+#             print "文件不存在"
+#             sys.exit()
+#         get_content_lineno(F,N)
+#     except Exception,e:
+#         print e
+
+'''18、从命令行接受1个路径如：c:\a\b\c\1.py, 实现1个函数创建目录a\b\c,创建文件1.py
+，实现1个函数删除已创建的目录及文件'''
+def make_dir_and_file(file):
+    os.makedirs(os.path.split(file)[0])
+    with open(file,'w') as fp:
+        pass
+
+def delete_dir_and_file(file):
+    os.remove(file)
+    os.removedirs(os.path.split(file)[0])
+
+# filepath = sys.argv[1]
+# if os.path.isabs(filepath):
+#     make_dir_and_file(filepath)
+#     delete_dir_and_file(filepath)
+
+
+
+
+
+
+
+
+
