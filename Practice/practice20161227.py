@@ -1,4 +1,4 @@
-#encoding=utf-8
+# encoding=utf-8
 import string
 import os
 import sys
@@ -17,23 +17,38 @@ def my_sum():
 '''第二题：自己构造一个目录A，下面有2个文件a.txt和b.txt ，
 新建一个目录B，下面有文件c.txt。
 请使用程序构造这个目录并且封装在一个函数中'''
-def make_dir_and_file(path,dirA,dirB):
+def make_dir_and_file(path, dirA, dirB):
     try:
         os.chdir(path)
         os.makedirs(dirA)
-        with open(os.path.join(dirA,"a.txt"),'w'):
+        with open(os.path.join(dirA, "a.txt"), 'w'):
             pass
-        with open(os.path.join(dirA,"b.txt"),'w'):
+        with open(os.path.join(dirA, "b.txt"), 'w'):
             pass
         os.makedirs(dirB)
-        with open(os.path.join(dirA,"c.txt"),'w'):
+        with open(os.path.join(dirB, "c.txt"), 'w'):
             pass
         return 1
-    except Exception,e:
+    except Exception, e:
         return -1
+
+make_dir_and_file("d:\\test", "A", "B")
 
 '''第三题：把刚才的目录中的子目录和所有文件的路径，
 写入到一个文件d.txt中，文件在同级创建的目录下。'''
+def get_dirs_and_files_path(path):
+    dirs_list = []
+    files_list = []
+    for root, dirs, files in os.walk(path):
+        for dir in dirs:
+            dirs_list.append("dir: " + os.path.join(root, dir) + os.linesep)
+        for file in files:
+            files_list.append("file: " + os.path.join(root, file) + os.linesep)
+    fp = open(os.path.join(path, "d.txt"), 'w')
+    fp.writelines(dirs_list + files_list)
+    fp.close()
+
+get_dirs_and_files_path("d:\\test")
 
 '''练习：统计某个一级目录下有几个文件和子目录'''
 def count_dirs_and_files(path):
@@ -41,15 +56,15 @@ def count_dirs_and_files(path):
         count_dir = 0
         count_file = 0
         for each in os.listdir(path):
-            if os.path.isfile(os.path.join(path,each)):
+            if os.path.isfile(os.path.join(path, each)):
                 count_file += 1
-                print "file:",each
+                print "file:", each
             else:
                 count_dir += 1
-                print "dir:",each
-        print "count_dir: %s\ncount_file: %s" %(count_dir,count_file)
-        return {"count_dir":count_dir,"count_file":count_file}
-    except Exception,e:
+                print "dir:", each
+        print "count_dir: %s\ncount_file: %s" % (count_dir, count_file)
+        return {"count_dir":count_dir, "count_file":count_file}
+    except Exception, e:
         return str(e)
 
 # print count_dirs_and_files("d:\\test")
@@ -61,15 +76,15 @@ def isexists_suffix_txt(path):
             return "path is not exists"
         txt_files = []
         for each in os.listdir(path):
-            if os.path.isfile(os.path.join(path,each)) and os.path.splitext(each)[1] == ".txt":
+            if os.path.isfile(os.path.join(path, each)) and os.path.splitext(each)[1] == ".txt":
                 txt_files.append(each)
         if txt_files:
-            print "txt_files:",txt_files
-            print "count_txt_files:",len(txt_files)
+            print "txt_files:", txt_files
+            print "count_txt_files:", len(txt_files)
             return True
         else:
             return False
-    except Exception,e:
+    except Exception, e:
         return str(e)
 
 # print isexists_suffix_txt("d:\\test")
@@ -78,13 +93,13 @@ def isexists_suffix_txt(path):
 def count_allTxtFiles(path):
     try:
         count = 0
-        for root,dirs,files in os.walk(path):
+        for root, dirs, files in os.walk(path):
             for file in files:
                 if os.path.splitext(file)[1] == ".txt":
                     count += 1
-                    print "file: ",os.path.join(root,file)
+                    print "file: ", os.path.join(root, file)
         return count
-    except Exception,e:
+    except Exception, e:
         return -1
 
 # print count_allTxtFiles("d:\\test")
