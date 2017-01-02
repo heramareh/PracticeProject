@@ -52,7 +52,7 @@ def getC():
             C=5.0/9*(F-32)
             print C
             break
-        except Exception,e:
+        except:
             print "please input number."
     return C
 
