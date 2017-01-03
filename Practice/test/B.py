@@ -1,13 +1,13 @@
 #encoding=utf-8
 
-import A
-print A.add(2, 3)
+import mymath
+print mymath.add(2, 3)
 
-import A as mymath
-print mymath.subtract(3, 2)
+import mymath as A
+print A.subtract(3, 2)
 
-from A import *
+from mymath import *
 print multiply(2, 3)
 
-from A import divide
+from mymath import divide
 print divide(3, 2)
