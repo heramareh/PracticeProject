@@ -83,7 +83,7 @@ class newstring():
 # print type(newstring(0).value)
 
 '''实现replace函数'''
-def my_replace(s,old_str,new_str):
+def my_replace_method1(s,old_str,new_str):
     length = len(old_str)
     list_s=[]
     while old_str in s:
@@ -93,7 +93,7 @@ def my_replace(s,old_str,new_str):
     list_s.append(s)
     return ''.join(list_s)
 
-def my_replace(s,old_str,new_str,count=None):
+def my_replace_method2(s,old_str,new_str,count=None):
     length = len(old_str)
     result=[]
     num = 0
@@ -123,7 +123,7 @@ def my_replace(s,old_str,new_str,count=None):
 # print [s[i] for i in range(len(s)) if i%2!=0]
 
 ''''将一个字符串偶数位字符大小写转换'''
-def swap_even_index_letter(s):
+def swap_even_index_letter_method1(s):
     result=[]
     for i in range(0,len(s)):
         if i % 2 == 0:
@@ -139,7 +139,7 @@ def swap_even_index_letter(s):
     return ''.join(result)
  
 ''''将一个字符串偶数位字符大小写转换'''
-def swap_even_index_letter(str):
+def swap_even_index_letter_method2(str):
     str="gloryroad"
     str=list(str)
     for i in range(0,len(str),2):
@@ -561,7 +561,7 @@ def my_join(s,sep=''):
 # print my_join(['a','b','c'])
 
 '''16、实现字符串的replace方法'''
-def my_replace(s,old_str,new_str,count=None):
+def my_replace2(s,old_str,new_str,count=None):
     length = len(old_str)
     result=[]
     num = 0
@@ -576,7 +576,7 @@ def my_replace(s,old_str,new_str,count=None):
     return new_str.join(result)
 
 '''17、实现字符串的split方法'''
-def my_split(str,split_str='',count=None):
+def my_split2(str,split_str='',count=None):
     list_s = []
     s = ''
     num = 0

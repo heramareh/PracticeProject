@@ -239,3 +239,5 @@ print divide(3, 2)
 '''
 
 '''2、实现自己的字符串模块mystr，里面有方法：isdigit,strip, join,split'''
+#见test.mystr
+

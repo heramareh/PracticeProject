@@ -265,7 +265,7 @@ def delete_file(path):
 # print delete_file("d:\\test")
 
 '''10.使用程序建立一个多级的目录，在每个目录下，新建一个和目录名字一样的txt文件'''
-def make_dir_and_file(path,dirname,levelno):
+def make_dirs_and_files(path,dirname,levelno):
     try:
         for i in xrange(levelno):
             dirpath = os.path.join(path,dirname+str(i+1))
