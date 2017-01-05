@@ -3,6 +3,7 @@ import os
 import sys
 import shutil
 import time
+import copy
 '''模块'''
 # import practice20161029 as practice
 # import gloryroad.glory
@@ -241,3 +242,102 @@ print divide(3, 2)
 '''2、实现自己的字符串模块mystr，里面有方法：isdigit,strip, join,split'''
 #见test.mystr
 
+'''3、构建一个模块的层级包'''
+#见gloryroad
+
+'''4、实现一个除法函数，并处理异常'''
+def divide(a, b):
+    try:
+        return a / b
+    except Exception,e:
+        return e
+
+# print divide(1,0)
+
+'''5、引发一个异常，并将它抛除到上层函数，上层函数捕获该异常并处理'''
+# try:
+#     try:
+#         1/0
+#     except IOError,e:
+#         print "IOError!"
+# except Exception,e:
+#     print e
+
+'''6、实现字符串、列表、元组和set之间互相转换'''
+# s='abcabc'
+# print '',list(s)
+# print tuple(s)
+# print set(s)
+# lista = ['a','b','c','a','b','c']
+# print str(lista)
+# print tuple(lista)
+# print set(lista)
+# t = ('a','b','c','a','b','c')
+# print str(t)
+# print list(t)
+# print set(t)
+# se = set(t)
+# print str(se)
+# print list(se)
+# print tuple(se)
+
+'''7、结合set对象，统计某个list出现的重复元素个数'''
+def count_duplicate_element_num(lista):
+    try:
+        if not isinstance(lista, list):
+            raise TypeError("TypeError: need a list")
+        listb = copy.deepcopy(lista)
+        for element in set(listb):
+            listb.remove(element)
+        count = len(set(listb))
+        result_dict = dict.fromkeys(listb,1)
+        for element in listb:
+            result_dict[element] += 1
+        return {"count":count,"result_dict":result_dict}
+    except Exception,e:
+        print e
+
+# print count_duplicate_element_num(['a','b','c','a','b','c','d'])
+
+'''8、定义一个元组，向元组中添加元素或者修改已有元素，并捕获异常'''
+# try:
+#     t = (1,2,3)
+#     t[0]=11
+# except TypeError,e:
+#     print "TypeError:",e
+
+'''9、删除无重复元组中给定的元素'''
+def delete_element(t, a):
+    try:
+        if not isinstance(t, tuple):
+            raise TypeError("TypeError: need a tuple")
+        list_t = list(t)
+        try:
+            list_t.remove(a)
+            return tuple(list_t)
+        except ValueError,e:
+            return "ValueError: list.remove(x): x not in list"
+    except Exception,e:
+        return e
+
+# print delete_element([1,2,3],'a')
+# print delete_element((1,2,3),'a')
+# print delete_element((1,2,3),3)
+
+'''10、有一个ip.txt，里面每行是一个ip，实现一个函数，ping 每个ip的结
+果，把结果记录存到ping.txt中，格式为ip:0或ip:1 ，0代表ping成功，1
+代表ping失败'''
+def ping_test(ip_file_path,result_file_path):
+    try:
+        try:
+            with open(ip_file_path) as ip_fp:
+                with open(result_file_path,'w') as result_fp:
+                    for ip in ip_fp:
+                        result = os.system("ping " + ip)
+                        result_fp.write(ip.strip()+" : "+str(result)+os.linesep)
+        except IOError,e:
+            print "IOError:",e
+    except Exception,e:
+        print e
+
+ping_test("d:\\test\\ip.txt","d:\\test\\ping.txt")
