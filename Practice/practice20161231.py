@@ -340,4 +340,16 @@ def ping_test(ip_file_path,result_file_path):
     except Exception,e:
         print e
 
-ping_test("d:\\test\\ip.txt","d:\\test\\ping.txt")
+# ping_test("d:\\test\\ip.txt","d:\\test\\ping.txt")
+
+'''11、实现DOS命令执行功能，接受输入命令并执行，然后把执行结果和
+返回码打印到屏幕'''
+def dos(s):
+    try:
+        os.system(s)
+    except Exception,e:
+        print e
+
+# dos("python \n")
+
+'''12、求一个n*n矩阵对角线元素之和'''
