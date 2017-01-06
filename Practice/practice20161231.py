@@ -353,3 +353,105 @@ def dos(s):
 # dos("python \n")
 
 '''12、求一个n*n矩阵对角线元素之和'''
+def sum_diagonal_element(matrix):
+    try:
+        if not isinstance(matrix, list):
+            raise Exception("TypeError: need a list")
+        if len(matrix) != len(matrix[0]):
+            raise Exception("TypeError: it's not a n*n matrix")
+        n = len(matrix)
+        sum = 0
+        for i in xrange(n):
+            sum += matrix[i][i]
+        return sum
+    except Exception,e:
+        return e
+
+# print sum_diagonal_element([[1,2,3],[4,5,6],[7,8,9]])
+
+'''13、输入一个数组，最大的与第一个元素交换，最小的与最后一个元素交换，输出数组'''
+def exchange_element(arr):
+    try:
+        if not isinstance(arr, list):
+            raise Exception("need a list")
+        # 排序，找到最大值和最小值
+        arr_sort = sorted(arr)
+        max_element = arr_sort[-1]
+        min_element = arr_sort[0]
+        # 遍历，若元素等于最大值与第一个元素交换，若元素等于最小值，与最后一个元素交换
+        for i in xrange(1,len(arr)-1):
+            if arr[i] == max_element:
+                arr[0], arr[i] = arr[i], arr[0]
+            if arr[i] == min_element:
+                arr[-1], arr[i] = arr[i], arr[-1]
+        return arr
+    except Exception,e:
+        return e
+
+# print exchange_element([4,2,5,65,3,2,21,34,2,12,3,43,65])
+
+'''14、平衡点，一个数组，
+有一个数字左边所有的数字加起来的总和等于这个数右边所有数字的总和，
+请输出这个数以及坐标'''
+def find_balance_point(arr):
+    try:
+        if not isinstance(arr, list):
+            raise Exception("need a list")
+        result = {}
+        for i in xrange(0,len(arr)):
+            if i == 0 and sum(arr[1:])==0: # 判断第一个元素是否是平衡点
+                result[arr[i]] = i+1
+            elif i == len(arr)-1 and sum(arr[:-1])==0: # 判断最后一个元素是否是平衡点
+                result[arr[i]] = i+1
+            elif sum(arr[:i]) == sum(arr[i+1:]): # 一般情况
+                result[arr[i]] = i+1
+        return result
+    except Exception,e:
+        return e
+
+# print find_balance_point([-7,1,5,2,-4,3,0])
+
+'''15、将单词表中由相同字母组成的单词归成一类，每类单词按照单词的
+首字母排序，并按每类中第一个单词字典序由大到小排列输出各个类别。
+输入格式：按字典序由小到大输入若干个单词，每个单词占一行，以end
+结束输入。
+cinema
+iceman
+maps
+spam
+aboard
+abroad
+end
+输出格式：一类单词一行，类别间单词以空格隔开。
+aboard abroad
+cinema iceman
+maps spam
+'''
+def sort_words():
+    try:
+        print u"按字典序由小到大输入若干个单词，每个单词占一行，以end结束输入"
+        words = []
+        # 循环输入单词，以end结束
+        while True:
+            word = raw_input("")
+            if word == 'end':
+                break
+            words.append(word)
+        # 把所有单词排序
+        words.sort()
+        print u"排序后："
+        while words:
+            # 获取单词列表中第一个单词
+            result = [words[0]]
+            # 从第二个单词开始循环遍历，查找跟第一个单词由相同字母组成的单词
+            for word in words[1:]:
+                if sorted(result[0]) == sorted(word):   # 比较排序后的两个单词是否相等
+                    result.append(word)
+            print ' '.join(result)  # 输出
+            # 从单词列表中删除已输出的单词
+            for result_word in result:
+                words.remove(result_word)
+    except Exception,e:
+        print e
+
+sort_words()
