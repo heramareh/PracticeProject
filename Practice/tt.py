@@ -1,6 +1,8 @@
 #encoding=utf-8
 
-import test.mymath
+import gloryroad
 
 if __name__ == '__main__':
-    print test.mymath.add(1, 2)
+    print gloryroad.fun111()
+    print gloryroad.add(1,2)
+    print gloryroad.sub(2,1)
