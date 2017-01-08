@@ -454,4 +454,61 @@ def sort_words():
     except Exception,e:
         print e
 
-sort_words()
+# sort_words()
+
+'''16、输入一个数组，实现一个函数，让所有奇数都在偶数前面'''
+def my_sort(arr):
+    try:
+        odd_list = []
+        even_list = []
+        for each in arr:
+            if each % 2 ==0:
+                even_list.append(each)
+            else:
+                odd_list.append(each)
+        return odd_list + even_list
+    except Exception,e:
+        return e
+
+# print my_sort([1,4,2,5,6,3,6,78,4,3,2,9])
+
+'''17、lista=['a','abc','d','abc','fgi','abf']，
+寻找列表中第一次出现次数最多的第一个字母，出现了几次'''
+def find_most_first_alpha(lista):
+    try:
+        max_count = 0
+        letters = ''.join(lista)
+        for i in lista:
+            if letters.count(i[0]) > max_count:
+                max_count = letters.count(i[0])
+                max_letter = i[0]
+        return {"max_letter":max_letter,"max_count":max_count}
+    except Exception,e:
+        return e
+
+# print find_most_first_alpha(['a','abc','d','abc','fgi','abf'])
+
+'''18、请输入星期几的第一个字母来判断一下是星期几，
+如果第一个字母一样，则继续判断第二个字母'''
+def judge_week():
+    try:
+        first_alpha = raw_input("请输入星期几的第一个字母：").lower()
+        weeks=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+        first_letters = [x[0].lower() for x in weeks]
+        for x in weeks:
+            if first_alpha == x[0].lower():
+                if first_letters.count(first_alpha) == 1:
+                    return x
+                else:
+                    second_alpha = raw_input("请输入星期几的第二个字母：").lower()
+                    for y in weeks:
+                        if first_alpha+second_alpha == y[:2].lower():
+                            return y
+                    return None
+        return None
+    except Exception,e:
+        return e
+
+# print judge_week()
+
+'''19、有一堆100块的石头，2个人轮流随机从中取1-5块，谁取最后一块就谁win，编程实现此过程'''
