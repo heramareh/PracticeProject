@@ -540,7 +540,6 @@ def is_power_of_two(n):
     try:
         if (not isinstance(n,(int,long))) or (n <= 0):
             raise TypeError("need a positive integer")
-        
         while True:
             if n == 2 or n == 1:
                 return True
