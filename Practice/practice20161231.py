@@ -4,6 +4,7 @@ import sys
 import shutil
 import time
 import copy
+import random
 '''模块'''
 # import practice20161029 as practice
 # import gloryroad.glory
@@ -512,3 +513,41 @@ def judge_week():
 # print judge_week()
 
 '''19、有一堆100块的石头，2个人轮流随机从中取1-5块，谁取最后一块就谁win，编程实现此过程'''
+def who_is_winner():
+    winner = 'n1'
+    all = 100
+    while True:
+        # 随机一个1-5的数
+        number = random.randint(1,5)
+        # 如果随机数大于剩余总数，结束循环
+        if number >= all:
+            break
+        # 剩余总数
+        all -= number
+        # 实现两人轮流取
+        if winner == 'n1':
+            winner = 'n2'
+        else:
+            winner = 'n1'
+    print 'winner is',winner
+
+# who_is_winner()
+
+'''20、实现一个方法，判断一个正整数是否是2的乘方，
+比如16是2的4次方，返回True；18不是2的乘方，返回False。
+要求性能尽可能高'''
+def is_power_of_two(n):
+    try:
+        if (not isinstance(n,(int,long))) or (n <= 0):
+            raise TypeError("need a positive integer")
+        
+        while True:
+            if n == 2 or n == 1:
+                return True
+            if n % 2 == 1:
+                return False
+            n = n / 2
+    except Exception,e:
+        return e
+
+# print is_power_of_two(16)
