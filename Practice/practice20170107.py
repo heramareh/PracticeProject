@@ -157,20 +157,21 @@ def count_duplicate_element_number(lista):
 #     print e
 
 '''4、列出你所有知道的排重方法'''
-lista=[1,2,3,1,2,3,5,5,5,5,6,6,6]
-#method1
-print list(set(lista))
-#method2
-listb=[]
-for i in lista:
-    if i not in listb:
-        listb.append(i)
-print listb
-#method3
-print dict.fromkeys(lista).keys()
-#method4
-listc=lista[:]
-for i in lista:
-    if listc.count(i) > 1:
-        listc.remove(i)
-print listc
+# lista=[1,2,3,1,2,3,5,5,5,5,6,6,6]
+# #method1
+# print list(set(lista))
+# #method2
+# listb=[]
+# for i in lista:
+#     if i not in listb:
+#         listb.append(i)
+# print listb
+# #method3
+# print dict.fromkeys(lista).keys()
+# #method4
+# listc=lista[:]
+# for i in lista:
+#     if listc.count(i) > 1:
+#         listc.remove(i)
+# print listc
+
