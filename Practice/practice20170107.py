@@ -105,3 +105,72 @@ def count_words(filepath):
 # #比较两日期大小
 # print tomorrow > now
 
+'''1、能够熟练进行字符串、列表、元组和set之间的转换。'''
+# #字符串转列表、元组、集合
+# s = '123123'
+# print "str:",s
+# print "str->list:",list(s)
+# print "str->tuple:",tuple(s)
+# print "str->set:",set(s)
+# print '*'*30
+# #列表转字符串、元组、集合
+# lista = ['1', '2', '3', '1', '2', '3']
+# print "list:",lista
+# print "list->str:",''.join(lista)
+# print "list->tuple:",tuple(lista)
+# print "list->set:",set(lista)
+# print '*'*30
+# #元组转字符串、列表、集合
+# t = ('1', '2', '3', '1', '2', '3')
+# print "tuple:",t
+# print "tuple->str:",''.join(t)
+# print "tuple->list:",list(t)
+# print "tuple->set:",set(t)
+# print '*'*30
+# #集合转字符串、列表、元组
+# s = set(['1', '2', '3'])
+# print "set:",s
+# print "set->str:",''.join(s)
+# print "set->list:",list(s)
+# print "set->tuple:",tuple(s)
+
+'''2、结合set对象，统计某个list出现的重复元素个数'''
+def count_duplicate_element_number(lista):
+    listb = lista[:]
+    for i in set(listb):
+        listb.remove(i)
+    print set(listb)
+    return len(set(listb))
+
+# count_duplicate_element_number([1,2,3,1,2,3,4,5,6])
+
+'''3、定义一个不可变集合，向不可变集合中添加元素或者修改已有元素，
+并捕获异常'''
+# try:
+#     try:
+#         fs = frozenset([1,2,3])
+#         fs.add(0)
+#     except AttributeError,e:
+#         print "AttributeError:",e
+#         fs.remove(1)
+# except Exception,e:
+#     print e
+
+'''4、列出你所有知道的排重方法'''
+lista=[1,2,3,1,2,3,5,5,5,5,6,6,6]
+#method1
+print list(set(lista))
+#method2
+listb=[]
+for i in lista:
+    if i not in listb:
+        listb.append(i)
+print listb
+#method3
+print dict.fromkeys(lista).keys()
+#method4
+listc=lista[:]
+for i in lista:
+    if listc.count(i) > 1:
+        listc.remove(i)
+print listc
