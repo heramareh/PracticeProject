@@ -94,13 +94,14 @@ def count_words(filepath):
 # #在原日期上添加一个日期间隔
 # print future + delta
 
-#今天的日期
-now = datetime.date.today()
-print now
+# #今天的日期
+# now = datetime.date.today()
+# print now
+# 
+# #未来的日期
+# tomorrow = now.replace(day = 13)
+# print tomorrow
+# 
+# #比较两日期大小
+# print tomorrow > now
 
-#未来的日期
-tomorrow = now.replace(day = 13)
-print tomorrow
-
-#比较两日期大小
-print tomorrow > now
