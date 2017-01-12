@@ -175,3 +175,55 @@ def count_duplicate_element_number(lista):
 #         listc.remove(i)
 # print listc
 
+'''1、计算程序执行耗时'''
+# start_time = time.time()
+# try:
+#     with open("E:\\eclipse.rar",'rb') as fp:
+#         for i in fp:
+#             pass
+# except Exception,e:
+#     print e
+# end_time = time.time()
+# print end_time - start_time
+
+'''2、将字符串转换为时间戳'''
+def timestr_to_timestamp(timestr,f):
+    try:
+        structtime = time.strptime(timestr,f)
+        return time.mktime(structtime)
+    except Exception,e:
+        print e
+        return -1
+
+# print timestr_to_timestamp("2017-01-12 17:48:00","%Y-%m-%d %H:%M:%S")
+
+'''3、将格式时间字符串转换成时间元组，然后再转换成自定义的时间格式字符串'''
+def timestr_to_newtimestr(timestr,f,new_f):
+    try:
+        structtime = time.strptime(timestr,f)
+        return time.strftime(new_f,structtime)
+    except Exception,e:
+        print e
+        return -1
+
+# print timestr_to_newtimestr("2017-01-12 17:48:00","%Y-%m-%d %H:%M:%S","%Y/%m/%d %H%%%M%%%S")
+
+'''4、将当前时间戳转换为指定格式日期
+创建名称为当前时间(年月日)的目录，在这个目录下创建名称为当前时间(年月日)
+的txt文件，并且输入内容为“你好”'''
+def mk_dir_file(path):
+    try:
+        name = time.strftime("%Y%m%d",time.localtime(time.time()))
+        filepath = os.path.join(path,name)
+        if not os.path.exists(filepath):
+            os.makedirs(filepath)
+        os.chdir(filepath)
+        filename = name + '.txt'
+        with open(filename,'w') as fp:
+            fp.write('你好')
+        return 1
+    except Exception,e:
+        print e
+        return -1
+
+# print mk_dir_file("d:\\test")

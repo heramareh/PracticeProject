@@ -81,6 +81,10 @@ def gmtime(secs = time.time()):
     '''将一个时间戳转换为UTC时区的struct_time返回，默认为当前时间'''
     return time.gmtime(secs)
 
+def strptime(stime,f):
+    '''将格式字符串转化成struct_time返回'''
+    return time.strptime(stime,f)
+
 def mktime(t = time.localtime()):
     '''将一个struct_time转化为时间戳,默认为当前时间'''
     return time.mktime(t)
@@ -124,22 +128,22 @@ if __name__ == '__main__':
     print "%b：月份，英文简写：",strftime("%b")
     print "%B：月份，英文全拼：",strftime("%B")
     print "%c：日期和时间的字符串表示（mm/dd/YY HH:MM:SS）：",strftime("%c")
-    print "%d：日（1-31）：",strftime("%d")
-    print "%f：微秒（范围[000000-999999]）(只适用于datetime中的datetime和time对象)：",datetime.datetime.now().strftime("%f")
-    print "%H：一天中的第几个小时（24小时制，00-23）：",strftime("%H")
-    print "%I：小时（12小时制，00-11）：",strftime("%I")
-    print "%d：一年中的第几天（001-366）：",strftime("%j")
-    print "%m：月份（01-12）：",strftime("%m")
-    print "%M：分钟数（00-59）：",strftime("%M")
-    print "%p：AM或PM：",strftime("%p")
-    print "%S：秒数（00-61（60和61为闰秒））：",strftime("%S")
-    print "%U：一年中的第几个星期（00-53，星期天是一个星期的开始，第一个星期天之前的所有天数都放在第00周）：",strftime("%U")
-    print "%W：一年中的第几个星期（00-53，星期一是一个星期的开始，第一个星期一之前的所有天数都放在第00周）：",strftime("%W")
-    print "%w：一个星期中的第几天（0-6,0是星期天）：",strftime("%w")
     print "%x：日期字符串（mm/dd/YY）：",strftime("%x")
     print "%X：时间字符串（HH:MM:SS）：",strftime("%X")
-    print "%y：年份（YY）：",strftime("%y")
-    print "%Y：年份（YYYY）：",strftime("%Y")
+    print "%y：年（YY）：",strftime("%y")
+    print "%Y：年（YYYY）：",strftime("%Y")
+    print "%m：月（01-12）：",strftime("%m")
+    print "%d：日（1-31）：",strftime("%d")
+    print "%H：时（24小时制，00-23）：",strftime("%H")
+    print "%I：时（12小时制，00-11）：",strftime("%I")
+    print "%p：AM或PM：",strftime("%p")
+    print "%M：分（00-59）：",strftime("%M")
+    print "%S：秒（00-61（60和61为闰秒））：",strftime("%S")
+    print "%f：微秒（000000-999999）(只适用于datetime中的datetime和time对象)：",datetime.datetime.now().strftime("%f")
+    print "%U：一年中的第几周（00-53，星期天是一周的开始，第一个星期天之前的所有天数都放在第00周）：",strftime("%U")
+    print "%W：一年中的第几周（00-53，星期一是一周的开始，第一个星期一之前的所有天数都放在第00周）：",strftime("%W")
+    print "%j：一年中的第几天（001-366）：",strftime("%j")
+    print "%w：一周中的第几天（0-6,0是星期天）：",strftime("%w")
     print "%z：时区名称，如果不能得到时区名称则返回空字符：",strftime("%z").decode("gbk").encode("utf-8")
     print "%Z：时区名称，如果不能得到时区名称则返回空字符：",strftime("%Z").decode("gbk").encode("utf-8")
     print "%%：",strftime("%%")
