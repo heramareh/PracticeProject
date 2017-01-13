@@ -175,7 +175,7 @@ def count_duplicate_element_number(lista):
 #         listc.remove(i)
 # print listc
 
-'''1、计算程序执行耗时'''
+'''5、计算程序执行耗时'''
 # start_time = time.time()
 # try:
 #     with open("E:\\eclipse.rar",'rb') as fp:
@@ -186,7 +186,7 @@ def count_duplicate_element_number(lista):
 # end_time = time.time()
 # print end_time - start_time
 
-'''2、将字符串转换为时间戳'''
+'''6、将字符串转换为时间戳'''
 def timestr_to_timestamp(timestr,f):
     try:
         structtime = time.strptime(timestr,f)
@@ -197,7 +197,7 @@ def timestr_to_timestamp(timestr,f):
 
 # print timestr_to_timestamp("2017-01-12 17:48:00","%Y-%m-%d %H:%M:%S")
 
-'''3、将格式时间字符串转换成时间元组，然后再转换成自定义的时间格式字符串'''
+'''7、将格式时间字符串转换成时间元组，然后再转换成自定义的时间格式字符串'''
 def timestr_to_newtimestr(timestr,f,new_f):
     try:
         structtime = time.strptime(timestr,f)
@@ -208,7 +208,7 @@ def timestr_to_newtimestr(timestr,f,new_f):
 
 # print timestr_to_newtimestr("2017-01-12 17:48:00","%Y-%m-%d %H:%M:%S","%Y/%m/%d %H%%%M%%%S")
 
-'''4、将当前时间戳转换为指定格式日期
+'''8、将当前时间戳转换为指定格式日期
 创建名称为当前时间(年月日)的目录，在这个目录下创建名称为当前时间(年月日)
 的txt文件，并且输入内容为“你好”'''
 def mk_dir_file(path):
@@ -228,24 +228,24 @@ def mk_dir_file(path):
 
 # print mk_dir_file("d:\\test")
 
-'''1、将当前时间戳转换为指定格式日期'''
+'''9、将当前时间戳转换为指定格式日期'''
 # print datetime.date.fromtimestamp(time.time()).strftime("%Y/%m/%d")
 
-'''2、获得三天（三小时和三分钟）前的时间方法'''
+'''10、获得三天（三小时和三分钟）前的时间方法'''
 # now = datetime.datetime.today()
 # print now + datetime.timedelta(days=-3)
 # print now + datetime.timedelta(hours=-3)
 # print now + datetime.timedelta(minutes=-3)
 
-'''3、计算昨天和明天的日期'''
+'''11、计算昨天和明天的日期'''
 # print datetime.date.today() + datetime.timedelta(days=-1)
 # print datetime.date.today() + datetime.timedelta(days=1)
 
-'''4、使用datetime模块来获取当前的日期和时间'''
+'''12、使用datetime模块来获取当前的日期和时间'''
 # print datetime.date.today()
 # print datetime.datetime.today().strftime("%H:%M:%S:%f")
 
-'''9、创建名称为log的目录，目录下创建三个文件夹，名分别为去年今天的日期、
+'''13、创建名称为log的目录，目录下创建三个文件夹，名分别为去年今天的日期、
 当前日期(年月日)、明年今天的日期，然后分别在这三个目录中创建三个.log文
 件，名分别为当年的今天在当年中第多少天，文件中分别写入当年的今天是这
 一年的第几个星期以及当前是星期几。'''
