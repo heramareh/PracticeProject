@@ -227,3 +227,50 @@ def mk_dir_file(path):
         return -1
 
 # print mk_dir_file("d:\\test")
+
+'''1、将当前时间戳转换为指定格式日期'''
+# print datetime.date.fromtimestamp(time.time()).strftime("%Y/%m/%d")
+
+'''2、获得三天（三小时和三分钟）前的时间方法'''
+# now = datetime.datetime.today()
+# print now + datetime.timedelta(days=-3)
+# print now + datetime.timedelta(hours=-3)
+# print now + datetime.timedelta(minutes=-3)
+
+'''3、计算昨天和明天的日期'''
+# print datetime.date.today() + datetime.timedelta(days=-1)
+# print datetime.date.today() + datetime.timedelta(days=1)
+
+'''4、使用datetime模块来获取当前的日期和时间'''
+# print datetime.date.today()
+# print datetime.datetime.today().strftime("%H:%M:%S:%f")
+
+'''9、创建名称为log的目录，目录下创建三个文件夹，名分别为去年今天的日期、
+当前日期(年月日)、明年今天的日期，然后分别在这三个目录中创建三个.log文
+件，名分别为当年的今天在当年中第多少天，文件中分别写入当年的今天是这
+一年的第几个星期以及当前是星期几。'''
+def make_dirs_files(path):
+    try:
+        parent_dir_name = "log"
+        path = os.path.join(path,parent_dir_name)
+        if not os.path.exists(path):
+            os.mkdir(path)
+        today = datetime.date.today()
+        tomrrow = today + datetime.timedelta(days=1)
+        lastday = today + datetime.timedelta(days=-1)
+        for i in today,tomrrow,lastday:
+            dir_name = str(i)
+            os.chdir(path)
+            if not os.path.exists(dir_name):
+                os.mkdir(dir_name)
+            os.chdir(dir_name)
+            file_name = i.strftime("%j")+'.log'
+            content = "今天是这一年的第%s个星期，当前是星期%s" %(i.strftime("%U"),i.strftime("%w"))
+            with open(file_name,'w') as fp:
+                fp.write(content)
+        return 1
+    except Exception,e:
+        print e
+        return -1
+
+# print make_dirs_files("d:\\test")

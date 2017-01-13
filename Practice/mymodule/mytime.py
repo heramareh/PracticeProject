@@ -139,7 +139,7 @@ if __name__ == '__main__':
     print "%p：AM或PM：",strftime("%p")
     print "%M：分（00-59）：",strftime("%M")
     print "%S：秒（00-61（60和61为闰秒））：",strftime("%S")
-    print "%f：微秒（000000-999999）(只适用于datetime中的datetime和time对象)：",datetime.datetime.now().strftime("%f")
+    print "%f：微秒（000000-999999）(只适用于datetime模块)：",datetime.datetime.now().strftime("%f")
     print "%U：一年中的第几周（00-53，星期天是一周的开始，第一个星期天之前的所有天数都放在第00周）：",strftime("%U")
     print "%W：一年中的第几周（00-53，星期一是一周的开始，第一个星期一之前的所有天数都放在第00周）：",strftime("%W")
     print "%j：一年中的第几天（001-366）：",strftime("%j")
