@@ -219,16 +219,57 @@ class MyFile(object):
 
 '''随机的10个数字，10个字母，10个数字和字母的组合，
 初始化的时候传入参数指定数字出现的范围和字母范围'''
+import string,random
 class F(object):
-    def __init__(self):
-        pass
-    def get_nums(self,n):
-        pass
-    def get_letters(self,n):
-        pass
-    def get_alnums(self,n):
-        pass
+    def __init__(self,num_start,num_end,letter_start,letter_end):
+        self.num_start = num_start
+        self.num_end = num_end
+        self.letter_start = letter_start
+        self.letter_end = letter_end
 
+    def get_num_range(self):
+        try:
+            return string.digits[self.num_start:self.num_end+1]
+        except Exception,e:
+            print e
+
+    def get_letter_range(self):
+        try:
+            return string.letters[string.letters.index(self.letter_start):string.letters.index(self.letter_end)+1]
+        except Exception,e:
+            print e
+
+    def __get_random_str(self,length,str_range):
+        try:
+            s = ''
+            for i in xrange(length):
+                s += random.choice(str_range)
+            return s
+        except Exception,e:
+            print e
+
+    def get_nums(self,length):
+        num_range = self.get_num_range()
+        if num_range:
+            return self.__get_random_str(length,num_range)
+
+    def get_letters(self,length):
+        letter_range = self.get_letter_range()
+        if letter_range:
+            return self.__get_random_str(length,letter_range)
+
+    def get_alnums(self,length):
+        num_range = self.get_num_range()
+        letter_range = self.get_letter_range()
+        if num_range and letter_range:
+            return self.__get_random_str(length,num_range+letter_range)
+
+f = F(0,8,'a','H')
+print f.get_num_range()
+print f.get_letter_range()
+print f.get_nums(10)
+print f.get_letters(8)
+print f.get_alnums(10)
 
 class Foo2:
 
@@ -624,7 +665,7 @@ class Person9(object):
         self.__setId(18) #类内部调用隐藏方法
         return Person.id
 
-p = Person9("prel")
-print p.getId()
-print u"类外部调用私有方法"
-print p.__setId(10)
+# p = Person9("prel")
+# print p.getId()
+# print u"类外部调用私有方法"
+# print p.__setId(10)
