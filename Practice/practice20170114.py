@@ -264,12 +264,12 @@ class F(object):
         if num_range and letter_range:
             return self.__get_random_str(length,num_range+letter_range)
 
-f = F(0,8,'a','H')
-print f.get_num_range()
-print f.get_letter_range()
-print f.get_nums(10)
-print f.get_letters(8)
-print f.get_alnums(10)
+# f = F(0,8,'a','H')
+# print f.get_num_range()
+# print f.get_letter_range()
+# print f.get_nums(10)
+# print f.get_letters(8)
+# print f.get_alnums(10)
 
 class Foo2:
 
@@ -669,3 +669,30 @@ class Person9(object):
 # print p.getId()
 # print u"类外部调用私有方法"
 # print p.__setId(10)
+
+'''获取指定路径下所有一级目录中最新创建的目录名和绝对路径'''
+import os
+def get_newest_dir(path):
+    try:
+        # 判断路径是否存在
+        if not os.path.exists(path):
+            raise WindowsError("path not exist!")
+        # 进入此路径下
+        os.chdir(path)
+        # 获取路径下所有一级目录及目录的创建时间存到一个字典里
+        dirs_ctime = {}
+        for i in os.listdir(path):
+            if os.path.isdir(i):
+                dirs_ctime[i] = os.path.getctime(i)
+        # 获取最新创建时间
+        newesttime = sorted(dirs_ctime.values())[-1]
+        # 得到最新创建的目录名以及目录的绝对路径
+        for dir in dirs_ctime.keys():
+            if dirs_ctime[dir] == newesttime:
+                return {"dir_name":dir,"dir_abspath":os.path.join(path,dir)}
+        return None
+    except Exception,e:
+        print e
+        return None
+
+# print get_newest_dir("d:\\test")
