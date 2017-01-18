@@ -696,3 +696,41 @@ def get_newest_dir(path):
         return None
 
 # print get_newest_dir("d:\\test")
+
+'''9 、编写程序片段，定义表示课程的类Course 。
+课程的属性包括课程名、编号、选修课号；
+方法包括设置课程名、设置编号、设置选修课号
+以及获取课程名、获取编号、获取选修课程号，
+然后打印输出该对象的课程名、编号以及选修课号。'''
+class Course(object):
+    def __init__(self, course_name, number, elective_course_number):
+        self.course_name = course_name
+        self.number = number
+        self.elective_course_number = elective_course_number
+
+    def get_course_name(self):
+        return self.course_name
+
+    def get_number(self):
+        return self.number
+
+    def get_elective_course_number(self):
+        return self.elective_course_number
+
+    def set_course_name(self, new_course_name):
+        self.course_name = new_course_name
+
+    def set_number(self, new_number):
+        self.number = new_number
+
+    def set_elective_course_number(self, new_elective_course_number):
+        self.elective_course_number = new_elective_course_number
+
+course1 = Course("python",2017001,1010110)
+print course1.get_course_name()
+print course1.get_course_name()
+print course1.get_elective_course_number()
+course1.set_course_name("java")
+course1.set_number(201702)
+course1.set_elective_course_number(1010111)
+print course1.get_course_name(),course1.get_number(),course1.get_elective_course_number()
