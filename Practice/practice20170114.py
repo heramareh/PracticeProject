@@ -726,11 +726,66 @@ class Course(object):
     def set_elective_course_number(self, new_elective_course_number):
         self.elective_course_number = new_elective_course_number
 
-course1 = Course("python",2017001,1010110)
-print course1.get_course_name()
-print course1.get_course_name()
-print course1.get_elective_course_number()
-course1.set_course_name("java")
-course1.set_number(201702)
-course1.set_elective_course_number(1010111)
-print course1.get_course_name(),course1.get_number(),course1.get_elective_course_number()
+# course1 = Course("python",2017001,1010110)
+# print course1.get_course_name()
+# print course1.get_course_name()
+# print course1.get_elective_course_number()
+# course1.set_course_name("java")
+# course1.set_number(201702)
+# course1.set_elective_course_number(1010111)
+# print course1.get_course_name(),course1.get_number(),course1.get_elective_course_number()
+
+'''写程序，实现出题：100内的加减乘除（减法要求大减小），10道题，满分100分，通过键盘输入答案，如果正确+10分，错误不加分，给出总分。'''
+from operator import add, sub, mul, div
+import random,time
+
+class Student(object):
+    def __init__(self, name):
+        self.name = name
+    def set_score(self, score):
+        self.score = score
+    def set_start_time(self):
+        self.start_time = time.time()
+    def set_end_time(self):
+        self.end_time = time.time()
+    def get_time(self):
+        self.time = self.end_time - self.start_time
+        return self.time
+    def get_name(self):
+        return self.name
+    def get_score(self):
+        return self.score
+def arithmetic_figure(questions_count):
+    operators = {'+':add, '-':sub, '*': mul, '/': div}
+    score = 0
+    everyone_score = 100 / questions_count
+    while questions_count:
+        op = random.choice('+-*/')
+        nums = [random.randint(1, 100) for i in range(2)]
+        if op in '-/':
+            nums.sort(reverse=True)
+        while True:
+            if op == '/' and nums[0]%nums[1] != 0:
+                nums = [random.randint(1, 100) for i in range(2)]
+                nums.sort(reverse=True)
+                continue
+            else:
+                break
+        pr = "%d %s %d = " %(nums[0],op,nums[1])
+        result = operators[op](*nums)
+        if result == int(raw_input(pr)):
+            score += everyone_score
+            print "right!"
+        else:
+            print "wrong!"
+        questions_count -= 1
+    return score
+
+student1 = Student("zhangsan")
+student1.set_start_time()
+student1.set_score(arithmetic_figure(10))
+student1.set_end_time()
+print "name:",student1.get_name()
+print "score:",student1.get_score()
+print "time:",student1.get_time()
+
