@@ -771,7 +771,7 @@ def arithmetic_figure(questions_count):
                 continue
             else:
                 break
-        pr = "%d %s %d = " %(nums[0],op,nums[1])
+        pr = "%d. %d %s %d = " %(11-questions_count,nums[0],op,nums[1])
         result = operators[op](*nums)
         if result == int(raw_input(pr)):
             score += everyone_score
@@ -785,7 +785,8 @@ student1 = Student("zhangsan")
 student1.set_start_time()
 student1.set_score(arithmetic_figure(10))
 student1.set_end_time()
+print '*'*20
 print "name:",student1.get_name()
 print "score:",student1.get_score()
-print "time:",student1.get_time()
-
+print "time: %ds" % int(student1.get_time())
+print '*'*20
