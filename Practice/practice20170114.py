@@ -781,15 +781,15 @@ def arithmetic_figure(questions_count):
         questions_count -= 1
     return score
 
-student1 = Student("zhangsan")
-student1.set_start_time()
-student1.set_score(arithmetic_figure(10))
-student1.set_end_time()
-print '*'*20
-print "name:",student1.get_name()
-print "score:",student1.get_score()
-print "time: %ds" % int(student1.get_time())
-print '*'*20
+# student1 = Student("zhangsan")
+# student1.set_start_time()
+# student1.set_score(arithmetic_figure(10))
+# student1.set_end_time()
+# print '*'*20
+# print "name:",student1.get_name()
+# print "score:",student1.get_score()
+# print "time: %ds" % int(student1.get_time())
+# print '*'*20
 
 # class App:
 #     def _init__(self, master,count):
@@ -911,3 +911,19 @@ print '*'*20
 # Tkinter.mainloop()
 # print command
 
+'''一个使用函数装饰器的打印时间戳的例子'''
+import time
+def tsfunc(func):
+    def wrappedFunc():
+        print "[%s] %s() called" % (time.ctime(), func.__name__)
+    return wrappedFunc
+
+@tsfunc
+def foo(): pass
+#等价于foo = tsfunc(foo)
+
+foo()
+time.sleep(4)
+for i in range(2):
+    time.sleep(2)
+    foo()
