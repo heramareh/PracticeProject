@@ -771,7 +771,7 @@ def arithmetic_figure(questions_count):
                 continue
             else:
                 break
-        pr = "%d. %d %s %d = " %(11-questions_count,nums[0],op,nums[1])
+        pr = "%d.  %d %s %d = " %(11-questions_count,nums[0],op,nums[1])
         result = operators[op](*nums)
         if result == int(raw_input(pr)):
             score += everyone_score
@@ -790,3 +790,124 @@ print "name:",student1.get_name()
 print "score:",student1.get_score()
 print "time: %ds" % int(student1.get_time())
 print '*'*20
+
+# class App:
+#     def _init__(self, master,count):
+#         self.count = count
+#         frame = Tkinter.Frame(master)
+#         frame.pack()
+#         self.frame1 = Tkinter.Frame(master)
+#         self.frame1.pack()
+#         Tkinter.Button(frame, text = u'下一题',command = App.set_label()).grid(row=0,column=0)
+#         Tkinter.Button(frame, text = u'退出',command = sys.exit()).grid(row=0,column=1)
+#         label = Tkinter.Label(self.frame1, text = arithmetic_figure2(self.count))
+#         label.pack()
+#         
+#     def set_label(self):
+#         self.count -= 1
+#         label = Tkinter.Label(self.frame1, text = arithmetic_figure2(self.count))
+#         label.pack()
+# 
+# import Tkinter,sys,tkMessageBox
+# def arithmetic_figure2():
+#     global score,count,everyone_score,result
+#     operators = {'+':add, '-':sub, '*': mul, '/': div}
+#     op = random.choice('+-*/')
+#     nums = [random.randint(1, 100) for i in range(2)]
+#     if op in '-/':
+#         nums.sort(reverse=True)
+#     while True:
+#         if op == '/' and nums[0]%nums[1] != 0:
+#             nums = [random.randint(1, 100) for i in range(2)]
+#             nums.sort(reverse=True)
+#             continue
+#         else:
+#             break
+#     pr = "%d、  %d %s %d = " %(11-count,nums[0],op,nums[1])
+#     result = operators[op](*nums)
+#     if result == w.get():
+#         score += everyone_score
+#         print "right!"
+#     else:
+#         print "wrong!"
+#     count -= 1
+#     return pr
+
+# def set_label(label):
+#     global score,result,everyone_score,count
+#     if result == int(w.get()):
+#         score += everyone_score
+#         print "right!"
+#     else:
+#         print "wrong!"
+#     count -= 1
+#     if count == 0:
+#         tkMessageBox.showinfo(u'成绩',str(score)+u'分！')
+#         count =10
+#         score = 0
+#         v.set(arithmetic_figure2())
+#         w.set('')
+#     else:
+#         v.set(arithmetic_figure2())
+#         w.set('')
+# 
+# def quit():
+#     root.quit()
+# 
+# def printCoords(event):
+# #     print "event.char",repr(event.char)
+# #     print "event.keycode",repr(event.keycode)
+#     if repr(event.keycode) == '13': #回车
+#         set_label(label)
+#         entry.focus_set()
+# 
+# root = Tkinter.Tk()
+# root.title(u'算术题')
+# root.withdraw()
+# screen_width = root.winfo_screenwidth()
+# screen_height = root.winfo_screenheight() - 100
+# # root.resizable(False, False)
+# # root.update_idletasks()
+# # root.deiconify()
+# root.geometry('%sx%s+%s+%s' % (root.winfo_width() + 200, root.winfo_height() + 80, (screen_width - root.winfo_width())/2, (screen_height - root.winfo_height())/2))
+# root.deiconify()
+# frame = Tkinter.Frame(root)
+# frame.pack()
+# v = Tkinter.StringVar()
+# score = 0
+# count = 10
+# result = 0
+# everyone_score = 100 / count
+# v.set(arithmetic_figure2())
+# label = Tkinter.Label(frame,textvariable = v).grid(row=0,column=0)
+# w = Tkinter.StringVar()
+# entry = Tkinter.Entry(frame,textvariable = w,insertbackground = 'red')
+# entry.focus_set()
+# entry.bind('<Key>',printCoords)
+# entry.grid(row=0,column=1)
+# next = Tkinter.Button(frame, text = u'下一题',command=lambda : set_label(label))
+# next.bind('<Key>',printCoords)
+# next.grid(row=1,column=0)
+# Tkinter.Button(frame, text = u'退出',command=quit).grid(row=1,column=1)
+# 
+# root.mainloop()
+
+
+# a = App(root,10)
+# root.mainloop()
+# import Tkinter
+# root = Tkinter.Tk()
+# root.title(u'算术题')
+# root.minsize(600, 300)
+# label = Tkinter.Label(root, text = arithmetic_figure2(10))
+# next = Tkinter.Button(root, text = u'下一题')
+# quit = Tkinter.Button(root, text = u'退出')
+# result = Tkinter.Entry()
+# command = root.quit()
+# label.pack()
+# result.pack()
+# next.pack()
+# quit.pack()
+# Tkinter.mainloop()
+# print command
+
