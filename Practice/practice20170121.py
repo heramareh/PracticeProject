@@ -320,18 +320,61 @@ class Vector(object) :
 # print str(x)
 # print x
 
+'''运算符重写'''
 class Student3(object):
     def __init__(self,name,score):
         self.name = name
         self.score = score
 
     def __add__(self,other):
+        print "__add__:",
         return (self.score + other.score)/2
 
+    def __sub__(self,other):
+        print "__sub__:",
+        return self.score - other.score
+
+    def __mul__(self,other):
+        print "__mul__:",
+        return self.score * other.score
+
+    def __div__(self,other):
+        print "__div__:",
+        return self.score / other.score
+
     def __ne__(self,other):
+        print "__ne__:",
+        return self.score != other.score
+
+    def __eq__(self,other):
+        print "__eq__:",
         return self.score == other.score
+
+    def __gt__(self,other):
+        print "__gt__:",
+        return self.score > other.score
+
+    def __lt__(self,other):
+        print "__lt__:",
+        return self.score < other.score
+
+    def __ge__(self,other):
+        print "__ge__:",
+        return self.score >= other.score
+
+    def __le__(self,other):
+        print "__le__:",
+        return self.score <= other.score
 
 s1 = Student3('zhangsan',80)
 s2 = Student3('lisi',70)
 print s1+s2
+print s1-s2
+print s1*s2
+print s1/s2
 print s1 != s2
+print s1 == s2
+print s1 > s2
+print s1 < s2
+print s1 >= s2
+print s1 <= s2
