@@ -366,15 +366,56 @@ class Student3(object):
         print "__le__:",
         return self.score <= other.score
 
-s1 = Student3('zhangsan',80)
-s2 = Student3('lisi',70)
-print s1+s2
-print s1-s2
-print s1*s2
-print s1/s2
-print s1 != s2
-print s1 == s2
-print s1 > s2
-print s1 < s2
-print s1 >= s2
-print s1 <= s2
+# s1 = Student3('zhangsan',80)
+# s2 = Student3('lisi',70)
+# print s1+s2
+# print s1-s2
+# print s1*s2
+# print s1/s2
+# print s1 != s2
+# print s1 == s2
+# print s1 > s2
+# print s1 < s2
+# print s1 >= s2
+# print s1 <= s2
+
+'''14 、 按如下规律打印列表
+1 [1*, 2, 3, 4, 5]
+2 [1, 2*, 3, 4, 5]
+3 [1, 2, 3*, 4, 5]
+4 [2, 3, 4*, 5, 6]
+5 [3, 4, 5*, 6, 7]
+6 [4, 5, 6*, 7, 8]
+...
+20 [16, 17, 18, 19, 20*]'''
+def print_list(lines):
+    for i in range(2):
+        number_list = range(1,6)
+        number_list[i] = str(number_list[i])+'*'
+        print i+1,number_list
+    for i in range(3,lines-1):
+        number_list = range(i-2,i+3)
+        number_list[2] = str(number_list[2])+'*'
+        print i,number_list
+    for i in range(2):
+        number_list = range(lines-4,lines+1)
+        number_list[-2+i] = str(number_list[-2+i])+'*'
+        print lines-1+i,number_list
+
+print_list(20)
+
+'''15、写一个函数, 将驼峰命名法字符串转成下划线命名字符串，如GetItem -
+> get_item，getItem -> get_item。'''
+import string
+def rename(name):
+    new_name = [name[0].lower()]
+    for i in name[1:]:
+        if  i in string.uppercase:
+            new_name.append('_'+i.lower())
+            continue
+        new_name.append(i)
+    return ''.join(new_name)
+
+# print rename("GetItem")
+# print rename("getItem")
+
