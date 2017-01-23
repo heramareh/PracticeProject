@@ -402,7 +402,7 @@ def print_list(lines):
         number_list[-2+i] = str(number_list[-2+i])+'*'
         print lines-1+i,number_list
 
-print_list(20)
+# print_list(20)
 
 '''15、写一个函数, 将驼峰命名法字符串转成下划线命名字符串，如GetItem -
 > get_item，getItem -> get_item。'''
@@ -419,3 +419,52 @@ def rename(name):
 # print rename("GetItem")
 # print rename("getItem")
 
+'''16、给定一些NxN的矩阵，对于任意的路线，定义其【和】为其线路上所有
+节点的数字的和，计算从左上角到右下角的路线和最小值。每条路线只能从
+某一点到其周围（上下左右）的点，不可斜行。例如：
+4,6
+2,8 的路线和最小值为 4-2-8 14
+1,2,3
+4,5,6
+7,8,9 的路线和最小值为 1-2-3-6-9 21'''
+class Foo(object):
+    
+    def __init__(self,lista):
+        self.lista = lista
+        self.length = len(lista)
+        self.result = 0
+        self.nums = []
+        self.result_dict = {}
+
+    def __get_all_lines(self,row,col):
+        u'''递归得到所有路线及值，并作为键值对存到字典中'''
+        self.result += self.lista[row][col]
+        self.nums.append(str(self.lista[row][col]))
+        if row+1 == self.length and col+1 == self.length:
+#             print self.nums
+#             print type(self.nums)
+            self.result_dict['-'.join(self.nums)] = self.result
+        elif row+1 == self.length:
+            self.__get_all_lines(row,col+1)
+        elif col+1 == self.length:
+            self.__get_all_lines(row+1,col)
+        else:
+            for i,j in enumerate([1,0]):
+                self.__get_all_lines(row+i,col+j)
+        self.result -= self.lista[row][col]
+        del self.nums[-1]
+
+    def sum_min(self):
+        u'''遍历字典，打印值最小的键值对'''
+        self.__get_all_lines(0,0)
+        min_result = min(self.result_dict.values())
+        for key,value in self.result_dict.items():
+            if value == min_result:
+                print key,value
+
+lista = [[1,2,3],[4,5,6],[7,8,9]]
+listb = [[4,6],[2,8]]
+a1 = Foo(lista)
+b1 = Foo(listb)
+a1.sum_min()
+b1.sum_min()
