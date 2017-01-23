@@ -39,4 +39,20 @@ def get_content_by_lines(path,lines):
     except Exception,e:
         print str(e)
 
-get_content_by_lines("d:\\test\\d.txt",5)
+# get_content_by_lines("d:\\test\\d.txt",5)
+
+import win32api,time
+import win32con
+# os.system('pause')
+while False:
+    print 1
+    # 回车
+    win32api.keybd_event(38,0,0,0)
+    win32api.keybd_event(38,0,win32con.KEYEVENTF_KEYUP,0)
+    time.sleep(0.1)
+    # 上方向键
+    win32api.keybd_event(13,0,0,0)
+    win32api.keybd_event(13,0,win32con.KEYEVENTF_KEYUP,0)
+    time.sleep(0.1)
+    print 2
+
