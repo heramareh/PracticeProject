@@ -462,9 +462,52 @@ class Foo(object):
             if value == min_result:
                 print key,value
 
-lista = [[1,2,3],[4,5,6],[7,8,9]]
-listb = [[4,6],[2,8]]
-a1 = Foo(lista)
-b1 = Foo(listb)
-a1.sum_min()
-b1.sum_min()
+# lista = [[1,2,3],[4,5,6],[7,8,9]]
+# listb = [[4,6],[2,8]]
+# a1 = Foo(lista)
+# b1 = Foo(listb)
+# a1.sum_min()
+# b1.sum_min()
+
+'''17、 有两个序列a,b ，大小都为n, 序列元素的值任意整形数，无序；要求：
+通过交换a,b 中的元素，使[ 序列a 元素的和] 与[ 序列b 元素的和] 之间的差最
+小。'''
+import copy
+class Foo2(object):
+    def __init__(self,a,b):
+        self.all = a+b
+        self.a_list = []
+        self.b_list = a+b
+        self.result_dict = {}
+        self.n = len(a+b)/2
+
+    def __get_all_combination(self,remainder):
+        u'''递归获取所有组合情况与值，作为键值对存在字典中'''
+        if len(self.a_list) == self.n:
+#             print self.a_list
+            for i in self.a_list:
+                self.b_list.remove(i)
+            if str(self.b_list)+"&"+str(self.a_list) not in self.result_dict.keys():
+                self.result_dict[str(self.a_list)+"&"+str(self.b_list)] = abs(sum(self.a_list) - sum(self.b_list))
+            self.b_list = self.all[:]
+        elif len(remainder) >= self.n-len(self.a_list):
+            all_list = copy.deepcopy(remainder)
+            for each in remainder:
+                self.a_list.append(each)
+                all_list = remainder[remainder.index(each)+1:]
+                self.__get_all_combination(all_list)
+                self.a_list.remove(each)
+                all_list.append(each)
+
+    def abs_sub_min(self):
+        u'''遍历字典，打印差值最小的所有组合与值'''
+        self.__get_all_combination(self.all)
+        min_result = min(self.result_dict.values())
+        for key,value in self.result_dict.items():
+            if value == min_result:
+                print key,value
+
+# a = [1,3,2,12,32]
+# b = [4,6,5,9,22]
+# x = Foo2(a,b)
+# x.abs_sub_min()
