@@ -158,43 +158,43 @@ class Student1(UniversityMember):
 # print issubclass(Student1,UniversityMember)
 # print issubclass(Student,UniversityMember)
 
-class A(object):
-    def __init__(self):
-        print "A constructor"
-    def a_method(self):
-        print "call a_method"
-
-    def method(self):
-        print "A method"
-
-class B(A):
-    def __init__(self):
-        print "B constructor"
-        A.__init__(self)
-    def b_method(self):
-        print "call b_method"
-
-    def method(self):
-        print "B method"
-
-class C(A):
-    def __init__(self):
-        print "C constructor"
-        A.__init__(self)
-    def c_method(self):
-        print "call c_method"
-    
-    def x(self):
-        print "C method"
-
-class D(C,B):
-    def __init__(self):
-        B.__init__(self)
-        C.__init__(self)
-    def x(self):
-        print "D method"
-    def d_method(self):
-        print "call d_method"
+# class A(object):
+#     def __init__(self):
+#         print "A constructor"
+#     def a_method(self):
+#         print "call a_method"
+# 
+#     def method(self):
+#         print "A method"
+# 
+# class B(A):
+#     def __init__(self):
+#         print "B constructor"
+#         A.__init__(self)
+#     def b_method(self):
+#         print "call b_method"
+# 
+#     def method(self):
+#         print "B method"
+# 
+# class C(A):
+#     def __init__(self):
+#         print "C constructor"
+#         A.__init__(self)
+#     def c_method(self):
+#         print "call c_method"
+#     
+#     def x(self):
+#         print "C method"
+# 
+# class D(C,B):
+#     def __init__(self):
+#         B.__init__(self)
+#         C.__init__(self)
+#     def x(self):
+#         print "D method"
+#     def d_method(self):
+#         print "call d_method"
 
 # d=D()
 # d.method()
@@ -511,3 +511,44 @@ class Foo2(object):
 # b = [4,6,5,9,22]
 # x = Foo2(a,b)
 # x.abs_sub_min()
+
+'''10 、实现一个多重继承类，并访问该类'''
+#新式类：按广度优先查找，D->B->C->A
+#经典类：按深度优先查找，D->B->A->C->A
+class A():
+    def __init__(self):
+        print "__init__A"
+
+    def a_method(self):
+        print "called a_method"
+
+    def method(self):
+        print "A method"
+class B(A):
+#     def __init__(self):
+#         print "__init__B"
+
+    def b_method(self):
+        print "called b_method"
+
+#     def method(self):
+#         print "B method"
+class C(A):
+    def __init__(self):
+        print "__init__C"
+
+    def c_method(self):
+        print "called c_method"
+
+    def method(self):
+        print "C method"
+
+class D(B,C):
+#     def __init__(self):
+#         print "__init__D"
+
+    def d_method(self):
+        print "called d_method"
+
+d = D()
+d.method()
