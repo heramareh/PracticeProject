@@ -151,7 +151,7 @@ def find(lista,listb):
 # print lista
 
 '''5：递归处理嵌套的list'''
-def bianli(lista):
+def bianli3(lista):
     for i in lista:
         if not isinstance(i,list):
             print i,
@@ -163,7 +163,7 @@ def bianli(lista):
 '''6:遍历list，
 但是list中元素的数据类型不定，
 有可能有嵌套的list，tuple，dict等'''
-def bianli(lista):
+def bianli2(lista):
     global result_list
     for i in lista:
         if isinstance(i,(list,tuple)):
@@ -314,7 +314,7 @@ def transposition(lista):
 要求编程求出其中值最大的那个元素的值，
 以及其所在的行号和列号，
 矩阵可以通过嵌套列表来模拟'''
-def my_max(lista):
+def my_max2(lista):
     n = lista[0][0]
     for row in xrange(len(lista)):
         for col in xrange(len(lista[0])):
@@ -484,7 +484,7 @@ def is_palindrome_str(s):
     else:
         return False
   
-def is_palindrome_str(s):
+def is_palindrome_str2(s):
     return True if s == s[::-1] else False
  
 # print is_palindrome_str('agregf')
@@ -519,7 +519,7 @@ def get_high(x,y):
         return 0
     return (10-d)*100/10
   
-def get_high(x,y):
+def get_high2(x,y):
     d = math.sqrt((20-abs(x))**2+(20-abs(y))**2)
     return 0 if d>=10 else (10-d)*100/10
  
@@ -541,7 +541,7 @@ def perfect_number(num):
 # perfect_number(1000)
 
 '''17、使用二分法实现在一个有序列表中查找指定的元素'''
-def find(lista,key):
+def find2(lista,key):
     n = len(lista)
     index = n/2
     while index >= 0 and index <n:

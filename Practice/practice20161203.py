@@ -86,7 +86,7 @@ def get_author_book():
     for k,v in d.iteritems():
         print k+"'s author:",v
  
-# d={'python':'zhangsan','java':'lisi','php':'wangwu','c++':'wangwu'}
+d={'python':'zhangsan','java':'lisi','php':'wangwu','c++':'wangwu'}
 # print 'count_books:',get_count_books()
 # print 'count_author:',get_count_author()
 # print 'bookname:',get_all_bookname()
