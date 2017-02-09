@@ -56,13 +56,38 @@
 #     time.sleep(0.1)
 #     print 2
 
-def foo():
-    print "calling foo()..."
-    aString = 'bar'
-    anInt = 123
-    print "foo()'s globals:",globals().keys()
-    print "foo()'s locals:",locals().keys()
-a = 100
-print "__main__'s globals:",globals().keys()
-print "__main__'s locals:",locals().keys()
-foo()
+# def foo():
+#     print "calling foo()..."
+#     aString = 'bar'
+#     anInt = 123
+#     print "foo()'s globals:",globals().keys()
+#     print "foo()'s locals:",locals().keys()
+# a = 100
+# print "__main__'s globals:",globals().keys()
+# print "__main__'s locals:",locals().keys()
+# foo()
+
+# class P(object):
+#     def __init__(self):
+#         print "P's constructor"
+#         
+# class C(P):
+# #     pass
+#     def __init__(self):
+#         print "C's constructor"
+
+# c = C()
+
+class SortedKeyDict(dict):
+    def keys(self):
+        return sorted(super(SortedKeyDict,self).keys())
+
+# d = SortedKeyDict((('a',1),('b',2),('c',3)))
+# print [key for key in d]
+# print d.keys()
+
+class A(object): pass
+class B(A): pass
+class C(A): pass
+class D(B, C): pass
+print D.__mro__
