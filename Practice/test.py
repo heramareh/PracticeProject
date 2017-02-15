@@ -86,8 +86,29 @@ class SortedKeyDict(dict):
 # print [key for key in d]
 # print d.keys()
 
-class A(object): pass
-class B(A): pass
-class C(A): pass
-class D(B, C): pass
-print D.__mro__
+# class A(object): pass
+# class B(A): pass
+# class C(A): pass
+# class D(B, C): pass
+# print D.__mro__
+
+# 修改文件夹下的所有文件及文件夹的修改时间
+import os
+def recname(path):
+    print "path:",path
+    os.system("pause")
+    if os.path.exists(path):
+        for root,dirs,files in os.walk(path):
+            for dir in dirs:
+#                 print os.path.join(root,dir)
+                os.utime(os.path.join(root,dir),None)
+            for file in files:
+#                 print os.path.join(root,file)
+                os.utime(os.path.join(root,file),None)
+        print "done!"
+    else:
+        print "path not exists!"
+    os.system("pause")
+
+path = raw_input("please input path:")
+recname(path)

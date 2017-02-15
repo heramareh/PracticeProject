@@ -429,5 +429,53 @@ def myfunc():
 def myfunc2():
     print " myfunc2() called."
 
-myfunc()
-myfunc2()
+# myfunc()
+# myfunc2()
+
+class Foo(object):
+    def __init__(self,la=[]):
+        self.la = la
+
+    def __len__(self):
+        return len(self.la)
+
+    def __getitem__(self, ind):
+        return self.la[ind]
+
+    def __setitem__(self, ind, val):
+        self.la[ind] = val
+
+    def __delitem__(self,ind):
+        del self.la[ind]
+
+    def __getslice__(self,ind1,ind2):
+        return self.la[ind1:ind2]
+
+    def __setslice__(self,ind1,ind2,val):
+        self.la = self.la[:ind1]+val+self.la[ind2:]
+
+    def __delslice__(self,ind1,ind2):
+        self.la = self.la[:ind1]+self.la[ind2:]
+ 
+    def __contains__(self,val):
+        if val in self.la:
+            return True
+        return False
+
+    def __add__(self, obj):
+        return self.la+obj.la
+
+    def __mul__(self, n):
+        return self.la*n
+
+    def __iter__(self):
+        return iter(self.la)
+
+lista = Foo([1,2,3])
+print lista.la
+print lista.__len__()
+print lista.__getslice__(0,3)
+lista.__setitem__(1, 0)
+for i in lista.__iter__():
+    print i
+        
