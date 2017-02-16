@@ -113,8 +113,8 @@ def recname(path):
 # path = raw_input("please input path:")
 # recname(path)
 
-#修改文件夹下所有.java和.rftdef结尾的文件内容，替换jiuqi为zcgl
-def change(path):
+#修改文件夹下所有.java和.rftdef结尾的文件内容中指定字符串替换为新字符串
+def change(path,old_str,new_str):
     print "path:",path
     os.system("pause")
     if os.path.exists(path):
@@ -125,17 +125,14 @@ def change(path):
                     content = ''
                     with open(file_path,'rb') as fp:
                         content = fp.read()
-                        content_list = content.split('jiuqi')
-                        content = 'zcgl'.join(content_list)
+                        content_list = content.split(old_str)
+                        content = new_str.join(content_list)
                     with open(file_path,'wb') as fp:
                         fp.write(content)
         print "done!"
     else:
         print "path not exists!"
     os.system("pause")
-
-# path = raw_input("please input path:")
-# change(path)
 
 #删除目录下所有指定的目录名及目录下的文件和文件夹
 def deletedir(path,dirname):

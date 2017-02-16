@@ -471,11 +471,41 @@ class Foo(object):
     def __iter__(self):
         return iter(self.la)
 
-lista = Foo([1,2,3])
-print lista.la
-print lista.__len__()
-print lista.__getslice__(0,3)
-lista.__setitem__(1, 0)
-for i in lista.__iter__():
-    print i
-        
+# lista = Foo([1,2,3])
+# print lista.la
+# print len(lista)
+# print lista[0:2]
+# print lista+lista
+# print lista*3
+# lista[1]=0
+# for i in iter(lista):
+#     print i
+
+#一个时分的类
+class Time60(object):
+    def __init__(self, hour, min):
+        self.hour = hour
+        self.min = min
+    
+    def __str__(self):
+        return '%d:%d' %(self.hour, self.min)
+    
+    __repr__ = __str__
+    
+    def __add__(self, other):
+        return self.__class__(self.hour+other.hour, self.min+other.min) #self.__class__同Time60()
+    
+    def __iadd__(self, other):
+        self.hour += other.hour
+        self.min += other.min
+        return self
+
+t1 = Time60(10,20)
+t2 = Time60(9,30)
+print t1
+print t2
+print t1+t2
+print id(t1)
+t1+=t2
+print t1
+print id(t1)
