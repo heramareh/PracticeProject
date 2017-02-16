@@ -110,5 +110,62 @@ def recname(path):
         print "path not exists!"
     os.system("pause")
 
-path = raw_input("please input path:")
-recname(path)
+# path = raw_input("please input path:")
+# recname(path)
+
+#修改文件夹下所有.java和.rftdef结尾的文件内容，替换jiuqi为zcgl
+def change(path):
+    print "path:",path
+    os.system("pause")
+    if os.path.exists(path):
+        for root,dirs,files in os.walk(path):
+            for file in files:
+                if os.path.splitext(file)[1] in ['.java','.rftdef']:
+                    file_path = os.path.join(root,file)
+                    content = ''
+                    with open(file_path,'rb') as fp:
+                        content = fp.read()
+                        content_list = content.split('jiuqi')
+                        content = 'zcgl'.join(content_list)
+                    with open(file_path,'wb') as fp:
+                        fp.write(content)
+        print "done!"
+    else:
+        print "path not exists!"
+    os.system("pause")
+
+# path = raw_input("please input path:")
+# change(path)
+
+#删除目录下所有指定的目录名及目录下的文件和文件夹
+def deletedir(path,dirname):
+    print "path:",path
+    os.system("pause")
+    if os.path.exists(path):
+        for root,dirs,files in os.walk(path):
+            for dir in dirs:
+                if dir == dirname:
+                    dir_path = os.path.join(root, dir)
+                    print dir_path
+                    for root1,dirs1,files1 in os.walk(dir_path):
+                        print files1
+                        for file1 in files1:
+                            file_path = os.path.join(root1,file1)
+                            os.remove(file_path)
+                    for root2,dirs2,files2 in os.walk(dir_path,topdown = False):
+                        for dir in dirs2:
+                            try:
+                                os.removedirs(os.path.join(root2,dir))
+                            except:
+                                continue
+                    try:
+                        os.removedirs(dir_path)
+                    except:
+                        continue
+        print "done!"
+    else:
+        print "path not exists!"
+    os.system("pause")
+
+# path = raw_input("please input path:")
+# deletedir(path,'jiuqi')
