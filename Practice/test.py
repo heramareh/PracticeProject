@@ -166,3 +166,15 @@ def deletedir(path,dirname):
 
 # path = raw_input("please input path:")
 # deletedir(path,'jiuqi')
+
+def x(n):
+    global count
+    count += 1
+    if n<=3:
+        return 1
+    else:
+        return x(n-2)+x(n-4)+1
+
+count = 0
+print x(8)
+print count
