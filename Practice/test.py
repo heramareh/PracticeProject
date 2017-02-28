@@ -260,31 +260,40 @@ import openpyxl
 # 
 # wb.save("d:\\test\\excel\\e2.xlsx")
 import string
+from openpyxl import Workbook
 from openpyxl.styles import Border, Side, PatternFill, Font, GradientFill, Alignment
-def create_excel(lista,content):
-    wb = openpyxl.Workbook()
+def create_excel(lista,content_list):
+    wb = Workbook()
     ws = wb.active
+    #边框
+    #粗细
     thin1 = Side(border_style="thin", color="000000")
+    #单双
     double1 = Side(border_style="double", color="000000")
+    #上下左右边框
     border1 = Border(top=thin1, left=thin1, right=thin1, bottom=thin1)
+    #字体、是否粗体、颜色、大小
     font1 = Font(name=u"微软雅黑",b=True, color="000000",size=12)
+    #对齐方式
     al1 = Alignment(horizontal="center", vertical="center")
+    #填充背景色
     fill1 = PatternFill("solid", fgColor="3090C7")
     border2 = Border(top=thin1, left=thin1, right=thin1, bottom=thin1)
     font2 = Font(name=u"微软雅黑",b=False, color="000000",size=12)
     al2 = Alignment(horizontal="center", vertical="center")
     fill2 = PatternFill("solid", fgColor="FFFF00")
     ws.append(lista)
-    for i in range(5):
-        ws.append(content)
-    for i in string.ascii_uppercase[:6]:
+    for i in content_list:
+        ws.append(i)
+    cols_num = string.ascii_uppercase[:len(lista)]
+    for i in cols_num:
         cell = ws[i+"1"]
         cell.fill=fill1
         cell.border=border1
         cell.font=font1
         cell.alignment=al1
-    for i in range(2,7):
-        for j in string.ascii_uppercase[:6]:
+    for i in range(2,len(content_list)+2):
+        for j in cols_num:
             cell = ws[j+str(i)]
             cell.fill=fill2
             cell.border=border2
@@ -295,4 +304,8 @@ def create_excel(lista,content):
 
 lista = ["序号","姓名","性别","学号","爱好","年龄"]
 content = ["=row()-1","张三","男",1,"篮球",20]
-create_excel(lista,content)
+content_list = []
+for i in range(6):
+    content_list.append(content)
+print content_list
+create_excel(lista,content_list)
