@@ -175,6 +175,124 @@ def x(n):
     else:
         return x(n-2)+x(n-4)+1
 
-count = 0
-print x(8)
-print count
+# count = 0
+# print x(8)
+# print count
+
+# import re
+# p = re.compile('^.*[a-z]+$', re.I|re.S)
+# string = """I am a Boy
+#         Your a beautiful Girl
+#         Right"""
+# matchResult = p.search(string)
+# if matchResult:
+#     print matchResult.group()
+# else:
+#     print "no string found!"
+
+import re
+
+# s = 'aaa111aaa , bbb222 , 333ccc'
+# # 指定前后肯定断言
+# print re.findall( r'(?<=[a-z]{3})\d+(?=[a-z]+)', s) 
+# 
+# # 只指定后向肯定断言
+# print re.findall( r'\w+\d+(?=[a-z]+)', s) 
+# 
+# # 只指定前向肯定断言
+# print re.findall( r'(?<=[a-z]{3})\d+', s) 
+# 
+# # 普通匹配方法
+# print re.findall (r'[a-z]+(\d+)[a-z]+', s)
+# # 下面是一个错误的实例
+# try:
+#   matchResult = re.findall( r'(?<=[a-z]+)\d+(?=[a-z]+)', s) 
+# except Exception, e:
+#   print e
+# else:
+#   print matchResult
+  
+# s = 'aaa111aaa , bbb222 , 333ccc'
+# # 指定前后否定断言，不满足前三个字母和后三个字母的条件
+# print re.findall( r'(?<![a-z]{3})\d+(?![a-z]+)', s) 
+# 
+# # 只指定后向否定断言
+# print re.findall( r'\w+\d+(?![a-z]+)', s) 
+# 
+# # 只指定前向否定断言
+# print re.findall( r'(?<![a-z]{3})\d+', s) 
+# 
+# # 普通匹配方法
+# print re.findall (r'[a-z]+(\d+)[a-z]+', s)
+# # 下面是一个错误的实例
+# try:
+#   matchResult = re.findall( r'(?<![a-z]+)\d+(?![a-z]+)', s) 
+# except Exception, e:
+#   print e
+# else:
+#   print matchResult
+  
+import openpyxl
+# wb = openpyxl.Workbook()
+# ws = wb.active
+# ws['A3'] = "hahaha"
+# ws.append([1, "gloryroad", "中国"])
+# ws.append([2, "gloryroad", "北京"])
+# # wb.save(u"d:\\test\\excel\\gloryroad.xlsx")
+# print dir(wb)
+
+# wb = openpyxl.Workbook()
+# ws1 = wb.create_sheet(u"光荣之路1")
+# ws2 = wb.create_sheet(u"光荣之路2")
+# ws3 = wb.create_sheet(u"光荣之路3")
+# ws4 = wb.create_sheet(u"光荣之路4")
+# ws1.sheet_properties.tabColor = "FFFF00"
+# ws2.sheet_properties.tabColor = "3BB9FF"
+# ws3.sheet_properties.tabColor = "7FFFD4"
+# ws4.sheet_properties.tabColor = "F62217"
+# for i in range(1,6):
+#     for j in range(1,6):
+#         ws1.cell(row=i,column=j,value=str(i)+','+str(j))
+# 
+# for row in ws1.iter_rows():
+#     for cell in row:
+#         print cell,cell.value,cell.coordinate
+# 
+# wb.save("d:\\test\\excel\\e2.xlsx")
+import string
+from openpyxl.styles import Border, Side, PatternFill, Font, GradientFill, Alignment
+def create_excel(lista,content):
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    thin1 = Side(border_style="thin", color="000000")
+    double1 = Side(border_style="double", color="000000")
+    border1 = Border(top=thin1, left=thin1, right=thin1, bottom=thin1)
+    font1 = Font(name=u"微软雅黑",b=True, color="000000",size=12)
+    al1 = Alignment(horizontal="center", vertical="center")
+    fill1 = PatternFill("solid", fgColor="3090C7")
+    border2 = Border(top=thin1, left=thin1, right=thin1, bottom=thin1)
+    font2 = Font(name=u"微软雅黑",b=False, color="000000",size=12)
+    al2 = Alignment(horizontal="center", vertical="center")
+    fill2 = PatternFill("solid", fgColor="FFFF00")
+    ws.append(lista)
+    for i in range(5):
+        ws.append(content)
+    for i in string.ascii_uppercase[:6]:
+        cell = ws[i+"1"]
+        cell.fill=fill1
+        cell.border=border1
+        cell.font=font1
+        cell.alignment=al1
+    for i in range(2,7):
+        for j in string.ascii_uppercase[:6]:
+            cell = ws[j+str(i)]
+            cell.fill=fill2
+            cell.border=border2
+            cell.font=font2
+            cell.alignment=al2
+
+    wb.save(u"d:\\test\\excel\\test.xlsx")
+
+lista = ["序号","姓名","性别","学号","爱好","年龄"]
+content = ["=row()-1","张三","男",1,"篮球",20]
+create_excel(lista,content)
