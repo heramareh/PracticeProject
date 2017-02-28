@@ -305,7 +305,7 @@ def create_excel(lista,content_list):
 lista = ["序号","姓名","性别","学号","爱好","年龄"]
 content = ["=row()-1","张三","男",1,"篮球",20]
 content_list = []
-for i in range(6):
+for i in range(8):
     content_list.append(content)
 print content_list
 create_excel(lista,content_list)
