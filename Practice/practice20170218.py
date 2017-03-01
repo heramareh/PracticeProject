@@ -64,11 +64,22 @@ def test_re_str(s,expect_result):
 p = re.compile(r'(\w+) (\w+)')
 s = 'i say, hello world!'
 #\2, \1表示分组引用，分别代表第二个分组，第一个分组
-print p.sub(r'\2 \1', s)
+# print p.sub(r'\2 \1', s)
 
 #当repl为方法时，将匹配的结果m传入方法
 def func(m):
     print m.group()
     return m.group(1).title() + ' ' + m.group(2).title()
 
-print p.sub(func, s)
+# print p.sub(func, s)
+
+from openpyxl import Workbook
+
+wb = Workbook()
+ws = wb.create_sheet("glory")
+ws = wb.get_sheet_by_name("glory")
+ws['A1'] = "序号"
+ws['B1'] = "gloryroad"
+ws.append([1, "中国"])
+ws.append([2, "光荣之路"])
+wb.save("d:\\test\\excel\\gloryroad.xlsx")
