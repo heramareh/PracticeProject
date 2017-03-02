@@ -6,7 +6,6 @@ import win32api
 import win32con
 import win32clipboard as w
 from pymouse import PyMouse
-import SendKeys
 from pywinauto import application
 
 def getText():
