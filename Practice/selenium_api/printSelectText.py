@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 import unittest
 import time
 import chardet
@@ -7,20 +7,20 @@ from selenium import webdriver
 class VisitSogouByIE(unittest.TestCase):
 
     def setUp(self):
-        #Æô¶¯IEä¯ÀÀÆ÷
+        #å¯åŠ¨IEæµè§ˆå™¨
         #self.driver = webdriver.Firefox(executable_path = "e:\\geckodriver")
         self.driver = webdriver.Ie(executable_path = "e:\\IEDriverServer")
         
     def test_printSelectText(self):
         url = "http://127.0.0.1/test_select.html"
-        # ·ÃÎÊ×Ô¶¨ÒåµÄhtmlÍøÒ³
+        # è®¿é—®è‡ªå®šä¹‰çš„htmlç½‘é¡µ
         self.driver.get(url)
-        # Ê¹ÓÃnameÊôĞÔÕÒµ½Ò³ÃæÉÏnameÊôĞÔÎª¡°fruit¡±µÄÏÂÀ­ÁĞ±íÔªËØ
+        # ä½¿ç”¨nameå±æ€§æ‰¾åˆ°é¡µé¢ä¸Šnameå±æ€§ä¸ºâ€œfruitâ€çš„ä¸‹æ‹‰åˆ—è¡¨å…ƒç´ 
         select = self.driver.find_element_by_name("fruit")
         all_options = select.find_elements_by_tag_name("option")
         for option in all_options:
-            print u"Ñ¡ÏîÏÔÊ¾µÄÎÄ±¾£º", option.text
-            print u"Ñ¡ÏîÖµÎª£º", option.get_attribute("value")
+            print u"é€‰é¡¹æ˜¾ç¤ºçš„æ–‡æœ¬ï¼š", option.text
+            print u"é€‰é¡¹å€¼ä¸ºï¼š", option.get_attribute("value")
             option.click()
             time.sleep(1)
 
@@ -29,7 +29,7 @@ class VisitSogouByIE(unittest.TestCase):
 
 
     def tearDown(self):
-        # ÍË³öIEä¯ÀÀÆ÷
+        # é€€å‡ºIEæµè§ˆå™¨
         self.driver.quit()
 
 if __name__ == '__main__':

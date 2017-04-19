@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 import unittest
 import time
 import chardet
@@ -7,31 +7,31 @@ from selenium import webdriver
 class VisitSogouByIE(unittest.TestCase):
 
     def setUp(self):
-        #Æô¶¯IEä¯ÀÀÆ÷
+        #å¯åŠ¨IEæµè§ˆå™¨
         #self.driver = webdriver.Firefox(executable_path = "e:\\geckodriver")
         self.driver = webdriver.Ie(executable_path = "e:\\IEDriverServer")
         
     def test_checkSelectText(self):
         url = "http://127.0.0.1/test_select.html"
-        # ·ÃÎÊ×Ô¶¨ÒåµÄhtmlÍøÒ³
+        # è®¿é—®è‡ªå®šä¹‰çš„htmlç½‘é¡µ
         self.driver.get(url)
-        # µ¼ÈëSelectÄ£¿é
+        # å¯¼å…¥Selectæ¨¡å—
         from selenium.webdriver.support.ui import Select
-        # Ê¹ÓÃxpath¶¨Î»·½Ê½»ñÈ¡selectÒ³ÃæÔªËØ¶ÔÏó
+        # ä½¿ç”¨xpathå®šä½æ–¹å¼è·å–selecté¡µé¢å…ƒç´ å¯¹è±¡
         select_element = Select(self.driver.find_element_by_xpath("//select"))
-        # »ñÈ¡ËùÓĞÑ¡ÔñÏîµÄÒ³ÃæÔªËØ¶ÔÏó
+        # è·å–æ‰€æœ‰é€‰æ‹©é¡¹çš„é¡µé¢å…ƒç´ å¯¹è±¡
         actual_options = select_element.options
-        # ÉùÃ÷Ò»¸ölist¶ÔÏó£¬´æ´¢ÏÂÀ­ÁĞ±íÖĞËùÆÚÍû³öÏÖµÄÎÄ×ÖÄÚÈİ
-        expect_optionsList = [u"ÌÒ×Ó",u"Î÷¹Ï",u"éÙ×Ó",u"â¨ºïÌÒ",u"É½é«",u"ÀóÖ¦"]
-        # Ê¹ÓÃPythonÄÚÖÃmap()º¯Êı»ñÈ¡Ò³ÃæÖĞÏÂÀ­ÁĞ±íÕ¹Ê¾µÄÑ¡ÏîÄÚÈİ×é³ÉµÄÁĞ±í¶ÔÏó
+        # å£°æ˜ä¸€ä¸ªlistå¯¹è±¡ï¼Œå­˜å‚¨ä¸‹æ‹‰åˆ—è¡¨ä¸­æ‰€æœŸæœ›å‡ºç°çš„æ–‡å­—å†…å®¹
+        expect_optionsList = [u"æ¡ƒå­",u"è¥¿ç“œ",u"æ©˜å­",u"çŒ•çŒ´æ¡ƒ",u"å±±æ¥‚",u"è”æ"]
+        # ä½¿ç”¨Pythonå†…ç½®map()å‡½æ•°è·å–é¡µé¢ä¸­ä¸‹æ‹‰åˆ—è¡¨å±•ç¤ºçš„é€‰é¡¹å†…å®¹ç»„æˆçš„åˆ—è¡¨å¯¹è±¡
         actual_optionsList = map(lambda option: option.text, actual_options)
-        # ¶ÏÑÔÆÚÍûÁĞ±í¶ÔÏóºÍÊµ¼ÊÁĞ±í¶ÔÏóÊÇ·ñÍêÈ«Ò»ÖÂ
+        # æ–­è¨€æœŸæœ›åˆ—è¡¨å¯¹è±¡å’Œå®é™…åˆ—è¡¨å¯¹è±¡æ˜¯å¦å®Œå…¨ä¸€è‡´
         self.assertListEqual(expect_optionsList, actual_optionsList)
 
 
 
     def tearDown(self):
-        # ÍË³öIEä¯ÀÀÆ÷
+        # é€€å‡ºIEæµè§ˆå™¨
         self.driver.quit()
 
 if __name__ == '__main__':

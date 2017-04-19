@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 import unittest
 import time
 import chardet
@@ -7,19 +7,19 @@ from selenium import webdriver
 class VisitSogouByIE(unittest.TestCase):
 
     def setUp(self):
-        #Æô¶¯IEä¯ÀÀÆ÷
+        #å¯åŠ¨IEæµè§ˆå™¨
         self.driver = webdriver.Firefox(executable_path = "e:\\geckodriver")
         #self.driver = webdriver.Ie(executable_path = "e:\\IEDriverServer")
         
     def test_doubleClick(self):
         url = "http://127.0.0.1/test_doubleclick.html"
-        # ·ÃÎÊ×Ô¶¨ÒåµÄhtmlÍøÒ³
+        # è®¿é—®è‡ªå®šä¹‰çš„htmlç½‘é¡µ
         self.driver.get(url)
-        # »ñÈ¡Ò³ÃæÊäÈëÔªËØ
+        # è·å–é¡µé¢è¾“å…¥å…ƒç´ 
         inputBox = self.driver.find_element_by_id("inputBox")
-        # µ¼ÈëÖ§³ÖË«»÷²Ù×÷µÄÄ£¿é
+        # å¯¼å…¥æ”¯æŒåŒå‡»æ“ä½œçš„æ¨¡å—
         from selenium.webdriver import ActionChains
-        # ¿ªÊ¼Ä£ÄâÊó±êË«»÷²Ù×÷
+        # å¼€å§‹æ¨¡æ‹Ÿé¼ æ ‡åŒå‡»æ“ä½œ
         action_chains = ActionChains(self.driver)
         action_chains.double_click(inputBox).perform()
 
@@ -30,7 +30,7 @@ class VisitSogouByIE(unittest.TestCase):
 
 
     def tearDown(self):
-        # ÍË³öIEä¯ÀÀÆ÷
+        # é€€å‡ºIEæµè§ˆå™¨
         self.driver.quit()
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 from selenium import webdriver
 import unittest, time, traceback
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,37 +9,37 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 class TestDemo(unittest.TestCase):
 
     def setUp(self):
-        # Æô¶¯Chromeä¯ÀÀÆ÷
+        # å¯åŠ¨Chromeæµè§ˆå™¨
         self.driver = webdriver.Ie(executable_path = "d:\\IEDriverServer")
 
     def test_datePicker(self):
         url = "http://jqueryui.com/resources/demos/datepicker/other-months.html"
-        # ·ÃÎÊÖ¸¶¨µÄÍøÖ·
+        # è®¿é—®æŒ‡å®šçš„ç½‘å€
         self.driver.get(url)
         try:
-            # ´´½¨Ò»¸öÏÔÊ¾µÈ´ı¶ÔÏó
+            # åˆ›å»ºä¸€ä¸ªæ˜¾ç¤ºç­‰å¾…å¯¹è±¡
             wait = WebDriverWait(self.driver, 10, 0.2)
-            # ÏÔÊ¾µÈ´ıÅĞ¶Ï±»²âÊÔÒ³ÃæÉÏµÄÈÕÆÚÊäÈë¿òÊÇ·ñ¿É¼û²¢ÇÒÄÜ±»µã»÷
+            # æ˜¾ç¤ºç­‰å¾…åˆ¤æ–­è¢«æµ‹è¯•é¡µé¢ä¸Šçš„æ—¥æœŸè¾“å…¥æ¡†æ˜¯å¦å¯è§å¹¶ä¸”èƒ½è¢«ç‚¹å‡»
             wait.until(EC.element_to_be_clickable((By.ID, 'datepicker')))
         except TimeoutException, e:
-            # ²¶»ñTimeoutExceptionÒì³£
+            # æ•è·TimeoutExceptionå¼‚å¸¸
             print traceback.print_exc()
         except NoSuchElementException, e:
-            # ²¶»ñNoSuchElementExceptionÒì³£
+            # æ•è·NoSuchElementExceptionå¼‚å¸¸
             print traceback.print_exc()
         except Exception, e:
-            # ²¶»ñÆäËûÒì³£
+            # æ•è·å…¶ä»–å¼‚å¸¸
             print traceback.print_exc()
         else:
-            # ²éÕÒ±»²âÊÔÒ³ÃæÉÏµÄÈÕÆÚÊäÈë¿òÒ³ÃæÔªËØ
+            # æŸ¥æ‰¾è¢«æµ‹è¯•é¡µé¢ä¸Šçš„æ—¥æœŸè¾“å…¥æ¡†é¡µé¢å…ƒç´ 
             dateInputBox = self.driver.find_element_by_id("datepicker")
-            # ²éÕÒµ½ÈÕÆÚÊäÈë¿ò£¬Ö±½ÓÊäÈëÖ¸¶¨¸ñÊ½µÄÈÕÆÚ×Ö·û´®
-            # ¾Í¿ÉÒÔ±äÏàÄ£ÄâÔÚÈÕÆÚ¿Ø¼şÉÏ½øĞĞÑ¡ÔñÁË
+            # æŸ¥æ‰¾åˆ°æ—¥æœŸè¾“å…¥æ¡†ï¼Œç›´æ¥è¾“å…¥æŒ‡å®šæ ¼å¼çš„æ—¥æœŸå­—ç¬¦ä¸²
+            # å°±å¯ä»¥å˜ç›¸æ¨¡æ‹Ÿåœ¨æ—¥æœŸæ§ä»¶ä¸Šè¿›è¡Œé€‰æ‹©äº†
             dateInputBox.send_keys("11/24/2016")
             time.sleep(3)
 
     def tearDown(self):
-        # ÍË³öIEä¯ÀÀÆ÷
+        # é€€å‡ºIEæµè§ˆå™¨
         self.driver.quit()
 
 if __name__ == '__main__':

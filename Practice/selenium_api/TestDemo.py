@@ -1,4 +1,4 @@
-# encoding=utf-8
+ï»¿# encoding=utf-8
 from selenium import webdriver
 import unittest, time, os
 from selenium.webdriver.common.keys import Keys
@@ -8,10 +8,10 @@ import win32con
 
 VK_CODE ={'enter':0x0D, 'down_arrow':0x28}
 
-#¼üÅÌ¼ü°´ÏÂ
+#é”®ç›˜é”®æŒ‰ä¸‹
 def keyDown(keyName):
     win32api.keybd_event(VK_CODE[keyName], 0, 0, 0)
-#¼üÅÌ¼üÌ§Æğ
+#é”®ç›˜é”®æŠ¬èµ·
 def keyUp(keyName):
     win32api.keybd_event(VK_CODE[keyName], 0, win32con.KEYEVENTF_KEYUP, 0)
 
@@ -20,39 +20,39 @@ class TestDemo(unittest.TestCase):
         self.driver = webdriver.Ie(executable_path = "d:\\IEDriverServer")
         #self.driver = webdriver.Chrome(executable_path="d:\\chromedriver")
     def test_dataPickerByRightKey(self):
-        # ¶¨Òå½«Òª·ÃÎÊµÄÍøÖ·
+        # å®šä¹‰å°†è¦è®¿é—®çš„ç½‘å€
         url = "http://ftp.mozilla.org/pub/mozilla.org//firefox/releases/35.0b8/win32/zh-CN/"
         self.driver.get(url)
-        # ½«´°¿Ú×î´ó»¯
+        # å°†çª—å£æœ€å¤§åŒ–
         self.driver.maximize_window()
-        # ÔİÍ£5Ãë£¬Ä¿µÄ·ÀÖ¹Ò³ÃæÓĞÒ»Ğ©¶àÓàµÄµ¯´°Õ¼¾İ½¹µã
+        # æš‚åœ5ç§’ï¼Œç›®çš„é˜²æ­¢é¡µé¢æœ‰ä¸€äº›å¤šä½™çš„å¼¹çª—å æ®ç„¦ç‚¹
         time.sleep(5)
-        # ÕÒµ½ÎÄ±¾ÄÚÈİÎª¡°Firefox Setup 35.0b8.exe¡±³¬Á´½ÓÔªËØ
+        # æ‰¾åˆ°æ–‡æœ¬å†…å®¹ä¸ºâ€œFirefox Setup 35.0b8.exeâ€è¶…é“¾æ¥å…ƒç´ 
         a = self.driver.find_element_by_link_text("Firefox Setup 35.0b8.exe")
         time.sleep(2)
-        # ÔÚÕÒµ½µÄÁ´½ÓÔªËØÉÏÄ£Äâµã»÷Êó±êÓÒ¼ü£¬
-        # ÒÔ±ãµ÷³öÑ¡Ôñ¡°Áí´æÎª¡±Ñ¡ÏîµÄ²Ëµ¥
+        # åœ¨æ‰¾åˆ°çš„é“¾æ¥å…ƒç´ ä¸Šæ¨¡æ‹Ÿç‚¹å‡»é¼ æ ‡å³é”®ï¼Œ
+        # ä»¥ä¾¿è°ƒå‡ºé€‰æ‹©â€œå¦å­˜ä¸ºâ€é€‰é¡¹çš„èœå•
         ActionChains(self.driver).context_click(a).perform()
-        # ÔİÍ£2Ãë£¬·ÀÖ¹ÃüÁîÖ´ĞĞÌ«¿ì
+        # æš‚åœ2ç§’ï¼Œé˜²æ­¢å‘½ä»¤æ‰§è¡Œå¤ªå¿«
         time.sleep(2)
         for i in range(4):
-            # Ñ­»·°´4´ÎÏÂ¼ıÍ·£¬½«½¹µãÇĞ»»µ½¡°Áí´æÎª¡±Ñ¡ÏîÉÏ
-            # ²»Í¬ä¯ÀÀÆ÷´ËÑ¡ÏîµÄÎ»ÖÃ¿ÉÄÜ²»Í¬
+            # å¾ªç¯æŒ‰4æ¬¡ä¸‹ç®­å¤´ï¼Œå°†ç„¦ç‚¹åˆ‡æ¢åˆ°â€œå¦å­˜ä¸ºâ€é€‰é¡¹ä¸Š
+            # ä¸åŒæµè§ˆå™¨æ­¤é€‰é¡¹çš„ä½ç½®å¯èƒ½ä¸åŒ
             #a.send_keys(Keys.DOWN)
             keyDown("down_arrow")
             keyUp("down_arrow")
             print i
             time.sleep(2)
         time.sleep(2)
-        # µ±½¹µãÇĞ»»µ½¡°Áí´æÎª¡±Ñ¡ÏîÉÏºó£¬Ä£Äâµã»÷»Ø³µ¼ü
-        # µ÷³ö±£´æÏÂÔØÎÄ¼şÂ·¾¶µÄWindows´°Ìå
+        # å½“ç„¦ç‚¹åˆ‡æ¢åˆ°â€œå¦å­˜ä¸ºâ€é€‰é¡¹ä¸Šåï¼Œæ¨¡æ‹Ÿç‚¹å‡»å›è½¦é”®
+        # è°ƒå‡ºä¿å­˜ä¸‹è½½æ–‡ä»¶è·¯å¾„çš„Windowsçª—ä½“
         keyDown("enter")
         keyUp("enter")
         time.sleep(3)
-        # Í¨¹ıÖ´ĞĞAutoIt±àĞ´µÄ²Ù×÷µ¯´°µÄWindowsÎÄ¼ş±£´æ´°Ìå
-        # Íê³ÉÎÄ¼ş±£´æÂ·¾¶µÄÉèÖÃ
+        # é€šè¿‡æ‰§è¡ŒAutoItç¼–å†™çš„æ“ä½œå¼¹çª—çš„Windowsæ–‡ä»¶ä¿å­˜çª—ä½“
+        # å®Œæˆæ–‡ä»¶ä¿å­˜è·¯å¾„çš„è®¾ç½®
         os.system("D:\\liwang\\autoit\\upload_file.exe")
-        # µÈ´ıÎÄ¼şÏÂÔØÍê³É£¬¸ù¾İ¸÷×ÔµÄÍøÂç´ø¿íÇé¿öÉè¶¨µÈ´ıÏàÓ¦µÄÊ±¼ä
+        # ç­‰å¾…æ–‡ä»¶ä¸‹è½½å®Œæˆï¼Œæ ¹æ®å„è‡ªçš„ç½‘ç»œå¸¦å®½æƒ…å†µè®¾å®šç­‰å¾…ç›¸åº”çš„æ—¶é—´
         time.sleep(5)
 
     def tearDown(self):

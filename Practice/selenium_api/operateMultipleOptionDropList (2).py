@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 import unittest
 import time
 import chardet
@@ -7,43 +7,43 @@ from selenium import webdriver
 class VisitSogouByIE(unittest.TestCase):
 
     def setUp(self):
-        #Æô¶¯IEä¯ÀÀÆ÷
+        #å¯åŠ¨IEæµè§ˆå™¨
         #self.driver = webdriver.Firefox(executable_path = "e:\\geckodriver")
         self.driver = webdriver.Ie(executable_path = "e:\\IEDriverServer")
         
     def test_operateMultipleOptionDropList(self):
         url = "http://127.0.0.1/test_multiple_select.html"
-        # ·ÃÎÊ×Ô¶¨ÒåµÄhtmlÍøÒ³
+        # è®¿é—®è‡ªå®šä¹‰çš„htmlç½‘é¡µ
         self.driver.get(url)
-        # µ¼ÈëSelectÄ£¿é
+        # å¯¼å…¥Selectæ¨¡å—
         from selenium.webdriver.support.ui import Select
-        # Ê¹ÓÃxpath¶¨Î»·½Ê½»ñÈ¡selectÒ³ÃæÔªËØ¶ÔÏó
+        # ä½¿ç”¨xpathå®šä½æ–¹å¼è·å–selecté¡µé¢å…ƒç´ å¯¹è±¡
         select_element = Select(self.driver.find_element_by_xpath("//select"))
-        # Í¨¹ıĞòºÅÑ¡ÔñµÚÒ»¸öÔªËØ
+        # é€šè¿‡åºå·é€‰æ‹©ç¬¬ä¸€ä¸ªå…ƒç´ 
         select_element.select_by_index(0)
-        # Í¨¹ıÑ¡ÏîµÄÎÄ±¾Ñ¡Ôñ¡°É½é«¡±Ñ¡Ïî
-        select_element.select_by_visible_text("É½é«")
-        # Í¨¹ıÑ¡ÏîµÄvalueÊôĞÔÖµÑ¡Ôñvalue=¡°mihoutao¡±µÄÑ¡Ïî
+        # é€šè¿‡é€‰é¡¹çš„æ–‡æœ¬é€‰æ‹©â€œå±±æ¥‚â€é€‰é¡¹
+        select_element.select_by_visible_text("å±±æ¥‚")
+        # é€šè¿‡é€‰é¡¹çš„valueå±æ€§å€¼é€‰æ‹©value=â€œmihoutaoâ€çš„é€‰é¡¹
         select_element.select_by_value("mihoutao")
-        # ´òÓ¡ËùÓĞµÄÑ¡ÖĞÏîÎÄ±¾
+        # æ‰“å°æ‰€æœ‰çš„é€‰ä¸­é¡¹æ–‡æœ¬
         for option in select_element.all_selected_options:
             print option.text
-        # È¡ÏûËùÓĞÒÑÑ¡ÖĞÏî
+        # å–æ¶ˆæ‰€æœ‰å·²é€‰ä¸­é¡¹
         select_element.deselect_all()
         time.sleep(2)
-        print u"-----------ÔÙ´ÎÑ¡ÖĞ3¸öÑ¡Ïî--------------"
+        print u"-----------å†æ¬¡é€‰ä¸­3ä¸ªé€‰é¡¹--------------"
         select_element.select_by_index(1)
-        select_element.select_by_visible_text("ÀóÖ¦")
+        select_element.select_by_visible_text("è”æ")
         select_element.select_by_value("juzi")
-        # Í¨¹ıÑ¡ÏîÎÄ±¾È¡ÏûÒÑÑ¡ÖĞµÄÎÄ±¾Îª¡°ÀóÖ¦¡±Ñ¡Ïî
-        select_element.deselect_by_visible_text("ÀóÖ¦")
-        # Í¨¹ıĞòºÅÈ¡ÏûÒÑÑ¡ÖĞµÄĞòºÅÎª1µÄÑ¡Ïî
+        # é€šè¿‡é€‰é¡¹æ–‡æœ¬å–æ¶ˆå·²é€‰ä¸­çš„æ–‡æœ¬ä¸ºâ€œè”æâ€é€‰é¡¹
+        select_element.deselect_by_visible_text("è”æ")
+        # é€šè¿‡åºå·å–æ¶ˆå·²é€‰ä¸­çš„åºå·ä¸º1çš„é€‰é¡¹
         select_element.deselect_by_index(1)
-        # Í¨¹ıÑ¡ÏîµÄvalueÊôĞÔÖµÈ¡ÏûÒÑÑ¡ÖĞµÄvalue=¡°juzi¡±µÄÑ¡Ïî
+        # é€šè¿‡é€‰é¡¹çš„valueå±æ€§å€¼å–æ¶ˆå·²é€‰ä¸­çš„value=â€œjuziâ€çš„é€‰é¡¹
         select_element.deselect_by_value("juzi")
 
     def tearDown(self):
-        # ÍË³öIEä¯ÀÀÆ÷
+        # é€€å‡ºIEæµè§ˆå™¨
         self.driver.quit()
 
 if __name__ == '__main__':

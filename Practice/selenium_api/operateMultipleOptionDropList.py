@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 import unittest
 import time
 import chardet
@@ -7,26 +7,26 @@ from selenium import webdriver
 class VisitSogouByIE(unittest.TestCase):
 
     def setUp(self):
-        #Æô¶¯IEä¯ÀÀÆ÷
+        #å¯åŠ¨IEæµè§ˆå™¨
         #self.driver = webdriver.Firefox(executable_path = "e:\\geckodriver")
         self.driver = webdriver.Ie(executable_path = "e:\\IEDriverServer")
         
     def test_operateMultipleOptionDropList(self):
         url = "http://127.0.0.1/test_input_select.html"
-        # ·ÃÎÊ×Ô¶¨ÒåµÄhtmlÍøÒ³
+        # è®¿é—®è‡ªå®šä¹‰çš„htmlç½‘é¡µ
         self.driver.get(url)
         from selenium.webdriver.common.keys import Keys
         # element.send_keys("some text")
         self.driver.find_element_by_id("select").clear()
 
-        # ÊäÈëµÄÍ¬Ê±°´ÏÂ¼ıÍ·¼ü
+        # è¾“å…¥çš„åŒæ—¶æŒ‰ä¸‹ç®­å¤´é”®
         self.driver.find_element_by_id("select").send_keys("c", Keys.ARROW_DOWN)
         self.driver.find_element_by_id("select").send_keys( Keys.ARROW_DOWN)
         self.driver.find_element_by_id("select").send_keys( Keys.ENTER)
         time.sleep(3)
 
     def tearDown(self):
-        # ÍË³öIEä¯ÀÀÆ÷
+        # é€€å‡ºIEæµè§ˆå™¨
         self.driver.quit()
 
 if __name__ == '__main__':

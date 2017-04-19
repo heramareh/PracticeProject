@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 import ConfigParser
@@ -6,33 +6,33 @@ import os,time
 
 class ObjectMap(object):
     def __init__(self):
-        # »ñÈ¡´æ·ÅÒ³ÃæÔªËØ¶¨Î»±í´ï·½Ê½¼°¶¨Î»±í´ïÊ½µÄÅäÖÃÎÄ¼şËùÔÚ¾ø¶ÔÂ·¾¶
-        # os.path.abspath(__file__)±íÊ¾»ñÈ¡µ±Ç°ÎÄ¼şËùÔÚÂ·¾¶Ä¿Â¼
+        # è·å–å­˜æ”¾é¡µé¢å…ƒç´ å®šä½è¡¨è¾¾æ–¹å¼åŠå®šä½è¡¨è¾¾å¼çš„é…ç½®æ–‡ä»¶æ‰€åœ¨ç»å¯¹è·¯å¾„
+        # os.path.abspath(__file__)è¡¨ç¤ºè·å–å½“å‰æ–‡ä»¶æ‰€åœ¨è·¯å¾„ç›®å½•
         self.uiObjMapPath = os.path.dirname(os.path.abspath(__file__))\
                             + "\\UiObjectMap.ini"
         print self.uiObjMapPath
 
     def getElementObject(self, driver, webSiteName, elementName):
         try:
-            # ´´½¨Ò»¸ö¶ÁÈ¡ÅäÖÃÎÄ¼şµÄÊµÀı
+            # åˆ›å»ºä¸€ä¸ªè¯»å–é…ç½®æ–‡ä»¶çš„å®ä¾‹
             cf = ConfigParser.ConfigParser()
-            # ½«ÅäÖÃÎÄ¼şÄÚÈİ¼ÓÔØµ½ÄÚ´æ
+            # å°†é…ç½®æ–‡ä»¶å†…å®¹åŠ è½½åˆ°å†…å­˜
             cf.read(self.uiObjMapPath)
-            # ¸ù¾İsectionºÍoption»ñÈ¡ÅäÖÃÎÄ¼şÖĞÒ³ÃæÔªËØµÄ¶¨Î»·½Ê½¼°
-            # ¶¨Î»±í´ïÊ½×é³ÉµÄ×Ö·û´®£¬²¢Ê¹ÓÃ¡°>¡±·Ö¸î
+            # æ ¹æ®sectionå’Œoptionè·å–é…ç½®æ–‡ä»¶ä¸­é¡µé¢å…ƒç´ çš„å®šä½æ–¹å¼åŠ
+            # å®šä½è¡¨è¾¾å¼ç»„æˆçš„å­—ç¬¦ä¸²ï¼Œå¹¶ä½¿ç”¨â€œ>â€åˆ†å‰²
             locators = cf.get(webSiteName, elementName).split(">")
-            # µÃµ½¶¨Î»·½Ê½
+            # å¾—åˆ°å®šä½æ–¹å¼
             locatorMethod = locators[0]
-            # µÃµ½¶¨Î»±í´ïÊ½
+            # å¾—åˆ°å®šä½è¡¨è¾¾å¼
             locatorExpression = locators[1]
             print locatorMethod, locatorExpression
-            # Í¨¹ıÏÔÊ¾µÈ´ı·½Ê½»ñÈ¡Ò³ÃæÔªËØ
+            # é€šè¿‡æ˜¾ç¤ºç­‰å¾…æ–¹å¼è·å–é¡µé¢å…ƒç´ 
             element = WebDriverWait(driver, 10).until(lambda x: \
                     x.find_element(locatorMethod, locatorExpression))
         except Exception, e:
             raise e
         else:
-            # µ±Ò³ÃæÔªËØ±»ÕÒµ½ºó£¬½«¸ÃÒ³ÃæÔªËØ¶ÔÏó·µ»Ø¸øµ÷ÓÃÕß
+            # å½“é¡µé¢å…ƒç´ è¢«æ‰¾åˆ°åï¼Œå°†è¯¥é¡µé¢å…ƒç´ å¯¹è±¡è¿”å›ç»™è°ƒç”¨è€…
             return element
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 import unittest
 import time
 import chardet
@@ -7,31 +7,31 @@ from selenium import webdriver
 class VisitSogouByIE(unittest.TestCase):
 
     def setUp(self):
-        #Æô¶¯IEä¯ÀÀÆ÷
+        #å¯åŠ¨IEæµè§ˆå™¨
         #self.driver = webdriver.Firefox(executable_path = "e:\\geckodriver")
         self.driver = webdriver.Ie(executable_path = "e:\\IEDriverServer")
         
     def test_dragPageElement(self):
         url = "http://jqueryui.com/resources/demos/draggable/scroll.html"
-        # ·ÃÎÊ±»²âÊÔÍøÒ³
+        # è®¿é—®è¢«æµ‹è¯•ç½‘é¡µ
         self.driver.get(url)
-        # »ñÈ¡Ò³ÃæÉÏµÚÒ»¸öÄÜÍÏ×§µÄÒ³ÃæÔªËØ
+        # è·å–é¡µé¢ä¸Šç¬¬ä¸€ä¸ªèƒ½æ‹–æ‹½çš„é¡µé¢å…ƒç´ 
         initialPosition = self.driver.find_element_by_id("draggable")
-        # »ñÈ¡Ò³ÃæÉÏµÚ¶ş¸öÄÜÍÏ×§µÄÒ³ÃæÔªËØ
+        # è·å–é¡µé¢ä¸Šç¬¬äºŒä¸ªèƒ½æ‹–æ‹½çš„é¡µé¢å…ƒç´ 
         targetPosition = self.driver.find_element_by_id("draggable2")
-        # »ñÈ¡Ò³ÃæÉÏµÚÈı¸öÄÜÍÏ×§µÄÒ³ÃæÔªËØ
+        # è·å–é¡µé¢ä¸Šç¬¬ä¸‰ä¸ªèƒ½æ‹–æ‹½çš„é¡µé¢å…ƒç´ 
         dragElement = self.driver.find_element_by_id("draggable3")
-        # µ¼ÈëÌá¹©ÍÏ×§ÔªËØ·½·¨µÄÄ£¿éActionChains
+        # å¯¼å…¥æä¾›æ‹–æ‹½å…ƒç´ æ–¹æ³•çš„æ¨¡å—ActionChains
         from selenium.webdriver import ActionChains
         import time
         '''
-        ´´½¨Ò»¸öĞÂµÄActionChains£¬½«webdriverÊµÀı¶ÔÏódriver×÷Îª²ÎÊıÖµ´«Èë
-        È»ºóÍ¨¹ıWebDriverÊµÀıÖ´ĞĞÓÃ»§¶¯×÷¡£
+        åˆ›å»ºä¸€ä¸ªæ–°çš„ActionChainsï¼Œå°†webdriverå®ä¾‹å¯¹è±¡driverä½œä¸ºå‚æ•°å€¼ä¼ å…¥
+        ç„¶åé€šè¿‡WebDriverå®ä¾‹æ‰§è¡Œç”¨æˆ·åŠ¨ä½œã€‚
         '''
         action_chains = ActionChains(self.driver)
-        # ½«Ò³ÃæÉÏµÚÒ»¸öÄÜ±»ÍÏ×§µÄÔªËØÍÏ×§µ½µÚ¶ş¸öÔªËØÎ»ÖÃ
+        # å°†é¡µé¢ä¸Šç¬¬ä¸€ä¸ªèƒ½è¢«æ‹–æ‹½çš„å…ƒç´ æ‹–æ‹½åˆ°ç¬¬äºŒä¸ªå…ƒç´ ä½ç½®
         action_chains.drag_and_drop(initialPosition, targetPosition).perform()
-        # ½«Ò³ÃæÉÏµÚÈı¸öÄÜÍÏ×§µÄÔªËØ£¬ÏòÓÒÏÂÍÏ¶¯10¸öÏñËØ£¬¹²ÍÏ¶¯5´Î
+        # å°†é¡µé¢ä¸Šç¬¬ä¸‰ä¸ªèƒ½æ‹–æ‹½çš„å…ƒç´ ï¼Œå‘å³ä¸‹æ‹–åŠ¨10ä¸ªåƒç´ ï¼Œå…±æ‹–åŠ¨5æ¬¡
         for i in xrange(5):
             action_chains.drag_and_drop_by_offset(dragElement, 10, 10).perform()
             time.sleep(2)
@@ -39,7 +39,7 @@ class VisitSogouByIE(unittest.TestCase):
 
 
     def tearDown(self):
-        # ÍË³öIEä¯ÀÀÆ÷
+        # é€€å‡ºIEæµè§ˆå™¨
         self.driver.quit()
 
 if __name__ == '__main__':

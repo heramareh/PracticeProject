@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 from selenium import webdriver
 import unittest, time
 from PIL import Image
@@ -6,17 +6,17 @@ from PIL import Image
 
 class ImageCompare(object):
     '''
-    ±¾ÀàÊµÏÖÁË¶ÔÁ½ÕÅÍ¼Æ¬Í¨¹ıÏñËØ±È¶ÔµÄËã·¨£¬»ñÈ¡ÎÄ¼şµÄÏñËØ¸öÊı´óĞ¡
-    È»ºóÊ¹ÓÃÑ­»·µÄ·½Ê½½«Á½ÕÅÍ¼Æ¬µÄËùÓĞÏîÄ¿½øĞĞÒ»Ò»¶Ô±È£¬
-    ²¢¼ÆËã±È¶Ô½á¹ûµÄÏàËÆ¶ÈµÄ°Ù·Ö±È
+    æœ¬ç±»å®ç°äº†å¯¹ä¸¤å¼ å›¾ç‰‡é€šè¿‡åƒç´ æ¯”å¯¹çš„ç®—æ³•ï¼Œè·å–æ–‡ä»¶çš„åƒç´ ä¸ªæ•°å¤§å°
+    ç„¶åä½¿ç”¨å¾ªç¯çš„æ–¹å¼å°†ä¸¤å¼ å›¾ç‰‡çš„æ‰€æœ‰é¡¹ç›®è¿›è¡Œä¸€ä¸€å¯¹æ¯”ï¼Œ
+    å¹¶è®¡ç®—æ¯”å¯¹ç»“æœçš„ç›¸ä¼¼åº¦çš„ç™¾åˆ†æ¯”
     '''
     def make_regalur_image(self, img, size=(256, 256)):
-        # ½«Í¼Æ¬³ß´çÇ¿ÖÆÖØÖÃÎªÖ¸¶¨µÄsize´óĞ¡
-        # È»ºóÔÙ½«Æä×ª»»³ÉRGBÖµ
+        # å°†å›¾ç‰‡å°ºå¯¸å¼ºåˆ¶é‡ç½®ä¸ºæŒ‡å®šçš„sizeå¤§å°
+        # ç„¶åå†å°†å…¶è½¬æ¢æˆRGBå€¼
         return img.resize(size).convert('RGB')
 
     def split_image(self, img, part_size=(64, 64)):
-        # ½«Í¼Æ¬°´¸ø¶¨´óĞ¡ÇĞ·Ö
+        # å°†å›¾ç‰‡æŒ‰ç»™å®šå¤§å°åˆ‡åˆ†
         w, h = img.size
         pw, ph = part_size
         assert w % pw == h % ph == 0
@@ -24,13 +24,13 @@ class ImageCompare(object):
                 for i in xrange(0, w, pw) for j in xrange(0, h, ph)]
 
     def hist_similar(self, lh, rh):
-        # Í³¼ÆÇĞ·ÖºóÃ¿²¿·ÖÍ¼Æ¬µÄÏàËÆ¶ÈÆµÂÊÇúÏß
+        # ç»Ÿè®¡åˆ‡åˆ†åæ¯éƒ¨åˆ†å›¾ç‰‡çš„ç›¸ä¼¼åº¦é¢‘ç‡æ›²çº¿
         assert len(lh) == len(rh)
         return sum(1 - (0 if l == r else float(abs(l - r)) / max(l, r)) \
                    for l, r in zip(lh, rh)) / len(lh)
 
     def calc_similar(self, li, ri):
-        # ¼ÆËãÁ½ÕÅÍ¼Æ¬µÄÏàËÆ¶È
+        # è®¡ç®—ä¸¤å¼ å›¾ç‰‡çš„ç›¸ä¼¼åº¦
         return sum(self.hist_similar(l.histogram(), r.histogram())\
             for l, r in zip(self.split_image(li), self.split_image(ri))) / 16.0
 
@@ -44,25 +44,25 @@ class TestDemo(unittest.TestCase):
 
     def setUp(self):
         self.IC = ImageCompare()
-        # Æô¶¯Firefoxä¯ÀÀÆ÷
+        # å¯åŠ¨Firefoxæµè§ˆå™¨
         self.driver = webdriver.Ie(executable_path = "d:\\IEDriverServer")
 
     def test_ImageComparison(self):
         url = "http://doc.outofmemory.cn/python/webpy-cookbook/"
-        # ·ÃÎÊËÑ¹·Ê×Ò³
+        # è®¿é—®æœç‹—é¦–é¡µ
         self.driver.get(url)
         time.sleep(3)
-        # ½ØÈ¡µÚÒ»´Î·ÃÎÊËÑ¹·Ê×Ò³µÄÍ¼Æ¬£¬²¢±£´æÔÚ±¾µØ
+        # æˆªå–ç¬¬ä¸€æ¬¡è®¿é—®æœç‹—é¦–é¡µçš„å›¾ç‰‡ï¼Œå¹¶ä¿å­˜åœ¨æœ¬åœ°
         self.driver.save_screenshot("d:\\sogou1.png")
         self.driver.get(url)
         time.sleep(3)
-        # ½ØÈ¡µÚ¶ş´Î·ÃÎÊËÑ¹·Ê×Ò³µÄÍ¼Æ¬£¬²¢±£´æÔÚ±¾µØ
+        # æˆªå–ç¬¬äºŒæ¬¡è®¿é—®æœç‹—é¦–é¡µçš„å›¾ç‰‡ï¼Œå¹¶ä¿å­˜åœ¨æœ¬åœ°
         self.driver.save_screenshot("d:\\sogou2.png")
-        # ´òÓ¡Á½ÕÅ½ØÍ¼±È¶ÔºóÏàËÆ¶È£¬100±íÊ¾ÍêÈ«Æ¥Åä
+        # æ‰“å°ä¸¤å¼ æˆªå›¾æ¯”å¯¹åç›¸ä¼¼åº¦ï¼Œ100è¡¨ç¤ºå®Œå…¨åŒ¹é…
         print self.IC.calc_similar_by_path('d:\\sogou1.png','d:\\sogou2.png') * 100
 
     def tearDown(self):
-        # ÍË³öIEä¯ÀÀÆ÷
+        # é€€å‡ºIEæµè§ˆå™¨
         self.driver.quit()
 
 if __name__ == '__main__':

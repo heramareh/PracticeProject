@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 from selenium import webdriver
 import unittest
 import time, os
@@ -11,48 +11,48 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 class TestDemo(unittest.TestCase):
 
     def setUp(self):
-        # Æô¶¯Chromeä¯ÀÀÆ÷
+        # å¯åŠ¨Chromeæµè§ˆå™¨
         self.driver = webdriver.Ie(executable_path = "d:\\IEDriverServer")
 
     def test_uploadFileByAutoIt(self):
         url = "http://127.0.0.1/test_upload_file.html"
-        # ·ÃÎÊ×Ô¶¨ÒåÍøÒ³
+        # è®¿é—®è‡ªå®šä¹‰ç½‘é¡µ
         self.driver.get(url)
         try:
-            # ´´½¨Ò»¸öÏÔÊ¾µÈ´ı¶ÔÏó
+            # åˆ›å»ºä¸€ä¸ªæ˜¾ç¤ºç­‰å¾…å¯¹è±¡
             wait = WebDriverWait(self.driver, 10, 0.2)
-            # ÏÔÊ¾µÈ´ıÅĞ¶Ï±»²âÊÔÒ³ÃæÉÏµÄÉÏ´«ÎÄ¼ş°´Å¥ÊÇ·ñ´¦ÓÚ¿É±»µã»÷×´Ì¬
+            # æ˜¾ç¤ºç­‰å¾…åˆ¤æ–­è¢«æµ‹è¯•é¡µé¢ä¸Šçš„ä¸Šä¼ æ–‡ä»¶æŒ‰é’®æ˜¯å¦å¤„äºå¯è¢«ç‚¹å‡»çŠ¶æ€
             wait.until(EC.element_to_be_clickable((By.ID, 'file')))
         except TimeoutException, e:
-            # ²¶»ñTimeoutExceptionÒì³£
+            # æ•è·TimeoutExceptionå¼‚å¸¸
             print traceback.print_exc()
         except NoSuchElementException, e:
-            # ²¶»ñNoSuchElementExceptionÒì³£
+            # æ•è·NoSuchElementExceptionå¼‚å¸¸
             print traceback.print_exc()
         except Exception, e:
-            # ²¶»ñÆäËûÒì³£
+            # æ•è·å…¶ä»–å¼‚å¸¸
             print traceback.print_exc()
         else:
-            # ²éÕÒÒ³ÃæÉÏIDÊôĞÔÖµÎª¡°file¡±µÄÎÄ¼şÉÏ´«¿ò,
-            # ²¢µã»÷µ÷³öÑ¡ÔñÎÄ¼şÉÏ´«¿ò
+            # æŸ¥æ‰¾é¡µé¢ä¸ŠIDå±æ€§å€¼ä¸ºâ€œfileâ€çš„æ–‡ä»¶ä¸Šä¼ æ¡†,
+            # å¹¶ç‚¹å‡»è°ƒå‡ºé€‰æ‹©æ–‡ä»¶ä¸Šä¼ æ¡†
             self.driver.find_element_by_id("file").click()
-            # Í¨¹ıPythonÌá¹©µÄosÄ£¿éµÄsystem·½·¨Ö´ĞĞÉú³ÉµÄtest.exeÎÄ¼ş
+            # é€šè¿‡Pythonæä¾›çš„osæ¨¡å—çš„systemæ–¹æ³•æ‰§è¡Œç”Ÿæˆçš„test.exeæ–‡ä»¶
             os.system("d:\\test.exe")
-            # ÓÉÓÚAutoIt½Å±¾×ª»»ºóµÄ¿ÉÖ´ĞĞÎÄ¼ştest.exe¿ÉÄÜÖ´ĞĞËÙ¶È±È½ÏÂı£¬
-            # ÕâÀïµÈ´ı5Ãë£¬ÒÔÈ·±£test.exe½Å±¾Ö´ĞĞ³É¹¦
+            # ç”±äºAutoItè„šæœ¬è½¬æ¢åçš„å¯æ‰§è¡Œæ–‡ä»¶test.exeå¯èƒ½æ‰§è¡Œé€Ÿåº¦æ¯”è¾ƒæ…¢ï¼Œ
+            # è¿™é‡Œç­‰å¾…5ç§’ï¼Œä»¥ç¡®ä¿test.exeè„šæœ¬æ‰§è¡ŒæˆåŠŸ
             time.sleep(5)
-            # ÕÒµ½Ò³ÃæÉÏIDÊôĞÔÖµÎª¡°filesubmit¡±µÄÎÄ¼şÌá½»°´Å¥¶ÔÏó
+            # æ‰¾åˆ°é¡µé¢ä¸ŠIDå±æ€§å€¼ä¸ºâ€œfilesubmitâ€çš„æ–‡ä»¶æäº¤æŒ‰é’®å¯¹è±¡
             fileSubmitButton = self.driver.find_element_by_id("filesubmit")
-            # µ¥»÷Ìá½»°´Å¥£¬Íê³ÉÎÄ¼şÉÏ´«²Ù×÷
+            # å•å‡»æäº¤æŒ‰é’®ï¼Œå®Œæˆæ–‡ä»¶ä¸Šä¼ æ“ä½œ
             fileSubmitButton.click()
-            # ÒòÎªÎÄ¼şÉÏ´«ĞèÒªÊ±¼ä£¬ËùÒÔÕâÀï¿ÉÒÔÌí¼ÓÏÔÊ¾µÈ´ı³¡¾°£¬
-            # ÅĞ¶ÏÎÄ¼şÉÏ´«³É¹¦ºó£¬Ò³ÃæÊÇ·ñÌø×ªµ½ÎÄ¼şÉÏ´«³É¹¦µÄÒ³Ãæ¡£
-            # Í¨¹ıEC.title_is()·½·¨ÅĞ¶ÏÌø×ªºóµÄÒ³ÃæµÄTitle
-            # ÖµÊÇ·ñ·ûºÏÆÚÍû£¬Èç¹ûÆ¥Åä½«¼ÌĞøÖ´ĞĞºóĞø´úÂë
-            #wait.until(EC.title_is(u"ÎÄ¼şÉÏ´«³É¹¦"))
+            # å› ä¸ºæ–‡ä»¶ä¸Šä¼ éœ€è¦æ—¶é—´ï¼Œæ‰€ä»¥è¿™é‡Œå¯ä»¥æ·»åŠ æ˜¾ç¤ºç­‰å¾…åœºæ™¯ï¼Œ
+            # åˆ¤æ–­æ–‡ä»¶ä¸Šä¼ æˆåŠŸåï¼Œé¡µé¢æ˜¯å¦è·³è½¬åˆ°æ–‡ä»¶ä¸Šä¼ æˆåŠŸçš„é¡µé¢ã€‚
+            # é€šè¿‡EC.title_is()æ–¹æ³•åˆ¤æ–­è·³è½¬åçš„é¡µé¢çš„Title
+            # å€¼æ˜¯å¦ç¬¦åˆæœŸæœ›ï¼Œå¦‚æœåŒ¹é…å°†ç»§ç»­æ‰§è¡Œåç»­ä»£ç 
+            #wait.until(EC.title_is(u"æ–‡ä»¶ä¸Šä¼ æˆåŠŸ"))
             time.sleep(2)
     def tearDown(self):
-        # ÍË³öIEä¯ÀÀÆ÷
+        # é€€å‡ºIEæµè§ˆå™¨
         self.driver.quit()
 
 if __name__ == '__main__':

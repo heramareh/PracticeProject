@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 import unittest
 import time
 import chardet
@@ -7,49 +7,49 @@ from selenium import webdriver
 class VisitSogouByIE(unittest.TestCase):
 
     def setUp(self):
-        #Æô¶¯IEä¯ÀÀÆ÷
+        #å¯åŠ¨IEæµè§ˆå™¨
         #self.driver = webdriver.Firefox(executable_path = "e:\\geckodriver")
         self.driver = webdriver.Ie(executable_path = "e:\\IEDriverServer")
         
     def test_operateDropList(self):
         url = "http://127.0.0.1/test_select.html"
-        # ·ÃÎÊ×Ô¶¨ÒåµÄhtmlÍøÒ³
+        # è®¿é—®è‡ªå®šä¹‰çš„htmlç½‘é¡µ
         self.driver.get(url)
-        # µ¼ÈëSelectÄ£¿é
+        # å¯¼å…¥Selectæ¨¡å—
         from selenium.webdriver.support.ui import Select
-        # Ê¹ÓÃxpath¶¨Î»·½Ê½»ñÈ¡selectÒ³ÃæÔªËØ¶ÔÏó
+        # ä½¿ç”¨xpathå®šä½æ–¹å¼è·å–selecté¡µé¢å…ƒç´ å¯¹è±¡
         select_element = Select(self.driver.find_element_by_xpath("//select"))
-        # ´òÓ¡Ä¬ÈÏÑ¡ÖĞÏîµÄÎÄ±¾
+        # æ‰“å°é»˜è®¤é€‰ä¸­é¡¹çš„æ–‡æœ¬
         print select_element.first_selected_option.text
-        # »ñÈ¡ËùÓĞÑ¡ÔñÏîµÄÒ³ÃæÔªËØ¶ÔÏó
+        # è·å–æ‰€æœ‰é€‰æ‹©é¡¹çš„é¡µé¢å…ƒç´ å¯¹è±¡
         all_options = select_element.options
-        # ´òÓ¡Ñ¡Ïî×Ü¸öÊı
+        # æ‰“å°é€‰é¡¹æ€»ä¸ªæ•°
         print len(all_options)
         '''
-        is_enabled()£ºÅĞ¶ÏÔªËØÊÇ·ñ¿É²Ù×÷
-        is_selected()£ºÅĞ¶ÏÔªËØÊÇ·ñ±»Ñ¡ÖĞ
+        is_enabled()ï¼šåˆ¤æ–­å…ƒç´ æ˜¯å¦å¯æ“ä½œ
+        is_selected()ï¼šåˆ¤æ–­å…ƒç´ æ˜¯å¦è¢«é€‰ä¸­
         '''
         if all_options[1].is_enabled() and not all_options[1].is_selected():
-            # ·½·¨Ò»£ºÍ¨¹ıĞòºÅÑ¡ÔñµÚ¶ş¸öÔªËØ£¬ĞòºÅ´Ó0¿ªÊ¼
+            # æ–¹æ³•ä¸€ï¼šé€šè¿‡åºå·é€‰æ‹©ç¬¬äºŒä¸ªå…ƒç´ ï¼Œåºå·ä»0å¼€å§‹
             select_element.select_by_index(1)
-            # ´òÓ¡ÒÑÑ¡ÖĞÏîµÄÎÄ±¾
+            # æ‰“å°å·²é€‰ä¸­é¡¹çš„æ–‡æœ¬
             print select_element.all_selected_options[0].text
-            # assertEqual()·½·¨¶ÏÑÔµ±Ç°Ñ¡ÖĞµÄÑ¡ÏîÎÄ±¾ÊÇ·ñÊÇ¡°Î÷¹Ï¡±
-            self.assertEqual(select_element.all_selected_options[0].text, u"Î÷¹Ï")
+            # assertEqual()æ–¹æ³•æ–­è¨€å½“å‰é€‰ä¸­çš„é€‰é¡¹æ–‡æœ¬æ˜¯å¦æ˜¯â€œè¥¿ç“œâ€
+            self.assertEqual(select_element.all_selected_options[0].text, u"è¥¿ç“œ")
         time.sleep(2)
-        # ·½·¨¶ş£ºÍ¨¹ıÑ¡ÏîµÄÏÔÊ¾ÎÄ±¾Ñ¡ÔñÎÄ±¾Îª¡°â¨ºïÌÒ¡±Ñ¡Ïî
-        select_element.select_by_visible_text("â¨ºïÌÒ")
-        # ¶ÏÑÔÒÑÑ¡ÖĞÏîµÄÎÄ±¾ÊÇ·ñÊÇ¡°â¨ºïÌÒ¡±
-        self.assertEqual(select_element.all_selected_options[0].text, u"â¨ºïÌÒ")
+        # æ–¹æ³•äºŒï¼šé€šè¿‡é€‰é¡¹çš„æ˜¾ç¤ºæ–‡æœ¬é€‰æ‹©æ–‡æœ¬ä¸ºâ€œçŒ•çŒ´æ¡ƒâ€é€‰é¡¹
+        select_element.select_by_visible_text("çŒ•çŒ´æ¡ƒ")
+        # æ–­è¨€å·²é€‰ä¸­é¡¹çš„æ–‡æœ¬æ˜¯å¦æ˜¯â€œçŒ•çŒ´æ¡ƒâ€
+        self.assertEqual(select_element.all_selected_options[0].text, u"çŒ•çŒ´æ¡ƒ")
         time.sleep(2)
-        # ·½·¨Èı£ºÍ¨¹ıÑ¡ÏîµÄvalueÊôĞÔÖµÑ¡Ôñvalue=¡°shanzha¡±Ñ¡Ïî
+        # æ–¹æ³•ä¸‰ï¼šé€šè¿‡é€‰é¡¹çš„valueå±æ€§å€¼é€‰æ‹©value=â€œshanzhaâ€é€‰é¡¹
         select_element.select_by_value("shanzha")
         print select_element.all_selected_options[0].text
-        self.assertEqual(select_element.all_selected_options[0].text, u"É½é«")
+        self.assertEqual(select_element.all_selected_options[0].text, u"å±±æ¥‚")
 
 
     def tearDown(self):
-        # ÍË³öIEä¯ÀÀÆ÷
+        # é€€å‡ºIEæµè§ˆå™¨
         self.driver.quit()
 
 if __name__ == '__main__':

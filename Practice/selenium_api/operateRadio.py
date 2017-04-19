@@ -1,4 +1,4 @@
-#encoding=utf-8
+ï»¿#encoding=utf-8
 import unittest
 import time
 import chardet
@@ -7,31 +7,31 @@ from selenium import webdriver
 class VisitSogouByIE(unittest.TestCase):
 
     def setUp(self):
-        #Æô¶¯IEä¯ÀÀÆ÷
+        #å¯åŠ¨IEæµè§ˆå™¨
         #self.driver = webdriver.Firefox(executable_path = "e:\\geckodriver")
         self.driver = webdriver.Ie(executable_path = "e:\\IEDriverServer")
         
     def test_operateRadio(self):
         url = "http://127.0.0.1/test_radio.html"
-        # ·ÃÎÊ×Ô¶¨ÒåµÄhtmlÍøÒ³
+        # è®¿é—®è‡ªå®šä¹‰çš„htmlç½‘é¡µ
         self.driver.get(url)
-        # Ê¹ÓÃxpath¶¨Î»»ñÈ¡valueÊôĞÔÖµÎª'berry'µÄinputÔªËØ¶ÔÏó£¬Ò²¾ÍÊÇ¡°²İİ®¡±Ñ¡Ïî
+        # ä½¿ç”¨xpathå®šä½è·å–valueå±æ€§å€¼ä¸º'berry'çš„inputå…ƒç´ å¯¹è±¡ï¼Œä¹Ÿå°±æ˜¯â€œè‰è“â€é€‰é¡¹
         berryRadio = self.driver.find_element_by_xpath("//input[@value='berry']")
-        # µã»÷Ñ¡Ôñ¡°²İİ®¡±Ñ¡Ïî
+        # ç‚¹å‡»é€‰æ‹©â€œè‰è“â€é€‰é¡¹
         berryRadio.click()
-        # ¶ÏÑÔ¡°²İİ®¡±¸´Ñ¡¿ò±»³É¹¦Ñ¡ÖĞ
-        self.assertTrue(berryRadio.is_selected(), u"²İİ®¸´Ñ¡¿òÎ´±»Ñ¡ÖĞ£¡")
+        # æ–­è¨€â€œè‰è“â€å¤é€‰æ¡†è¢«æˆåŠŸé€‰ä¸­
+        self.assertTrue(berryRadio.is_selected(), u"è‰è“å¤é€‰æ¡†æœªè¢«é€‰ä¸­ï¼")
         if berryRadio.is_selected():
-            # Èç¹û¡°²İİ®¡±¸´Ñ¡¿ò±»³É¹¦Ñ¡ÖĞ£¬ÖØĞÂÑ¡Ôñ¡°Î÷¹Ï¡±Ñ¡Ïî
+            # å¦‚æœâ€œè‰è“â€å¤é€‰æ¡†è¢«æˆåŠŸé€‰ä¸­ï¼Œé‡æ–°é€‰æ‹©â€œè¥¿ç“œâ€é€‰é¡¹
             watermelonRadio = self.driver.find_element_by_xpath("//input[@value='watermelon']")
             watermelonRadio.click()
-            # Ñ¡Ôñ¡°Î÷¹Ï¡±Ñ¡ÏîÒÔºó£¬¶ÏÑÔ¡°²İİ®¡±Ñ¡Ïî´¦ÓÚÎ´±»Ñ¡ÖĞ×´Ì¬
+            # é€‰æ‹©â€œè¥¿ç“œâ€é€‰é¡¹ä»¥åï¼Œæ–­è¨€â€œè‰è“â€é€‰é¡¹å¤„äºæœªè¢«é€‰ä¸­çŠ¶æ€
             self.assertFalse(berryRadio.is_selected())
-        # ²éÕÒËùÓĞnameÊôĞÔÖµÎª¡°fruit¡±µÄµ¥Ñ¡¿òÔªËØ¶ÔÏó£¬²¢´æ·ÅÔÚradioListÁĞ±íÖĞ
+        # æŸ¥æ‰¾æ‰€æœ‰nameå±æ€§å€¼ä¸ºâ€œfruitâ€çš„å•é€‰æ¡†å…ƒç´ å¯¹è±¡ï¼Œå¹¶å­˜æ”¾åœ¨radioListåˆ—è¡¨ä¸­
         radioList = self.driver.find_elements_by_xpath("//input[@name='fruit']")
         '''
-        Ñ­»·±éÀúradioListÖĞµÄÃ¿¸öµ¥Ñ¡°´Å¥£¬²éÕÒvalueÊôĞÔÖµÎª¡°orange¡±µÄµ¥Ñ¡¿ò£¬
-        Èç¹ûÕÒµ½´Ëµ¥Ñ¡¿òÒÔºó£¬·¢ÏÖÎ´´¦ÓÚÑ¡ÖĞ×´Ì¬£¬Ôòµ÷ÓÃclick·½·¨Ñ¡ÖĞ¸ÃÑ¡Ïî¡£
+        å¾ªç¯éå†radioListä¸­çš„æ¯ä¸ªå•é€‰æŒ‰é’®ï¼ŒæŸ¥æ‰¾valueå±æ€§å€¼ä¸ºâ€œorangeâ€çš„å•é€‰æ¡†ï¼Œ
+        å¦‚æœæ‰¾åˆ°æ­¤å•é€‰æ¡†ä»¥åï¼Œå‘ç°æœªå¤„äºé€‰ä¸­çŠ¶æ€ï¼Œåˆ™è°ƒç”¨clickæ–¹æ³•é€‰ä¸­è¯¥é€‰é¡¹ã€‚
         '''
         for radio in radioList:
             if radio.get_attribute("value") == "orange":
@@ -41,7 +41,7 @@ class VisitSogouByIE(unittest.TestCase):
 
 
     def tearDown(self):
-        # ÍË³öIEä¯ÀÀÆ÷
+        # é€€å‡ºIEæµè§ˆå™¨
         self.driver.quit()
 
 if __name__ == '__main__':
