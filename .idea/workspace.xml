@@ -2,75 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="456481b2-fc15-46d5-be48-c879a5678ee9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/Tulips.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/创建sheet.xlsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/文件.xlsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/示例.xlsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/第一个文件.xlsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/keybd_closed.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/keybd_open.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/PracticeProject.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/.idea/Practice.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e10_use_number_format.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e11_use_boder_style.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e12_use_style.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e1_first_demo.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e2_opearate_create_sheet.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e3_operate_cell.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e4_write_workbook.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e5_inserting_images.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e6_operate_row_and_colum.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e7_enable_type_and_format.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e8_Update_excel_file.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/e9_use_formulae.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/style的定义.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/excel/安装方法.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/geckodriver.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/.coverage" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/Calc_py.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/TestCalc_py.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/coverage_html.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/jquery.ba-throttle-debounce.min.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/jquery.hotkeys.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/jquery.isonscreen.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/jquery.tablesorter.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/status.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170408/htmlcov/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_json/try_json_loads.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_xml/DBManage.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_xml/ExcelManage.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_xml/XMLManage.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_xml/test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_xml/test1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_xml/test2.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_xml/test3.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_xml/test4.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_xml/test5.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_xml/test6.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170422_xml/test7.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170506_process/new_process.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170506_process/process_moduls.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170506_process/test10.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170506_process/test11.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170506_process/test3.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170506_process/test4.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170506_process/test5.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170506_process/test6.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170506_process/test7.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170506_process/test8.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Practice/practice20170506_process/test9.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" afterPath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" />
     </list>
     <ignored path="PracticeProject.iws" />
@@ -661,6 +594,14 @@
       <option name="presentableId" value="Default" />
       <updated>1490409077305</updated>
     </task>
+    <task id="LOCAL-00001" summary="111">
+      <created>1494322448469</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1494322448469</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView" selected-index="6">
@@ -711,7 +652,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="111" />
+    <option name="LAST_COMMIT_MESSAGE" value="111" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
