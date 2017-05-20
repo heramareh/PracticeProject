@@ -4,6 +4,7 @@ import threading
 import time
 def consumer(cond):
   with cond:
+    print(mp.current_process().name + " acquire")
     print("consumer before wait")
     cond.wait() # 等待消费，释放了。
     print("consumer after wait")
