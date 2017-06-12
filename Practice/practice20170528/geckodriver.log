@@ -1,7 +1,7 @@
-1496482237090	geckodriver	INFO	Listening on 127.0.0.1:23547
-1496482239103	mozprofile::profile	INFO	Using profile path C:\Users\ADMINI~1\AppData\Local\Temp\rust_mozprofile.K5cTf8qkRAK1
-1496482239118	geckodriver::marionette	INFO	Starting browser D:\Program Files\Mozilla Firefox\firefox.exe
-1496482239758	geckodriver::marionette	INFO	Connecting to Marionette on localhost:23555
+1495944746942	geckodriver	INFO	Listening on 127.0.0.1:6859
+1495944748940	mozprofile::profile	INFO	Using profile path C:\Users\ADMINI~1\AppData\Local\Temp\rust_mozprofile.YhFAaPVYw1sL
+1495944748943	geckodriver::marionette	INFO	Starting browser d:\Program Files\Mozilla Firefox\firefox.exe
+1495944749028	geckodriver::marionette	INFO	Connecting to Marionette on localhost:6867
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
@@ -27,10 +27,7 @@ LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
-1496482240447	Marionette	INFO	Listening on port 23555
-LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
-LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
-LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
+1495944750401	Marionette	INFO	Listening on port 6867
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
@@ -58,8 +55,18 @@ LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
 LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
-LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
-JavaScript warning: https://www.sogou.com/js/lib/juicer-min.js, line 2: mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
-LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
-LdrLoadDll: Blocking load of 'activedetect64.dll' -- see http://www.mozilla.com/en-US/blocklist/
-[NPAPI 8952] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w64-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2027
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=g&json=1&p=3&sid=1433_21090&req=2&csor=1&cb=jQuery110206750395835180959_1495944753610&_=1495944753612, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=gl&json=1&p=3&sid=1433_21090&req=2&csor=2&pwd=g&cb=jQuery110206750395835180959_1495944753610&_=1495944753613, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=gloryro&json=1&p=3&sid=1433_21090&req=2&csor=7&pwd=gloryr&cb=jQuery110206750395835180959_1495944753610&_=1495944753618, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=glor&json=1&p=3&sid=1433_21090&req=2&csor=4&pwd=glo&cb=jQuery110206750395835180959_1495944753610&_=1495944753615, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=gloryr&json=1&p=3&sid=1433_21090&req=2&csor=6&pwd=glory&cb=jQuery110206750395835180959_1495944753610&_=1495944753617, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=glory&json=1&p=3&sid=1433_21090&req=2&csor=5&pwd=glor&cb=jQuery110206750395835180959_1495944753610&_=1495944753616, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=glo&json=1&p=3&sid=1433_21090&req=2&csor=3&pwd=gl&cb=jQuery110206750395835180959_1495944753610&_=1495944753614, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=gloryroa&json=1&p=3&sid=1433_21090&req=2&csor=8&pwd=gloryro&cb=jQuery110206750395835180959_1495944753610&_=1495944753619, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=gloryroad%20t&json=1&p=3&sid=1433_21090&req=2&csor=11&pwd=gloryroad%20&cb=jQuery110206750395835180959_1495944753610&_=1495944753622, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=gloryroad&json=1&p=3&sid=1433_21090&req=2&csor=9&pwd=gloryroa&cb=jQuery110206750395835180959_1495944753610&_=1495944753620, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=gloryroad%20te&json=1&p=3&sid=1433_21090&req=2&csor=12&pwd=gloryroad%20t&cb=jQuery110206750395835180959_1495944753610&_=1495944753623, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=gloryroad%20&json=1&p=3&sid=1433_21090&req=2&csor=10&pwd=gloryroad&cb=jQuery110206750395835180959_1495944753610&_=1495944753621, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=gloryroad%20tes&json=1&p=3&sid=1433_21090&req=2&csor=13&pwd=gloryroad%20te&cb=jQuery110206750395835180959_1495944753610&_=1495944753624, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=gloryroad%20test&json=1&p=3&sid=1433_21090&req=2&csor=14&pwd=gloryroad%20tes&cb=jQuery110206750395835180959_1495944753610&_=1495944753625, line 1: TypeError: jQuery110206750395835180959_1495944753610 is not a function
+[NPAPI 9824] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w64-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2027
