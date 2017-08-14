@@ -8,6 +8,8 @@ from email.mime.multipart import MIMEMultipart
 from email.header import Header
 import datetime
 
+ignore_keys = ["isException=0"]
+
 def send_mail(mail_host, mail_user, mail_pass, sender, receivers, files):
     # 创建一个带附件的实例
     message = MIMEMultipart()
@@ -52,24 +54,33 @@ def send_mail(mail_host, mail_user, mail_pass, sender, receivers, files):
         print u"邮件发送失败"
 
 def analysisLog(file_name):
+    global ignore_keys
     n = 100
     result = ["*"*n+os.linesep]
     one_log = ''
-    r = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}."
+    r = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}"
     count = 0
     with open(file_name) as fp:
         for each_line in fp:
             if re.match(r, each_line):
                 if "Exception" in one_log:
-                    result.append(one_log+os.linesep)
-                    result.append("*"*n+os.linesep)
-                    count += 1
+                    for ignore_key in ignore_keys:
+                        if ignore_key in one_log:
+                            break
+                    else:
+                        result.append(one_log+os.linesep)
+                        result.append("*"*n+os.linesep)
+                        count += 1
                 one_log = ''
             one_log += each_line
         else:
             if "Exception" in one_log:
-                    result.append(one_log+os.linesep)
-                    result.append("*"*n+os.linesep)
+                for ignore_key in ignore_keys:
+                    if ignore_key in one_log:
+                        break
+                else:
+                    result.append(one_log + os.linesep)
+                    result.append("*" * n + os.linesep)
                     count += 1
                 
     return result, count
@@ -124,12 +135,13 @@ if __name__ == "__main__":
             else:
                 result_dict[module_name] = count
             result_file_path = os.path.join(result_log_dir, result_file_name)
-            if os.path.exists(result_file_path):
-                with open(result_file_path, 'a') as fp:
-                    fp.writelines(result)
-            else:
-                with open(result_file_path, 'w') as fp:
-                    fp.writelines(result)
+            if count > 0:
+                if os.path.exists(result_file_path):
+                    with open(result_file_path, 'a') as fp:
+                        fp.writelines(result)
+                else:
+                    with open(result_file_path, 'w') as fp:
+                        fp.writelines(result)
     for k,v in result_dict.items():
         print k,v
     # mail_host = "smtp.exmail.qq.com"
