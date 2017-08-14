@@ -9,6 +9,7 @@ from email.header import Header
 import datetime
 
 result_log_dir = "/mnt/log/result"
+is_yesterday = True
 ignore_keys = ["isException=0"]
 matchup = {"jessie":['dts', 'oms'], "dani":['wms', 'tms'], "victor":['web', 'message', 'baseinfo', 'excel', 'cache', 'pms', 'aspect']}
 mail_host = "smtp.exmail.qq.com"
@@ -138,7 +139,7 @@ if __name__ == "__main__":
     for arg in sys.argv[1:]:
         files_name = []
         # 获得并遍历所有前一天的日志文件
-        for file_path in find_yesterday_logfiles(arg):
+        for file_path in find_yesterday_logfiles(arg) if is_yesterday else find_today_logfiles(arg):
             file_name = os.path.splitext(os.path.split(file_path)[1])[0]
             result_file_name = file_name + "_analysisResult.log"
             files_name.append(file_path)
