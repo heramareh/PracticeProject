@@ -8,13 +8,21 @@ from email.mime.multipart import MIMEMultipart
 from email.header import Header
 import datetime
 
+result_log_dir = "/mnt/log/result"
 ignore_keys = ["isException=0"]
+matchup = {"jessie":['dts', 'oms'], "dani":['wms', 'tms'], "victor":['web', 'message', 'baseinfo', 'excel', 'cache', 'pms', 'aspect']}
+mail_host = "smtp.exmail.qq.com"
+mail_user = "ethan@egenie.cn"
+mail_pass = "LIming5118"
+sender = "ethan@egenie.cn"
+cc = ['ethan@egenie.cn', 'terryg@egenie.cn', 'hogan@egenie.cn']
 
-def send_mail(mail_host, mail_user, mail_pass, sender, receivers, files):
+def send_mail(mail_host, mail_user, mail_pass, sender, receivers, cc, files):
     # 创建一个带附件的实例
     message = MIMEMultipart()
     message['From'] = mail_user
     message['To'] = ';'.join(receivers)
+    message['Cc'] = ';'.join(cc)
     subject = '异常日志'
     message['Subject'] = Header(subject, 'utf-8')
 
@@ -82,7 +90,7 @@ def analysisLog(file_name):
                     result.append(one_log + os.linesep)
                     result.append("*" * n + os.linesep)
                     count += 1
-                
+
     return result, count
 
 def get_yesterday():
@@ -119,36 +127,46 @@ def empty_dir(path):
             os.remove(file_path)
 
 if __name__ == "__main__":
-    result_log_dir = "/mnt/log/result"
-    empty_dir(result_log_dir)
+    # 判断分析结果目录是否存在，若不存在则创建目录，若存在则清空
+    if not os.path.exists(result_log_dir):
+        # 创建目录
+        os.mkdir(result_log_dir)
+    else:
+        # 清空目录
+        empty_dir(result_log_dir)
     result_dict = {}
     for arg in sys.argv[1:]:
         files_name = []
+        # 获得并遍历所有前一天的日志文件
         for file_path in find_yesterday_logfiles(arg):
             file_name = os.path.splitext(os.path.split(file_path)[1])[0]
             result_file_name = file_name + "_analysisResult.log"
             files_name.append(file_path)
             result, count = analysisLog(file_path)
-            module_name = file_name.split('.')[0]
-            if result_dict.has_key(module_name):
-                result_dict[module_name] += count
-            else:
-                result_dict[module_name] = count
+            # module_name = file_name.split('.')[0]
             result_file_path = os.path.join(result_log_dir, result_file_name)
             if count > 0:
+                if result_dict.has_key(result_file_path):
+                    result_dict[result_file_path] += count
+                else:
+                    result_dict[result_file_path] = count
                 if os.path.exists(result_file_path):
                     with open(result_file_path, 'a') as fp:
                         fp.writelines(result)
                 else:
                     with open(result_file_path, 'w') as fp:
                         fp.writelines(result)
-    for k,v in result_dict.items():
-        print k,v
-    # mail_host = "smtp.exmail.qq.com"
-    # mail_user = "ethan@egenie.cn"
-    # mail_pass = "LIming5118"
-    # sender = "ethan@egenie.cn"
-    # receivers = ['ethan@egenie.cn']
-    # send_mail(mail_host, mail_user, mail_pass, sender, receivers, files_name)
-    # for i in find_today_logfiles("d:\\log"):
-    #     print i
+    receiver = dict.fromkeys(matchup.keys(),[])
+    for fileName in result_dict.keys():
+        for name, key_words in matchup.items():
+            try:
+                for key_word in key_words:
+                    if key_word in fileName:
+                        receiver[name].append(fileName)
+                        raise
+            except:
+                print name, fileName
+                break
+    for name, files_name in receiver.items():
+        receivers = [name + '@egenie.cn']
+        send_mail(mail_host, mail_user, mail_pass, sender, receivers, cc, files_name)
