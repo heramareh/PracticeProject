@@ -116,7 +116,7 @@ def find_today_logfiles(path):
             file_path = os.path.join(root, file)
             now = datetime.datetime.now()
             expect = now.replace(hour=0, minute=0, second=0,microsecond=0)
-            if file.endswith(".log") and expect < datetime.datetime.fromtimestamp(os.path.getctime(file_path)):
+            if file.endswith(".log") and expect < datetime.datetime.fromtimestamp(os.path.getmtime(file_path)):
                 log_files.append(file_path)
     return log_files
 
