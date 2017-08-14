@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding=utf-8
 # Filename: analysisLog.py
-import os, sys, re
+import os, sys, re, time
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -93,7 +93,11 @@ def find_today_logfiles(path):
     log_files = []
     for root, dirs, files in os.walk(path):
         for file in files:
-            pass
+            file_path = os.path.join(root, file)
+            now = datetime.datetime.now()
+            expect = now.replace(hour=0, minute=0, second=0,microsecond=0)
+            if file.endswith(".log") and expect < datetime.datetime.fromtimestamp(os.path.getctime(file_path)):
+                log_files.append(file_path)
     return log_files
 
 def empty_dir(path):
@@ -134,3 +138,5 @@ if __name__ == "__main__":
     # sender = "ethan@egenie.cn"
     # receivers = ['ethan@egenie.cn']
     # send_mail(mail_host, mail_user, mail_pass, sender, receivers, files_name)
+    # for i in find_today_logfiles("d:\\log"):
+    #     print i
