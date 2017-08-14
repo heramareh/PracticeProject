@@ -9,6 +9,7 @@ from email.header import Header
 import datetime
 
 result_log_dir = "/mnt/log/result"
+#result_log_dir = "d:\\log\\result"
 is_yesterday = True
 ignore_keys = ["isException=0"]
 matchup = {"jessie":['dts', 'oms'], "dani":['wms', 'tms'], "victor":['web', 'message', 'baseinfo', 'excel', 'cache', 'pms', 'aspect']}
@@ -16,51 +17,55 @@ mail_host = "smtp.exmail.qq.com"
 mail_user = "ethan@egenie.cn"
 mail_pass = "LIming5118"
 sender = "ethan@egenie.cn"
+#cc = ['ethan@egenie.cn']
 cc = ['ethan@egenie.cn', 'terryg@egenie.cn', 'hogan@egenie.cn']
 
-def send_mail(mail_host, mail_user, mail_pass, sender, receivers, cc, files):
-    # 创建一个带附件的实例
-    message = MIMEMultipart()
-    message['From'] = mail_user
-    message['To'] = ';'.join(receivers)
-    message['Cc'] = ';'.join(cc)
-    subject = '异常日志'
-    message['Subject'] = Header(subject, 'utf-8')
+class mail(object):
 
-    # 邮件正文内容
-    message.attach(MIMEText('异常日志见附件\n', 'plain', 'utf-8'))
+    def send_mail(self, mail_host, mail_user, mail_pass, sender, receivers, files):
+        # 创建一个带附件的实例
+        message = MIMEMultipart()
+        message['From'] = mail_user
+        message['To'] = ';'.join(receivers)
+        subject = '异常日志'
+        message['Subject'] = Header(subject, 'utf-8')
 
-    # 构造附件1，传送当前目录下的 test.txt 文件
-    for file_name in files:
-        #att1 = MIMEText(open(log_file_path, 'rb').read(), 'base64', 'utf-8')
-        with open(file_name, 'rb') as fp:
-            content = fp.read()
-        att1 = MIMEText(content, 'base64', 'utf-8')
-        att1["Content-Type"] = 'application/octet-stream'
-        # 这里的filename可以任意写，写什么名字，邮件中显示什么名字
-        att1["Content-Disposition"] = 'attachment; filename='+os.path.split(file_name)[1]
-        message.attach(att1)
+        # 邮件正文内容
+        message.attach(MIMEText('异常日志见附件\n', 'plain', 'utf-8'))
 
-    try:
-        for i in range(10):
-            try:
-                print u"发送邮件中..."
-                smtpObj = smtplib.SMTP_SSL(mail_host, 465)
-                # smtpObj.connect()
-                smtpObj.login(mail_user, mail_pass)
-                smtpObj.sendmail(sender, receivers, message.as_string())
-                smtpObj.quit()
-                print u"邮件发送成功"
-                break
-            except Exception, e:
-                print u"邮件发送失败，尝试再次发送......"
-                if i == 9:
-                    raise e
-                else:
-                    continue
+        # 构造附件1，传送当前目录下的 test.txt 文件
+        for file_name in files:
+            #att1 = MIMEText(open(log_file_path, 'rb').read(), 'base64', 'utf-8')
+            with open(file_name, 'rb') as fp:
+                content = fp.read()
+            att1 = MIMEText(content, 'base64', 'utf-8')
+            att1["Content-Type"] = 'application/octet-stream'
+            # 这里的filename可以任意写，写什么名字，邮件中显示什么名字
+            att1["Content-Disposition"] = 'attachment; filename='+os.path.split(file_name)[1]
+            message.attach(att1)
 
-    except Exception:
-        print u"邮件发送失败"
+        try:
+            for i in range(10):
+                try:
+                    print u"发送邮件中..."
+                    smtpObj = smtplib.SMTP_SSL(mail_host, 465)
+                    #smtpObj.connect()
+                    smtpObj.login(mail_user, mail_pass)
+                    print receivers
+                    smtpObj.sendmail(sender, receivers, message.as_string())
+                    smtpObj.quit()
+                    smtpObj.close()
+                    print u"邮件发送成功"
+                    break
+                except Exception, e:
+                    print u"邮件发送失败，尝试再次发送......"
+                    if i == 9:
+                        raise e
+                    else:
+                        continue
+
+        except Exception:
+            print u"邮件发送失败"
 
 def analysisLog(file_name):
     global ignore_keys
@@ -157,17 +162,24 @@ if __name__ == "__main__":
                 else:
                     with open(result_file_path, 'w') as fp:
                         fp.writelines(result)
-    receiver = dict.fromkeys(matchup.keys(),[])
+    receiver = dict.fromkeys(matchup.keys())
+    for key in receiver.keys():
+        receiver[key] = []
+    #print receiver
     for fileName in result_dict.keys():
         for name, key_words in matchup.items():
             try:
                 for key_word in key_words:
                     if key_word in fileName:
                         receiver[name].append(fileName)
+                        print name, fileName
+                        #print receiver[name]
                         raise
             except:
-                print name, fileName
                 break
-    for name, files_name in receiver.items():
-        receivers = [name + '@egenie.cn']
-        send_mail(mail_host, mail_user, mail_pass, sender, receivers, cc, files_name)
+    for name in receiver.keys():
+        receivers = [name + '@egenie.cn'] + cc
+        files = receiver[name]
+        #print receivers
+        #print files
+        mail().send_mail(mail_host, mail_user, mail_pass, sender, receivers, files)
