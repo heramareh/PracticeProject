@@ -1,0 +1,13 @@
+Æô¶¯
+java -jar selenium-server-standalone-3.0.1.jar -role hub
+
+ie:
+java -jar selenium-server-standalone-3.0.1.jar -role webdriver -hub http://localhost:4444/grid/register-Dwebdriver.ie.driver="d:\IEDriverServer.exe" -port 6666 -maxSession 5 -browser browserName="internet explorer",maxInstances=5
+
+chrome:
+java -jar selenium-server-standalone-3.0.1.jar -role webdriver -hub http://localhost:4444/grid/register-Dwebdriver.chrome.driver="d:\chromedriver.exe" -port 7777 -maxSession 5 -browser browserName="chrome",maxInstances=5
+
+firefox:
+java -jar selenium-server-standalone-3.0.1.jar -role webdriver -hub http://localhost:4444/grid/register-Dwebdriver.firefox.driver="d:\geckodriver.exe" -port 8888 -maxSession 5 -browser browserName="firefox",maxInstances=5
+
+java -jar selenium-server-standalone-3.0.1.jar -role webdriver -hub http://localhost:4444/grid/register-Dwebdriver.chrome.driver="d:\chromedriver.exe"-Dwebdriver.ie.driver="d:\IEDriverServer.exe"-Dwebdriver.firefox.driver="d:\geckodriver.exe" -port 6666 -maxSession 5 -browser browserName="internet explorer",maxInstances=5 -browser browserName="chrome",maxInstances=5 -browser browserName="firefox",maxInstance=5

@@ -17,11 +17,11 @@ class Screenshot(object):
         self.browser = browser
         #判断要使用的浏览器驱动
         if self.browser == "chrome":
-            self.driver = webdriver.Chrome(executable_path = "c:\\chromedriver")
+            self.driver = webdriver.Chrome(executable_path = "d:\\chromedriver")
         if self.browser == "firefox":
-            self.driver = webdriver.Firefox(executable_path = "c:\\geckodriver")
+            self.driver = webdriver.Firefox(executable_path = "d:\\geckodriver")
         if self.browser == "ie":
-            self.driver = webdriver.Ie(executable_path = "c:\\IEDriverServer")
+            self.driver = webdriver.Ie(executable_path = "d:\\IEDriverServer")
         #读取url文件，获取所有url
         with open(self.urlfile) as fp:
             content = fp.readlines()
