@@ -7,9 +7,18 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.header import Header
 import datetime
+from jinja2 import Environment, FileSystemLoader
+import codecs
 
-result_log_dir = "/mnt/log/result"
-#result_log_dir = "d:\\log\\result"
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+# home_dir = "/home/appusr"
+home_dir = "E:\\PythonProject\\ECHARTS"
+# report_dir = "/home/appusr"
+report_dir = "d:\\"
+# result_log_dir = "/mnt/log/result"
+result_log_dir = "d:\\log\\result"
 is_yesterday = True
 ignore_keys = ["isException=0"]
 matchup = {"jessie":['dts', 'oms'], "dani":['wms', 'tms'], "victor":['web', 'message', 'baseinfo', 'excel', 'cache', 'pms', 'aspect']}
@@ -17,8 +26,25 @@ mail_host = "smtp.exmail.qq.com"
 mail_user = "ethan@egenie.cn"
 mail_pass = "LIming5118"
 sender = "ethan@egenie.cn"
-#cc = ['ethan@egenie.cn']
+# cc = ['ethan@egenie.cn']
 cc = ['ethan@egenie.cn', 'terryg@egenie.cn', 'hogan@egenie.cn']
+
+class NewReport(object):
+
+    def __init__(self):
+        envPath = os.path.join(home_dir, "templates")
+        self.env = Environment(loader = FileSystemLoader(envPath))
+        # print envPath
+
+    def render_html(self, **kwargs):
+        template = self.env.get_template("analysis_report_temp.html")
+        return template.render(**kwargs)
+
+    def create_report(self, reportName, **kwargs):
+        filePath = os.path.join(report_dir, "analysisReport", reportName)
+        renderHtml = self.render_html(**kwargs)
+        with codecs.open(filePath, "w", encoding="utf-8") as fp:
+            fp.write(renderHtml)
 
 class mail(object):
 
@@ -166,6 +192,8 @@ if __name__ == "__main__":
     for key in receiver.keys():
         receiver[key] = []
     #print receiver
+    modules_name = []
+    error_count = []
     for fileName in result_dict.keys():
         for name, key_words in matchup.items():
             try:
@@ -173,13 +201,26 @@ if __name__ == "__main__":
                     if key_word in fileName:
                         receiver[name].append(fileName)
                         print name, fileName
-                        #print receiver[name]
+                        func_name = os.path.split(fileName)[1].split('.')[0]
+                        if re.match(r'(.*)-v39', func_name):
+                            print func_name
+                            func_name = re.match(r'(.*)-v39', func_name).group(1)
+                        modules_name.append(func_name)
+                        error_count.append(result_dict[fileName])
+                        print receiver[name]
                         raise
             except:
                 break
     for name in receiver.keys():
         receivers = [name + '@egenie.cn'] + cc
         files = receiver[name]
-        #print receivers
+        print receivers
         #print files
-        mail().send_mail(mail_host, mail_user, mail_pass, sender, receivers, files)
+        # mail().send_mail(mail_host, mail_user, mail_pass, sender, receivers, files)
+    print modules_name
+    print error_count
+    results = []
+    for i in range(len(modules_name)):
+        results.append((modules_name[i], error_count[i]))
+    n = NewReport()
+    n.create_report("analysis_report.html", modules_name=modules_name, error_count=error_count, results=results)
