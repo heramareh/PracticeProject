@@ -13,12 +13,13 @@ import codecs
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-# home_dir = "/home/appusr"
-home_dir = "E:\\PythonProject\\ECHARTS"
-# report_dir = "/home/appusr"
-report_dir = "d:\\"
-# result_log_dir = "/mnt/log/result"
-result_log_dir = "d:\\log\\result"
+home_dir = "/home/appusr"
+# home_dir = "E:\\PythonProject\\ECHARTS"
+report_dir = "/home/appusr"
+# report_dir = "d:\\"
+result_log_dir = "/mnt/log/result"
+# result_log_dir = "d:\\log\\result"
+log_dir = ['118.178.95.22'+os.linesep]
 is_yesterday = True
 ignore_keys = ["isException=0"]
 matchup = {"judy":['dts-server-refund'], "jessie":['dts-config', 'dts-item-server', 'dts-queue-server', 'dts-server', 'dts-upstream', 'oms', 'oms-sql', 'egenie_oms_batch', 'egenie_dts_server'], "dani":['wms', 'tms', 'tms-rest', 'tms-sql'], "victor":['egenie', 'egenie_web', 'egenie_aspect', 'message', 'baseinfo', 'excel', 'cache', 'pms']}
@@ -57,7 +58,7 @@ class mail(object):
         message['Subject'] = Header(subject, 'utf-8')
 
         # 邮件正文内容
-        message.attach(MIMEText('环境'+text+os.linesep+'异常日志见附件'+os.linesep, 'plain', 'utf-8'))
+        message.attach(MIMEText('环境：'+os.linesep+text+os.linesep+'异常日志见附件'+os.linesep, 'plain', 'utf-8'))
 
         # 构造附件1，传送当前目录下的 test.txt 文件
         for file_name in files:
@@ -167,9 +168,8 @@ if __name__ == "__main__":
         # 清空目录
         empty_dir(result_log_dir)
     result_dict = {}
-    log_dir = ['118.178.95.22']
     for arg in sys.argv[1:]:
-        log_dir.append(arg)
+        log_dir.append(arg+os.linesep)
         files_name = []
         # 获得并遍历所有前一天的日志文件
         for file_path in find_yesterday_logfiles(arg) if is_yesterday else find_today_logfiles(arg):
@@ -202,23 +202,26 @@ if __name__ == "__main__":
                 func_name = os.path.split(fileName)[1].split('.')[0]
                 if re.match(r'(.*)-v39', func_name):
                     func_name = re.match(r'(.*)-v39', func_name).group(1)
-                print func_name
+                elif re.match(r'(.*)-\d{4}-\d{2}-\d{2}', func_name):
+                    func_name = re.match(r'(.*)-\d{4}-\d{2}-\d{2}', func_name).group(1)
+                # print func_name
                 if func_name in key_words:
                     print name, func_name
                     receiver[name].append(fileName)
                     modules_name.append(func_name)
                     error_count.append(result_dict[fileName])
-                    print receiver[name]
-                    break
+                    # print receiver[name]
+                    raise
             except:
-                print u"error"
+                break
+    print ''.join(log_dir)
     for name in receiver.keys():
         receivers = [name + '@egenie.cn'] + cc
         files = receiver[name]
         print receivers
         # print files
-        print ', '.join(log_dir)
-        # mail().send_mail(mail_host, mail_user, mail_pass, sender, receivers, ', '.join(log_dir), files)
+        mail().send_mail(mail_host, mail_user, mail_pass, sender, receivers, ', '.join(log_dir), files)
+        # mail().send_mail(mail_host, mail_user, mail_pass, sender, cc, ''.join(log_dir), files)
     # print modules_name
     # print error_count
     n = NewReport()
