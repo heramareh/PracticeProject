@@ -21,7 +21,7 @@ report_dir = "d:\\"
 result_log_dir = "d:\\log\\result"
 is_yesterday = True
 ignore_keys = ["isException=0"]
-matchup = {"jessie":['dts', 'oms'], "dani":['wms', 'tms'], "victor":['web', 'message', 'baseinfo', 'excel', 'cache', 'pms', 'aspect']}
+matchup = {"judy":['dts-server-refund'], "jessie":['dts-config', 'dts-item-server', 'dts-queue-server', 'dts-server', 'dts-upstream', 'oms', 'oms-sql', 'egenie_oms_batch', 'egenie_dts_server'], "dani":['wms', 'tms', 'tms-rest', 'tms-sql'], "victor":['egenie', 'egenie_web', 'egenie_aspect', 'message', 'baseinfo', 'excel', 'cache', 'pms']}
 mail_host = "smtp.exmail.qq.com"
 mail_user = "ethan@egenie.cn"
 mail_pass = "LIming5118"
@@ -48,7 +48,7 @@ class NewReport(object):
 
 class mail(object):
 
-    def send_mail(self, mail_host, mail_user, mail_pass, sender, receivers, files):
+    def send_mail(self, mail_host, mail_user, mail_pass, sender, receivers, text, files):
         # 创建一个带附件的实例
         message = MIMEMultipart()
         message['From'] = mail_user
@@ -57,7 +57,7 @@ class mail(object):
         message['Subject'] = Header(subject, 'utf-8')
 
         # 邮件正文内容
-        message.attach(MIMEText('异常日志见附件\n', 'plain', 'utf-8'))
+        message.attach(MIMEText('环境'+text+os.linesep+'异常日志见附件'+os.linesep, 'plain', 'utf-8'))
 
         # 构造附件1，传送当前目录下的 test.txt 文件
         for file_name in files:
@@ -167,7 +167,9 @@ if __name__ == "__main__":
         # 清空目录
         empty_dir(result_log_dir)
     result_dict = {}
+    log_dir = ['118.178.95.22']
     for arg in sys.argv[1:]:
+        log_dir.append(arg)
         files_name = []
         # 获得并遍历所有前一天的日志文件
         for file_path in find_yesterday_logfiles(arg) if is_yesterday else find_today_logfiles(arg):
@@ -197,30 +199,27 @@ if __name__ == "__main__":
     for fileName in result_dict.keys():
         for name, key_words in matchup.items():
             try:
-                for key_word in key_words:
-                    if key_word in fileName:
-                        receiver[name].append(fileName)
-                        print name, fileName
-                        func_name = os.path.split(fileName)[1].split('.')[0]
-                        if re.match(r'(.*)-v39', func_name):
-                            print func_name
-                            func_name = re.match(r'(.*)-v39', func_name).group(1)
-                        modules_name.append(func_name)
-                        error_count.append(result_dict[fileName])
-                        print receiver[name]
-                        raise
+                func_name = os.path.split(fileName)[1].split('.')[0]
+                if re.match(r'(.*)-v39', func_name):
+                    func_name = re.match(r'(.*)-v39', func_name).group(1)
+                print func_name
+                if func_name in key_words:
+                    print name, func_name
+                    receiver[name].append(fileName)
+                    modules_name.append(func_name)
+                    error_count.append(result_dict[fileName])
+                    print receiver[name]
+                    break
             except:
-                break
+                print u"error"
     for name in receiver.keys():
         receivers = [name + '@egenie.cn'] + cc
         files = receiver[name]
         print receivers
-        #print files
-        # mail().send_mail(mail_host, mail_user, mail_pass, sender, receivers, files)
-    print modules_name
-    print error_count
-    results = []
-    for i in range(len(modules_name)):
-        results.append((modules_name[i], error_count[i]))
+        # print files
+        print ', '.join(log_dir)
+        # mail().send_mail(mail_host, mail_user, mail_pass, sender, receivers, ', '.join(log_dir), files)
+    # print modules_name
+    # print error_count
     n = NewReport()
-    n.create_report("analysis_report.html", modules_name=modules_name, error_count=error_count, results=results)
+    n.create_report("analysis_report.html", modules_name=modules_name, error_count=error_count)
