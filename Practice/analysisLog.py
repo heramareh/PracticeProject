@@ -78,7 +78,7 @@ class mail(object):
                     smtpObj = smtplib.SMTP_SSL(mail_host, 465)
                     #smtpObj.connect()
                     smtpObj.login(mail_user, mail_pass)
-                    print receivers
+                    # print receivers
                     smtpObj.sendmail(sender, receivers, message.as_string())
                     smtpObj.quit()
                     smtpObj.close()
@@ -220,7 +220,7 @@ if __name__ == "__main__":
         files = receiver[name]
         print receivers
         # print files
-        mail().send_mail(mail_host, mail_user, mail_pass, sender, receivers, ', '.join(log_dir), files)
+        mail().send_mail(mail_host, mail_user, mail_pass, sender, receivers, ''.join(log_dir), files)
         # mail().send_mail(mail_host, mail_user, mail_pass, sender, cc, ''.join(log_dir), files)
     # print modules_name
     # print error_count
