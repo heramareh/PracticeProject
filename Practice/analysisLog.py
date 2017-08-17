@@ -23,7 +23,8 @@ result_log_dir = "/mnt/log/result"
 log_dir = ['118.178.95.22'+os.linesep]
 is_yesterday = True
 ignore_keys = ["isException=0"]
-matchup = {"judy":['dts-server-refund', 'excel'], "jessie":['dts-config', 'dts-item-server', 'dts-queue-server', 'dts-server', 'dts-upstream', 'oms', 'oms-sql', 'egenie_oms_batch', 'egenie_dts_server'], "dani":['wms', 'tms', 'tms-rest', 'tms-sql'], "victor,ivy":['egenie', 'egenie_web', 'message', 'baseinfo', 'cache', 'pms']}
+ignore_file = ['sql', 'aspect']
+matchup = {"judy":['dts-server-refund', 'excel'], "jessie":['dts-config', 'dts-item-server', 'dts-queue-server', 'dts-server', 'dts-upstream', 'oms', 'oms-sql', 'egenie_oms_batch', 'egenie_dts_server'], "dani":['wms', 'tms', 'tms-rest', 'tms-sql'], "victor,ivy":['egenie', 'egenie_web', 'message', 'baseinfo', 'cache', 'pms'], "rui":[]}
 mail_host = "smtp.exmail.qq.com"
 mail_user = "ethan@egenie.cn"
 mail_pass = "LIming5118"
@@ -250,7 +251,11 @@ def find_yesterday_logfiles(path):
     for root, dirs, files in os.walk(path):
         for file in files:
             if get_yesterday() in file:
-                log_files.append(os.path.join(root, file))
+                for i in ignore_file:
+                    if i in file:
+                        break
+                else:
+                    log_files.append(os.path.join(root, file))
     return log_files
 
 def find_today_logfiles(path):
@@ -262,7 +267,11 @@ def find_today_logfiles(path):
             now = datetime.datetime.now()
             expect = now.replace(hour=0, minute=0, second=0,microsecond=0)
             if file.endswith(".log") and expect < datetime.datetime.fromtimestamp(os.path.getmtime(file_path)):
-                log_files.append(file_path)
+                for i in ignore_file:
+                    if i in file:
+                        break
+                else:
+                    log_files.append(file_path)
     return log_files
 
 def empty_dir(path):
@@ -308,8 +317,9 @@ if __name__ == "__main__":
     for key in receiver.keys():
         receiver[key] = []
     #print receiver
-    modules_name = []
-    error_count = []
+    #modules_name = []
+    #error_count = []
+    # print result_dict
     result_datas = []
     for fileName in result_dict.keys():
         for name, key_words in matchup.items():
@@ -322,11 +332,17 @@ if __name__ == "__main__":
                 # print func_name
                 if result_dict[fileName] == 0:
                     raise
-                if func_name in key_words:
+                if func_name not in reduce(lambda x,y:x+y, matchup.values()):
+                    print 'rui', func_name
+                    receiver['rui'].append(fileName)
+                    #modules_name.append(func_name)
+                    #error_count.append(result_dict[fileName])
+                    raise
+                elif func_name in key_words:
                     print name, func_name
                     receiver[name].append(fileName)
-                    modules_name.append(func_name)
-                    error_count.append(result_dict[fileName])
+                    #modules_name.append(func_name)
+                    #error_count.append(result_dict[fileName])
                     raise
             except:
                 result_datas.append((func_name, result_dict[fileName], dd))
@@ -336,7 +352,7 @@ if __name__ == "__main__":
         receivers = [n + '@egenie.cn' for n in name.split(',')] + cc
         files = receiver[name]
         print receivers
-        # print files
+        print files
         if files:
             mail().send_mail(mail_host, mail_user, mail_pass, sender, receivers, ''.join(log_dir), files)
             # mail().send_mail(mail_host, mail_user, mail_pass, sender, cc, ''.join(log_dir), files)
