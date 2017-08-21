@@ -21,6 +21,12 @@ templates_dir = os.path.join(home_dir,"templates")
 # home_dir = "E:\\PythonProject\\ECHARTS"
 # 生成报告目录
 report_dir = os.path.join(home_dir, "logAnalysis")
+# 查看报告地址
+report_url = "http://www.runscm.com"
+# 查看报告用户名
+report_user = "ejlpt_admin"
+# 查看报告密码
+report_pwd = "yl@1806"
 # report_dir = "d:\\"
 # 日志文件所在目录
 log_home_dir = "/mnt/prodlog"
@@ -183,7 +189,7 @@ class mail(object):
         message['Subject'] = Header(subject, 'utf-8')
 
         # 邮件正文内容
-        message.attach(MIMEText('环境：'+os.linesep+text+os.linesep+'异常日志见附件'+os.linesep, 'plain', 'utf-8'))
+        message.attach(MIMEText(text, 'plain', 'utf-8'))
 
         # 构造附件1，传送当前目录下的 test.txt 文件
         for file_name in files:
@@ -312,7 +318,7 @@ if __name__ == "__main__":
     result_dict = {}
     for arg in sys.argv[1:]:
         log_dir = os.path.join(log_home_dir, arg)
-        log_env.append(log_dir+os.linesep)
+        log_env.append(arg+", ")
         log_name = arg
         files_name = []
         # 获得并遍历所有前一天的日志文件
@@ -393,7 +399,7 @@ if __name__ == "__main__":
         # 附件
         files = receiver[name]
         # 正文
-        text = ''.join(log_env) + os.linesep + ''.join(text_dict[name])
+        text = '环境：'+os.linesep+''.join(log_env) + os.linesep + ''.join(text_dict[name])+os.linesep+'异常日志见附件'+os.linesep+"日志分析报告地址："+os.linesep+report_url+os.linesep+report_user+'/'+report_pwd+os.linesep
         print receivers
         print files
         print text
